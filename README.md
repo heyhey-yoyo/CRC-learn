@@ -1,6 +1,6 @@
 # CRC Evidence Lab
 
-一个面向准博士生和青年研究者的双案例临床试验分步学习课程，从真实问题到可复核结论。纯静态单 HTML 文件，可直接部署到 Cloudflare Pages。
+一个面向准博士生和青年研究者的双案例临床试验分步学习课程，从真实问题到可复核结论。纯静态网页（HTML + CSS + JS），可直接部署到 Cloudflare Pages。
 
 ## 主要功能
 
@@ -11,11 +11,7 @@
 
 ## 本地运行
 
-项目无任何构建步骤，直接用浏览器打开即可：
-
-```text
-index.html
-```
+项目无任何构建步骤，直接用浏览器打开 `index.html` 即可。
 
 如需本地静态预览：
 
@@ -56,13 +52,28 @@ npx wrangler pages deploy . --project-name crc-learn
 
 | 技术 | 说明 |
 | --- | --- |
-| HTML / CSS / JavaScript | 单文件应用，零依赖、零构建 |
+| HTML / CSS / JavaScript | 多文件静态网页（`index.html` + `styles.css` + `app.js`），零依赖、零构建 |
 | localStorage | 学习进度本地保存 |
 | Cloudflare Pages | 静态托管与自动部署 |
 
 ## 数据与隐私
 
 应用是纯静态网页，学习进度保存在浏览器 `localStorage` 中，不会上传到任何服务器。清理网站数据或更换设备可能导致进度丢失。
+
+## 项目结构
+
+```text
+index.html     页面结构（HTML）
+styles.css     全部样式（原单文件内 <style> 抽取）
+app.js         交互逻辑与课程数据（原单文件内 <script> 抽取）
+```
+
+## 维护提示
+
+- 改样式 → 编辑 `styles.css`
+- 改交互/内容数据 → 编辑 `app.js`
+- 改页面结构 → 编辑 `index.html`
+- 拆分时已清理原单文件中 `/Static/`、`/Web/` 外部残留引用（在 Cloudflare Pages 上会 404，且代码并不依赖它们）
 
 ---
 
