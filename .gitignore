@@ -1,0 +1,12 @@
+# 本地与 IDE
+.DS_Store
+Thumbs.db
+*.log
+
+# 临时文件
+*.tmp
+*.bak
+
+# AI 工具本地数据（不提交 Git）
+.claude/
+.workbuddy/
