@@ -14,7 +14,7 @@
 项目无任何构建步骤，直接用浏览器打开即可：
 
 ```text
-oncology_crc_learning_v9.2.2_界面对齐修复版.html
+index.html
 ```
 
 如需本地静态预览：

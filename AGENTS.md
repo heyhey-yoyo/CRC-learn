@@ -8,7 +8,7 @@ CRC Evidence Lab 是一个面向准博士生和青年研究者的**双案例临�
 
 | 文件 | 作用 |
 | --- | --- |
-| `oncology_crc_learning_v9.2.2_界面对齐修复版.html` | 唯一源码文件，含全部 HTML / CSS / JavaScript |
+| `index.html` | 唯一源码文件，含全部 HTML / CSS / JavaScript |
 
 ## 技术栈与运行架构
 
