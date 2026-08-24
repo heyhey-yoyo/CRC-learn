@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="面向准博士生和青年研究者的双案例临床试验分步学习课程：从真实问题到可复核结论。" name="description"/><meta content="light" name="color-scheme"/><title>CRC Evidence Lab</title><link rel="stylesheet" href="styles.css"/></head>
+<body>
+<a class="skip" href="#mainContent">跳到正文</a>
+<header class="topbar"><div class="topbar-v9"><a class="brand-v9" data-home="" href="#home"><span class="brand-mark">CRC</span><span><b>CRC Evidence Lab</b><small>自然中文 · 分步学习 · 双案例专业示范</small></span></a><div class="topbar-actions"><button class="btn-v9 home-top" data-home="" type="button">课程首页</button><button aria-controls="mobileDrawer" aria-expanded="false" aria-haspopup="dialog" class="btn-v9 menu-trigger" id="menuTrigger" type="button">目录</button><button class="btn-v9 project-download-top" data-download="project_bundle" type="button">下载完整项目包</button></div></div></header>
+<div class="course-layout">
+<aside aria-label="课程导航" class="course-sidebar" id="courseSidebar"><button class="sidebar-home" data-home="" type="button">← 返回课程首页</button><button aria-controls="desktopNav currentSteps" aria-expanded="false" class="sidebar-toggle-v9" id="sidebarToggle" type="button"><span>目录</span><span aria-hidden="true" class="sidebar-toggle-state">固定展开</span></button><div class="sidebar-summary" id="sidebarSummary"></div><div class="sidebar-progress"><div><span id="progressLabel">尚未开始</span><span id="progressPercent">0%</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div><div id="desktopNav"></div><div class="current-steps" id="currentSteps"><h3>当前章小步</h3><div id="stepList"></div></div></aside>
+<main class="main-v9" id="mainContent">
+<section class="home-page" id="homePage"><div class="home-eyebrow">CRC Evidence Lab · 双案例临床试验全流程</div><h1>从一个真实问题出发，看懂临床试验怎样一路走到分析结论</h1><p class="home-lead">这门课面向懂医学与一般科研、但尚未系统学习临床试验的准博士生和青年研究者。每章围绕一个真实项目决策展开；不需要先掌握全部统计术语，也不要求独立写代码或完成作业。</p><div class="case-cards-v9"><article class="case-card-v9"><span>案例 A · 随机Ⅲ期</span><h2>CRC-ADVANCE-01</h2><p>MSS/pMMR 晚期结直肠癌的事件驱动随机研究，最适合理解治疗策略、总生存期、期中分析和确认性证据责任。</p></article><article class="case-card-v9"><span>案例 B · 单臂Ⅱ期 IIT</span><h2>CRC-IMMUNE-IIT-01</h2><p>安全先导加 Simon 两阶段的转化研究，最适合理解确认 ORR、方案可实施性、动态样本和探索性结论边界。</p></article></div><div aria-label="建议阅读方式" class="reading-route"><b>先看结论</b><i>→</i><b>顺着问题推理</b><i>→</i><b>看完整项目示范</b><i>→</i><b>比较另一类研究</b><i>→</i><b>用决策图收束</b></div><div class="home-actions"><button class="btn-v9 primary" data-start="" type="button">开始第 1 章</button></div><details class="home-details"><summary>课程介绍与使用边界</summary><div class="details-inner"><div class="boundary-note">本课程中的样本量、阈值、方案和模拟结果均为教学设定，不构成真实临床研究设计、处方剂量或医学建议。专业定义、监管依据、完整 R 代码和原始项目片段保留在各章“继续深入”中。</div><div class="resource-area"><h3>课程资源</h3><div class="resource-grid"><section class="resource-group"><h4>完整项目包</h4><div class="resource-buttons"><button data-download="project_bundle" type="button">完整项目包</button><button data-download="README.md" type="button">README</button></div></section><section class="resource-group"><h4>设计文件</h4><div class="resource-buttons"><button data-download="templates/01_dual_case_protocol_synopsis.md" type="button">双案例 Protocol Synopsis</button><button data-download="templates/02_estimand_endpoint_worksheet.md" type="button">Estimand / Endpoint 工作表</button><button data-download="templates/03_crf_sample_plan.md" type="button">CRF 与样本计划</button><button data-download="templates/04_SAP_template.md" type="button">SAP 模板</button><button data-download="templates/05_interim_simon_workbook.md" type="button">阶段性决策工作簿</button><button data-download="templates/06_QC_checklist.md" type="button">QC Checklist</button><button data-download="templates/07_interpretation_memo.md" type="button">结果解释 Memo</button></div></section><section class="resource-group"><h4>案例 A 数据</h4><div class="resource-buttons"><button data-download="data/case_A_patient.csv" type="button">患者数据</button><button data-download="data/case_A_response.csv" type="button">响应数据</button><button data-download="data/case_A_exposure.csv" type="button">暴露数据</button><button data-download="data/case_A_ae.csv" type="button">不良事件数据</button></div></section><section class="resource-group"><h4>案例 B 数据</h4><div class="resource-buttons"><button data-download="data/case_B_patient.csv" type="button">患者数据</button><button data-download="data/case_B_cycle.csv" type="button">周期与给药</button><button data-download="data/case_B_response.csv" type="button">响应数据</button><button data-download="data/case_B_ae.csv" type="button">不良事件数据</button><button data-download="data/case_B_samples.csv" type="button">样本台账</button><button data-download="data/case_B_ctdna.csv" type="button">ctDNA 数据</button></div></section><section class="resource-group"><h4>R 脚本</h4><div class="resource-buttons"><button data-download="R/00_setup.R" type="button">00_setup.R</button><button data-download="R/01_simulate_case_A.R" type="button">模拟案例 A</button><button data-download="R/02_simulate_case_B.R" type="button">模拟案例 B</button><button data-download="R/03_data_checks.R" type="button">数据检查</button><button data-download="R/04_analysis_sets.R" type="button">分析集</button><button data-download="R/05_response_endpoints.R" type="button">响应终点</button><button data-download="R/06_survival_endpoints.R" type="button">生存终点</button><button data-download="R/07_case_A_primary_analysis.R" type="button">案例 A 主要分析</button><button data-download="R/08_case_B_simon_and_orr.R" type="button">Simon 与 ORR</button><button data-download="R/09_safety_and_exposure.R" type="button">安全与暴露</button><button data-download="R/10_biomarker_landmark.R" type="button">标志物 landmark</button><button data-download="R/11_tfl_generation.R" type="button">TFL 生成</button><button data-download="R/12_qc_checks.R" type="button">QC 检查</button></div></section><section class="resource-group"><h4>字典与证据</h4><div class="resource-buttons"><button data-download="data/data_dictionary.csv" type="button">数据字典</button><button data-download="evidence/evidence_ledger.csv" type="button">证据台账</button></div></section></div></div></div></details></section>
+<section class="chapter-v9" data-chapter="0" hidden="" id="chapter-1">
+<header class="chapter-head-v9">
+<div class="stage-label">第一阶段：先把研究问题想明白</div>
+<div class="chapter-number">第 1 章</div>
+<h2>这项研究究竟想回答什么？</h2>
+<p>从临床问题到估计目标（estimand）</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-1-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-1-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-1-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-1-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-1-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-1-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-1-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">患者停药以后，研究问题变了吗？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 A</span><span>随机对照设计最适合说明：患者停药以后，研究最初提出的问题并不会自动改变。</span></div><p>一名患者随机进入试验组，治疗三个周期后因为不良反应停药，随后改用其他抗肿瘤治疗。主要分析时，他还应该留在原来的试验组吗？</p><p>表面上，这是一个“停药以后怎么算”的问题。真正要先确认的却是：研究比较的是两套最初分配的治疗策略，还是只比较患者实际使用研究药物期间的效果。两种问题都可以研究，但不能共用同一套处理规则。</p><div class="step-expansion"><p>研究比较的是随机分配后的两套治疗策略；主要人群在随机时已经确定；停药、换药和后续治疗后的生存结局仍能继续收集。只要其中任何一点改变，主要分析的问题也可能随之改变。</p><p>本章真正的分界是：研究比较的是随机分配的治疗策略，还是实际持续用药期间的效果。先把这个分界说清，Protocol 的随访规则、CRF 的后续治疗记录、ITT 分母和 OS 报告才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“这项研究究竟想回答什么？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>这项研究究竟想回答什么？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-1-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>在案例 A 中，这名患者仍留在最初的随机组，并继续随访总生存期。停药、减量或后续治疗不会把他从主要分析中移走。</p><p>这个结论成立，是因为案例 A 关心两套随机分配的治疗策略在真实治疗过程中的总体差异。患者后来的治疗经历发生了变化，研究最初提出的问题没有因此改变。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>研究比较的是随机分配后的两套治疗策略；主要人群在随机时已经确定；停药、换药和后续治疗后的生存结局仍能继续收集。只要其中任何一点改变，主要分析的问题也可能随之改变。</p><p>这并不表示所有研究都必须把停药后的经历纳入同一个效果。若真正关心的是“假如患者始终按方案治疗会怎样”，就需要提出另一个问题，并为反事实假设准备不同的数据和敏感性分析。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“研究比较的是随机分配的治疗策略，还是实际持续用药期间的效果”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当研究问题改为“始终按方案治疗”的假设性效果时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-1-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>停药、换药、手术和失访都会改变后续观察。如果团队没有先说清研究问题，同一名患者可能在不同分析中被任意保留、删失或排除。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>只分析“坚持用药的人”会留下耐受更好、病情更稳定的患者，从而破坏随机化形成的可比性，结果往往显得过于乐观。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>研究真正要回答的问题，可以整理成明确的估计目标（estimand）：针对谁、比较什么、观察什么、怎样处理治疗后事件，以及用什么总体指标概括差异。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>这里采用治疗策略原则，是因为主要问题比较随机分配的整体策略。如果研究关心的是“在未换药状态下的纯药物效应”，就需要另一个估计目标和更强假设。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里需要的专业工具是估计目标（estimand）。它把目标人群、治疗条件、结果变量、治疗中事件的处理以及总体差异怎样概括放在同一张问题清单里，防止团队先写模型、后补研究问题。</p><p>遇到类似问题，先按时间顺序列出随机、停药、换药、后续治疗和死亡，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“研究比较的是随机分配的治疗策略，还是实际持续用药期间的效果”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-1-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">先盯住一名已经停药的患者：方案是否仍要求随访，CRF 是否继续记录后续治疗和死亡，分析程序是否仍把他留在 ITT 分母，OS 表是否按原随机组呈现。四处必须回答同一个研究问题。</p><div class="project-chain"><div class="project-row"><b>研究问题</b><span>比较策略 A 与策略 B 对全部随机化患者总生存期的总体影响。</span></div><div class="project-row"><b>Protocol</b><span>写明所有随机化患者按原组分析；停药和后续治疗后继续收集死亡结局。</span></div><div class="project-row"><b>CRF</b><span>分别记录停止治疗、退出全部研究、后续治疗、手术和死亡日期。</span></div><div class="project-row"><b>SAP</b><span>预先列出每类治疗中事件的处理策略，并说明敏感性分析改变的是假设还是临床问题。</span></div><div class="project-row"><b>分析与报告</b><span>代码不能先筛掉停药患者；表格脚注明确分母和按原随机组分析。</span></div><div class="project-row"><b>QC</b><span>逐例检查是否有人因不利结局、无影像或早期死亡被移出主要分母。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“所有随机化患者均按原分组分析；停药、剂量调整和后续治疗后继续收集死亡结局。”</p>
+<p><strong>分析动作：</strong>分析程序从随机化清单建立 ITT 分母，以随机日期为起点派生 OS；不能先按是否持续用药、是否有复查影像或是否接受后续治疗筛人。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>a_sets &lt;- transform(a,
+  ITTFL = "Y",
+  SAFFL = ifelse(treated == 1, "Y", "N")
+)</code><small>对应下载脚本：R/04_analysis_sets.R。ITTFL 对全部随机化患者赋值为 Y；SAFFL 另按是否实际治疗派生。</small></div><p><strong>结果怎样写：</strong>报告应说明风险比和生存率描述的是随机分配治疗策略的总体效果，而不是研究药持续暴露期间的纯药理效应。</p>
+<p class="demo-why"><b>为什么重要：</b> 如果患者在停药后从其中任何一环消失，最终结果就不再是随机分配治疗策略的总体效果，而会悄悄变成“坚持用药者”的效果。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 选一名停药患者，从随机化清单追到 OS 输出；他始终留在原组，才说明治疗策略原则真正落实了。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-1-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 B 是单臂研究，没有“原随机组”可保护，主要问题是目标方案下的确认缓解率。</li><li>无治疗后影像、早期死亡和停药者仍不能事后从分母删除，但理由是防止缩小分母夸大 ORR。</li><li>案例 B 越过教学阈值，只能支持进一步随机验证，不能分离新增药物的独立贡献。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 B 没有随机对照，主要问题是目标方案患者中的确认缓解率及其与预设无效率的关系。分母、治疗后事件和证据责任因此不同，不能把案例 A 的 ITT 解释原样搬过去。</p><p>这里不能把“保留不利结局患者”简单理解成 ITT 的专属做法。案例 B 也要保留无影像和早期死亡者，但目的是守住单臂 ORR 的预设分母；两项研究保护的是不同的证据责任。</p></div><p class="length-note-5 reading-focus">判断案例 A 的规则能否带到案例 B，先问三件事：有没有随机对照、主要分母在何时确定、结果准备支持比较性结论还是推进性判断。答案不同，停药和无评价的解释也不同。</p><p class="step-landing"><b>这一小步的落点：</b> 案例 B 同样不能事后缩小分母，但理由从“保护随机比较”变成了“避免夸大单臂缓解率”。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-1-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>患者停药或换药</p></div><div class="flow-node"><span>2</span><p>先确认研究真正比较什么</p></div><div class="flow-node"><span>3</span><p>案例 A 比较随机分配的治疗策略</p></div><div class="flow-node"><span>4</span><p>患者继续留在原随机组</p></div><div class="flow-node"><span>5</span><p>Protocol 要求停药后继续随访</p></div><div class="flow-node"><span>6</span><p>CRF 记录停药、后续治疗和生存结局</p></div><div class="flow-node"><span>7</span><p>SAP 按意向性治疗原则分析</p></div><div class="flow-node"><span>8</span><p>报告说明估计的是整体治疗策略效果</p></div></div><div class="flow-reading-v9"><h4>顺着一名停药患者读这张图</h4><p>从“停药或换药”开始，先确认研究仍在比较最初分配的两套策略。随后逐项查看：方案要求继续随访，CRF 留下后续治疗与死亡日期，SAP 保留原随机组，报告说明估计的是整体策略效果。</p><p><strong>结论边界：</strong>这条路径能够支持治疗策略层面的比较；不能单独分离某个药物成分的贡献，也不能自动回答“始终按方案治疗”的假设性问题。</p></div><p class="length-note-6 reading-focus">反向检查时，可从 OS 表中抽取一名停药患者，依次回到分析集、随访记录和随机化清单。任何一步找不到他，都意味着研究问题在执行过程中发生了漂移。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么处理停药、换药和后续治疗之前，必须先把研究问题和估计目标说清。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>临床问题 → estimand → endpoint → protocol；这是后续数据、分析和报告的起点。</span></div>
+<div class="decision-lab"><h3>当前决策：我们究竟要估计哪一种治疗效果？</h3><p>“治疗有没有效”至少缺少五个要素：针对谁、比较什么策略、观察什么变量、随机后事件怎样处理、用什么总体指标概括差异。团队必须在看见治疗效果之前，把这些要素写进 protocol 与 SAP。</p><div class="decision-grid"><div class="decision-cell"><b>合理选项</b><span>treatment-policy、hypothetical、composite、while-on-treatment；principal stratum 仅作为高阶视野。</span></div><div class="decision-cell"><b>主要风险</b><span>停药、换药、手术、早期死亡或无后续影像被临时处理，导致问题随结果移动。</span></div><div class="decision-cell"><b>推荐原则</b><span>主要 estimand 回答临床上最重要且数据可支持的问题；补充 estimand 明确回答另一个问题。</span></div><div class="decision-cell"><b>不可验证假设</b><span>删失独立性、反事实模型充分调整、无未测量混杂、影像缺失机制等。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>CRC-ADVANCE-01：现实治疗策略下的 OS</h3><p>这项主要分析纳入全部随机化患者，比较被分配到策略 A 与策略 B 后的总生存期。患者停药、减量、接受后续治疗或局部治疗后，仍按原随机组继续随访。</p><dl><dt>主要分析集</dt><dd>ITT</dd><dt>效应表达</dt><dd>分层 log-rank、Cox HR 与固定时间生存率</dd><dt>补充问题</dt><dd>治疗转换校正只作为补充 estimand</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>CRC-IMMUNE-IIT-01：确认 ORR 的估计目标</h3><p>这项主要分析关注符合入组条件并接受目标方案 T 的患者，结果由独立影像评审确认的最佳总体疗效来衡量。首次影像前死亡、没有治疗后影像或提前停药者，不能因为“不可评价”而自动移出主要分母。</p><dl><dt>主要分析集</dt><dd>目标方案 ORR 集，规则预先冻结</dd><dt>关键事件</dt><dd>早期死亡、无评估、转化手术、降阶</dd><dt>因果边界</dt><dd>单臂估计不能分离新增药物贡献</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 的主要问题是随机化策略的总体效果，因此随机后治疗路径通常仍属于策略的一部分。案例 B 的主要问题是单臂确认缓解率及其与教学无效率的关系，必须特别防止把无评价患者从分母中删除。二者都需要 estimand，但证据责任不同。</div>
+<h3 class="section-title">患者级推演：同一事件，怎样改变不同终点</h3>
+<div class="table-wrap"><table><thead><tr><th>患者情景</th><th>案例 A OS</th><th>案例 B 确认 ORR</th><th>必须记录</th></tr></thead><tbody>
+<tr><td>停药后继续随访</td><td>仍按原随机组，死亡为事件</td><td>若继续影像，按预设窗口判定；不能因停药剔除</td><td>停药日期/原因、后续随访</td></tr>
+<tr><td>开始新抗癌治疗</td><td>主要 OS 不在换药日删失</td><td>通常在新治疗前完成主要响应判定；规则须预设</td><td>新治疗类型和开始日</td></tr>
+<tr><td>转化手术</td><td>继续随访 OS</td><td>手术前响应、手术日期和术后无靶病灶处理需写清</td><td>R0/R1、病理、术后治疗</td></tr>
+<tr><td>首次影像前死亡</td><td>死亡事件</td><td>非缓解者，留在主要分母</td><td>死亡日期、死因、影像计划</td></tr>
+<tr><td>无基线后评估</td><td>OS 仍可分析</td><td>通常计为非缓解/NE；不得事后改成 response-evaluable 分母</td><td>无评估原因、是否开始治疗</td></tr>
+</tbody></table></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Protocol</td><td>临床问题、estimand 五属性、随机后事件策略</td><td>首例入组前</td><td>临床/统计</td></tr><tr><td>Schedule of Assessments</td><td>停药后随访、影像窗、生存随访</td><td>首例入组前</td><td>临床/影像/运营</td></tr><tr><td>SAP</td><td>主要 estimator、敏感性与补充 estimand</td><td>揭盲或主要分析前冻结</td><td>统计</td></tr><tr><td>CRF</td><td>停药、换药、手术、死亡和无评估原因</td><td>数据库上线前</td><td>数据/临床</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p><strong>案例 A：</strong>“所有随机化患者均按原分组分析；停药和后续治疗后继续收集死亡结局。”</p><p><strong>案例 B：</strong>“确认 ORR 的主要分母不因缺少治疗后影像而事后缩小；原因分类单列。”</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>退出治疗与退出全部研究分开记录。</li><li>新抗癌治疗、手术和死亡使用结构化日期。</li><li>无评估原因不能只填“其他”。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>列出每类 intercurrent event 的策略，并说明敏感性分析改变的是假设还是临床问题。</p><p>分析数据保留 <code>ICECAT</code>、<code>ICESTRAT</code>、<code>ANL01FL</code> 和不可评价原因。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>逐例核对随机后事件与源数据；检查是否有人因不利结局被排除。</p><p>表格脚注明确主要分母、无评估与早期死亡的归类。</p></article></div><details><summary>R 实现：显式保留无评估患者</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>main &lt;- subset(adsl_b, treated == 1 &amp; dose_level == "T")
+main$confirmed_response &lt;- with(main,
+  best_confirmed_response %in% c("CR", "PR"))
+# NA/NE 不从分母删除，而是按预设规则计为非缓解
+x &lt;- sum(main$confirmed_response, na.rm = TRUE)
+n &lt;- nrow(main)
+binom.test(x, n)</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“在预先定义的目标方案分析集中，BICR 确认 ORR 为估计值及 95% CI；无治疗后影像和早期死亡者保留在分母中。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“在可评价患者中 ORR 很高，因此治疗有效。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>临床问题句</b>两个案例各一条，不使用模糊的“是否有效”。</div><div class="deliverable"><b>Estimand 表</b>五属性＋每类随机后事件的策略。</div><div class="deliverable"><b>结论边界</b>列出设计不能支持的因果或预测性结论。</div></div><details><summary>技术深潜：敏感性不是换一个更有利的分母</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code># 正确：在相同 estimand 下改变关键假设
+# 例：对失访者做 tipping-point / worst-case 情景
+# 错误：主分析不显著后改成仅“可评价患者”分析并称为敏感性</code></pre></div></details><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf" rel="noopener noreferrer" target="_blank">ICH E9(R1): Estimands and Sensitivity Analysis</a><small>Estimand 属性、随机后事件策略和敏感性分析框架。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E8-R1_Guideline_Step4_2021_1006.pdf" rel="noopener noreferrer" target="_blank">ICH E8(R1): General Considerations for Clinical Studies</a><small>质量源于设计与关键质量因素。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="1" hidden="" id="chapter-2">
+<header class="chapter-head-v9">
+<div class="stage-label">第一阶段：先把研究问题想明白</div>
+<div class="chapter-number">第 2 章</div>
+<h2>哪些患者应该算进结果？</h2>
+<p>分析人群与治疗中事件（intercurrent events）</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-2-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-2-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-2-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-2-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-2-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-2-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-2-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">随机了但没有用药，还算不算？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 A</span><span>随机化人群与安全性人群的差别清楚，适合看懂“分母不是缩写，而是一组可执行规则”。</span></div><p>一名患者完成随机分组，却在首剂治疗前病情恶化。另一名患者接受治疗后没有任何复查影像。第三名患者因为毒性换了方案。三个人是否进入主要结果，不能等到看到结局以后再决定。</p><p>真正的冲突不是“数据够不够完整”，而是每项分析在回答哪个问题。总生存期、安全性、确认缓解率和动态生物标志物使用的分母可以不同，但每个分母都必须提前定义并能逐例重建。</p><div class="step-expansion"><p>每个分析集都必须先有明确目的，再有可执行的纳入、排除和归组规则。患者是否治疗、是否完成影像、是否有合格样本以及发生了什么治疗中事件，都只能按预先冻结的规则进入判断。</p><p>本章真正的分界是：每项输出的分母必须由它要回答的问题决定。先把这个分界说清，分析集标志、排除原因、患者级名单和 TFL 脚注才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“哪些患者应该算进结果？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>哪些患者应该算进结果？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-2-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 A 的主要总生存期分析纳入全部随机化患者，并按最初分组比较；即使患者未治疗、停药或接受后续治疗，也保留在主要分析中。安全性分析则纳入至少接受一次研究治疗者，并按实际治疗呈现。</p><p>主要疗效分析保护的是随机比较，安全性分析描述的是实际暴露。两者目的不同，因此不能只写“ITT”“Safety”三个字就结束。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>每个分析集都必须先有明确目的，再有可执行的纳入、排除和归组规则。患者是否治疗、是否完成影像、是否有合格样本以及发生了什么治疗中事件，都只能按预先冻结的规则进入判断。</p><p>“数据完整的人”不是天然正确的分母。把没有复查、早期死亡或治疗中断者事后删除，常常会留下预后更好的患者，使结果看起来更有利，却不再代表最初要研究的人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“每项输出的分母必须由它要回答的问题决定”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当分析目的从疗效变为安全性、可评价性或标志物分析时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-2-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>同一名患者可能符合一个分析集，却不符合另一个分析集。若规则只存在于手工名单中，结果无法复核，分母也会随版本漂移。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>把无影像或早期死亡者归为“不可评价”并删除，会让分母取决于结局是否可见。精确模型和置信区间无法修复这种选择。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>患者停药、换药或接受手术后，结果该怎样计算，必须提前定好。这类影响结果解释的治疗后事件，称为治疗中事件（intercurrent event）。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>全部随机化患者进入案例 A 的主要分析，是因为研究问题针对随机分配策略。生物标志物动态分析则需要基线阳性和目标时间点样本，不能把它伪装成全队列结论。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里的核心术语是分析集（analysis set）。分析集不是一个缩写标签，而是一组可以从源数据逐例重建的条件，包括谁被纳入、按什么组归类、为什么被排除以及每张输出使用哪个分母。</p><p>遇到类似问题，先按时间顺序列出随机、首次用药、影像可用性、样本可用性和治疗变化，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“每项输出的分母必须由它要回答的问题决定”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-2-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">不要先背 ITT、Safety 或 ORR_T_FL 的缩写。先拿同一名患者逐项核对：他为什么进入主要疗效集、为什么可能不进安全集、排除原因保存在哪里，表格脚注是否把实际分母说清。</p><div class="project-chain"><div class="project-row"><b>Protocol</b><span>锁定主要疗效按随机分组、安全性按实际治疗，以及单臂主要 ORR 分母的不可变原则。</span></div><div class="project-row"><b>SAP</b><span>逐条写出 ITT、Safety、PP、目标方案 ORR、先导、基线阳性和配对样本集。</span></div><div class="project-row"><b>分析数据</b><span>在 ADSL 保存 ITTFL、SAFFL、ORR_T_FL、LEADINFL、CTDNA_BASEPOS_FL 等标志及排除原因。</span></div><div class="project-row"><b>输出</b><span>每张表显示实际分母；处置表和分母核对 listing 能反向找到每名患者。</span></div><div class="project-row"><b>QC</b><span>独立从源数据复算各分析集，检查互斥队列冲突、无评估患者和早期死亡归类。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“主要疗效分析采用全部随机化患者；安全性分析纳入至少接受一次研究治疗的患者，并按实际接受治疗汇总。”</p>
+<p><strong>分析动作：</strong>在 ADSL 中用 ITTFL、SAFFL、ORR_T_FL 等标志派生分析集，同时保存排除原因；每个 TFL 程序显式引用对应标志，而不是复制人工名单。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>b_sets &lt;- transform(b,
+  SAFFL = ifelse(treated == 1, "Y", "N"),
+  ORR_T_FL = ifelse(treated == 1 &amp; dose_level == "T" &amp;
+                    baseline_measurable == "Y", "Y", "N")
+)</code><small>对应下载脚本：R/04_analysis_sets.R。两个标志服务不同问题，不能用同一份人工名单替代。</small></div><p><strong>结果怎样写：</strong>表题和脚注应显示实际分母，并让处置表、分析集 listing 与患者级记录互相核对。结果只代表该分析集覆盖的人群。</p>
+<p class="demo-why"><b>为什么重要：</b> 分析集一旦靠手工名单或结局可见性决定，分母就可能随着结果变化。保存患者级标志和排除原因，才能证明纳入规则是在看见结果前确定的。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 对任一患者，都能用数据标志和排除原因解释他为何进入或不进入某个输出，分析集才算可执行。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-2-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 B 至少要区分目标方案 ORR 集、降阶队列、安全先导集、全治疗安全集和不同样本集。</li><li>降阶方案 D 的患者不能事后并入目标方案 Simon 决策，因为治疗条件已经改变。</li><li>基线 ctDNA 阴性者不能定义“清除”，配对组织失败者也不能被当作随机缺失。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 B 的目标方案 ORR 集强调接受目标方案且符合预设规则的人群，但无评价和早期死亡不能因为结局不利而被移出主要分母。它与随机试验的 ITT 不是同义替换。</p><p>案例 B 的目标方案 ORR 集、安全先导集和样本集分别回答疗效、可实施性和转化问题，不能用一张“可评价患者”名单包办。它们与案例 A 的 ITT 共享预先定义原则，却不共享同一个分母含义。</p></div><p class="length-note-5 reading-focus">比较两项研究时，不要只问“谁被纳入”，还要问“按什么治疗条件归组”和“缺失是否与结局有关”。随机试验最怕破坏随机化，单臂和样本分析还要警惕用可评价性筛出更有利的人群。</p><p class="step-landing"><b>这一小步的落点：</b> 同一名患者可以属于安全集、却不属于目标方案 ORR 集或配对样本集；每个分母都要有自己的问题和规则。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-2-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>出现未治疗、停药、无影像或样本失败</p></div><div class="flow-node"><span>2</span><p>先问这项输出回答什么问题</p></div><div class="flow-node"><span>3</span><p>把纳入与归组规则写成可执行条件</p></div><div class="flow-node"><span>4</span><p>在分析数据中保存标志和原因</p></div><div class="flow-node"><span>5</span><p>输出显示分母与不可评价分类</p></div><div class="flow-node"><span>6</span><p>独立复算并核对患者级名单</p></div><div class="flow-node"><span>7</span><p>解释只覆盖该分析集代表的人群</p></div></div><div class="flow-reading-v9"><h4>用一名边界患者检查分母</h4><p>从未治疗、无影像或样本失败的患者出发，先说明当前输出要回答什么，再看规则怎样变成分析集标志、排除原因和表格分母。最终解释只能覆盖这个分析集实际代表的人群。</p><p><strong>结论边界：</strong>分母规则能够减少选择性分析，却不能弥补从未收集的数据。若研究问题、治疗责任或样本可用性不同，应另建分析集并明确结论边界。</p></div><p class="length-note-6 reading-focus">反向复核不从分析集名称开始，而从患者级名单开始：逐个解释纳入、归组和排除原因，再核对表格人数。说不清某一名患者，就说明规则还不够可执行。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么分母由研究问题决定，而不是由哪些患者的数据更完整决定。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>数据库清理 → 分析集规则冻结 → ADSL 标志 → 每个 TFL 的显式分母。</span></div>
+<div class="decision-lab"><h3>当前决策：谁进入哪个分析，不能只写 ITT、mITT 或 Safety 三个缩写</h3><p>分析集是由可执行规则形成的分母。mITT 没有统一定义；response-evaluable 和 biomarker-evaluable 极易因为结局可见性而产生选择偏倚。每个输出都应显示分母，并能从患者级标志反向重建。</p><div class="decision-grid"><div class="decision-cell"><b>主要原则</b><span>主要疗效集尽量保留设计带来的可比性；排除规则必须预先定义并有临床理由。</span></div><div class="decision-cell"><b>安全性</b><span>通常按实际接受治疗和实际暴露汇总，和随机化疗效集回答不同问题。</span></div><div class="decision-cell"><b>标志物</b><span>baseline-positive、paired-sample 和 QC-pass 是不同分母，不能混成一个“biomarker set”。</span></div><div class="decision-cell"><b>审阅重点</b><span>哪些患者因无评估、早期死亡、降阶或样本失败被排除，排除是否与结局相关。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：随机化保护主要比较</h3><p>主要 OS 分析为全部随机化患者（ITT），按原分组。Safety Set 为实际接受至少一次研究治疗者，按实际治疗策略。PP 只作为支持性分析，不能替代 ITT。</p><dl><dt>随机未治疗</dt><dd>留在 ITT，通常不进安全集</dd><dt>停药/换药</dt><dd>留在 ITT</dd><dt>重大偏离</dt><dd>PP 排除需盲态预设</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：多个目的对应多个分母</h3><p>至少区分安全先导集、全治疗安全集、目标方案 ORR 集、所有治疗 ORR 描述集、降阶队列、baseline ctDNA 阳性集和配对样本集。</p><dl><dt>先导并入</dt><dd>同一目标方案和终点评价才可进入 Simon</dd><dt>无影像</dt><dd>主要 ORR 不因结果不可见而删除</dd><dt>降阶</dt><dd>单列，不混入目标方案决策</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>随机试验的主要风险是破坏随机化；单臂研究没有随机化保护，更容易通过“可评价”筛选得到乐观分母。转化分析还面临样本成功与患者病情、中心能力和治疗获益相关的选择。</div>
+<h3 class="section-title">八名患者的分母推演</h3>
+<div class="table-wrap"><table><thead><tr><th>患者</th><th>情景</th><th>案例 A ITT</th><th>案例 B 目标方案 ORR</th><th>安全先导</th><th>ctDNA/配对样本</th></tr></thead><tbody>
+<tr><td>P01</td><td>随机但未治疗</td><td>是</td><td>若单臂仅入组未治疗，按预设主要规则保留或列非缓解</td><td>否</td><td>可能有基线，不代表可动态分析</td></tr>
+<tr><td>P02</td><td>治疗后无影像</td><td>是</td><td>是，非缓解/NE</td><td>若完成观察窗则是</td><td>按实际样本</td></tr>
+<tr><td>P03</td><td>首次影像前死亡</td><td>是，OS 事件</td><td>是，非缓解</td><td>是，安全事件可能触发暂停</td><td>无动态样本，不能进入 landmark</td></tr>
+<tr><td>P04</td><td>目标方案先导患者</td><td>不适用</td><td>满足并入条件则是</td><td>是</td><td>按样本质量</td></tr>
+<tr><td>P05</td><td>降阶方案 D</td><td>不适用</td><td>不进目标方案 Simon；单列</td><td>是</td><td>可探索描述</td></tr>
+<tr><td>P06</td><td>基线 ctDNA 阴性</td><td>是</td><td>是</td><td>按治疗</td><td>不能定义“清除”</td></tr>
+<tr><td>P07</td><td>治疗中活检失败</td><td>是</td><td>是</td><td>按治疗</td><td>不进配对组织集，失败原因保留</td></tr>
+<tr><td>P08</td><td>样本 QC 失败</td><td>是</td><td>是</td><td>按治疗</td><td>采集集是，可分析集否</td></tr>
+</tbody></table></div>
+<h3 class="section-title">分析集章的写法</h3>
+<div class="trace-chain"><div class="trace-row"><b>定义</b><span>不用缩写替代规则：写出入组、随机/治疗、基线、终点评价和排除条件。</span></div><div class="trace-row"><b>派生</b><span>每条规则转成患者级标志和排除原因；不通过手工 Excel 名单决定。</span></div><div class="trace-row"><b>时间</b><span>哪些偏离可在盲态数据审阅中分类，哪些必须在看疗效前冻结。</span></div><div class="trace-row"><b>呈现</b><span>处置表展示从入组到每个分析集的流向；主要表格脚注明确分母。</span></div></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Protocol</td><td>主要分析原则和关键排除不可变部分</td><td>首例入组前</td><td>临床/统计</td></tr><tr><td>SAP Analysis Sets</td><td>逐条 inclusion/exclusion 与归组规则</td><td>揭盲/主要分析前</td><td>统计</td></tr><tr><td>Blind Data Review Plan</td><td>重大偏离分类、不可评价原因</td><td>揭盲前</td><td>临床/统计/数据</td></tr><tr><td>ADSL specification</td><td>分析标志、排除原因和实际治疗</td><td>编程前</td><td>统计/程序</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>明确主要疗效按随机分组，安全性按实际治疗；单臂主要 ORR 分母和降阶队列预先定义。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>是否治疗、治疗方案和首剂。</li><li>无评估原因、早期死亡、偏离分类。</li><li>样本采集/QC/可分析各自标志。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>逐条写出 ITT、Safety、PP、ORR、lead-in、baseline-positive、paired-sample 的规则。</p><p>在 ADSL 中保存 <code>ITTFL</code>、<code>SAFFL</code>、<code>ORR_T_FL</code>、<code>LEADINFL</code>、<code>CTDNA_BASEPOS_FL</code> 等。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>独立从源数据复算分母；检查同一患者在互斥队列中是否冲突。</p><p>CONSORT 风格处置表和分母核对 listing 同时交付。</p></article></div><details><summary>R 实现：分析集由规则派生</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>adsl_b &lt;- transform(patient_b,
+  LEADINFL = safety_leadin == "Y" &amp; treated == 1,
+  SAFFL = treated == 1,
+  ORR_T_FL = treated == 1 &amp; dose_level == "T" &amp;
+             baseline_measurable == "Y",
+  CTDNA_BASEPOS_FL = baseline_ctdna == "positive")
+stopifnot(!anyDuplicated(adsl_b$patient_id))</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“目标方案 ORR 集共 38 人，其中 3 人无治疗后影像，均按预设规则留在分母。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“剔除 3 名无影像患者后，response-evaluable ORR 更能反映药物活性。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>分析集章</b>规则而非缩写。</div><div class="deliverable"><b>患者级标志</b>代码可重建每个分母。</div><div class="deliverable"><b>处置流图数据</b>入组、治疗、评估、样本和分析流向。</div><div class="deliverable"><b>分母核对表</b>输出与 listing 一致。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E9_Guideline.pdf" rel="noopener noreferrer" target="_blank">ICH E9 Statistical Principles for Clinical Trials</a><small>分析集、随机化和主要分析的一般统计原则。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf" rel="noopener noreferrer" target="_blank">ICH E9(R1)</a><small>分析集与随机后事件必须服务于明确 estimand。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="2" hidden="" id="chapter-3">
+<header class="chapter-head-v9">
+<div class="stage-label">第一阶段：先把研究问题想明白</div>
+<div class="chapter-number">第 3 章</div>
+<h2>患者没有复查影像，还能怎样判断疗效？</h2>
+<p>肿瘤缓解、独立影像评审与缓解持续时间（DoR）</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-3-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-3-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-3-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-3-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-3-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-3-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-3-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">第一次显示 PR，后来没有第二次扫描，算响应吗？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 B</span><span>单臂研究把确认 ORR 作为主要终点，最能暴露影像缺失、确认间隔和分母处理带来的影响。</span></div><p>一名患者首次复查显示部分缓解，但三周后病情恶化，没有完成规定的确认扫描。另一名患者治疗后从未复查影像。第三名患者在首次缓解后接受手术。三人的结果不能靠临床印象临时决定。</p><p>主要问题不是“影像上看起来有没有缩小”，而是从每次扫描记录到患者级确认缓解，评审来源、时间窗、新病灶、手术和无评价怎样形成一条可重复的规则。</p><div class="step-expansion"><p>影像缓解必须基于预先规定的评审来源、实际扫描日期、确认间隔和新病灶规则。首次 CR/PR、确认扫描、手术、新治疗和死亡之间的时间顺序会直接改变患者级结论。</p><p>本章真正的分界是：一次影像变化在什么条件下才能成为确认响应。先把这个分界说清，扫描日期、评审来源、确认间隔、患者级 BOR 和 ORR 输出才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“患者没有复查影像，还能怎样判断疗效？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>患者没有复查影像，还能怎样判断疗效？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-3-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 B 的主要终点采用独立影像评审委员会确认的客观缓解率。未满足最小确认间隔的 PR、首次影像前死亡和无治疗后影像者，都留在主要分母并计为非缓解。</p><p>这个处理较为保守，但它保护了预先定义的目标方案分母。手术或停药不能事后自动确认一次尚未满足规则的响应。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>影像缓解必须基于预先规定的评审来源、实际扫描日期、确认间隔和新病灶规则。首次 CR/PR、确认扫描、手术、新治疗和死亡之间的时间顺序会直接改变患者级结论。</p><p>一次扫描显示肿瘤缩小，不等于主要分析中的确认缓解。若只保留完成确认扫描的人，早期进展、死亡和无评价患者会被系统性排除，ORR 可能被高估。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“一次影像变化在什么条件下才能成为确认响应”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当确认间隔、评审来源或手术与新治疗规则改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-3-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>同一患者可能有研究者评审、独立评审、不同扫描日期和多个病灶层级。没有固定优先级，患者级最佳疗效会随解释者变化。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>只在“可评价患者”中计算 ORR，会删除早死、漏扫和病情迅速恶化者。单臂研究没有随机对照来抵消这种选择，结果尤其容易被放大。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>客观缓解率（ORR）通常统计达到完全缓解或部分缓解的患者比例；案例 B 还要求在规定间隔后再次满足条件，形成确认缓解。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>主要结论依赖统一的 BICR 流程、足够的影像时间窗和透明分母。如果评审来源、确认要求或手术处理改变，得到的 ORR 回答的就不是同一个问题。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里需要区分访视级疗效与最佳总体疗效（best overall response, BOR）。BOR 是把多次扫描按既定顺序整合成患者级结果；独立影像评审（BICR）则规定由谁、按什么章程完成判读。</p><p>遇到类似问题，先按时间顺序列出首次 CR/PR、确认扫描、PD、新病灶、手术和新治疗，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“一次影像变化在什么条件下才能成为确认响应”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-3-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">从一名被判为响应者的患者开始追：两次扫描分别何时完成、由谁评审、间隔是否合格，此前有没有 PD、新病灶、新治疗或手术，患者级 BOR 又怎样进入 ORR 分子。</p><div class="project-chain"><div class="project-row"><b>Imaging charter</b><span>规定评审者、扫描窗口、测量、确认间隔、争议处理和影像传输。</span></div><div class="project-row"><b>Protocol</b><span>把 BICR、确认要求、评价期以及手术和新治疗规则写进终点定义。</span></div><div class="project-row"><b>CRF/影像数据</b><span>保存实际扫描日、评审来源、靶病灶、非靶病灶、新病灶和不可评原因。</span></div><div class="project-row"><b>SAP/ADRS</b><span>先派生访视级评价，再形成确认 BOR、响应者标志和 DoR 起止日期。</span></div><div class="project-row"><b>TFL</b><span>主表同时给响应人数、分母、ORR、精确置信区间和无评价处理脚注。</span></div><div class="project-row"><b>QC</b><span>逐例核对边界患者，并比较 BICR 与研究者判断差异。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“主要终点为 BICR 按 RECIST 1.1 判定并满足预设确认间隔的 CR 或 PR；无治疗后影像和首次评估前死亡者保留在主要分母。”</p>
+<p><strong>分析动作：</strong>程序先按扫描日期形成访视级评价，再检查确认间隔、新病灶、新治疗和手术，派生 confirmed BOR、响应者标志及 DoR 起止日期。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>main &lt;- subset(base, treated == 1 &amp; dose_level == "T" &amp;
+                     baseline_measurable == "Y")
+x &lt;- sum(main$confirmed_response)
+n &lt;- nrow(main)
+ci &lt;- clopper_pearson(x, n)</code><small>对应下载脚本：R/05_response_endpoints.R。无评价患者已在上游被明确派生为非响应，而不是从 n 中删除。</small></div><p><strong>结果怎样写：</strong>主表同时给出响应人数、主要分母、ORR 和精确置信区间，并用脚注说明无评价患者的处理。单臂 ORR 不能证明优于标准治疗。</p>
+<p class="demo-why"><b>为什么重要：</b> ORR 的分子不是把所有 CR/PR 标签相加。只有每名响应者的评审来源、时间顺序和确认条件都能重建，确认缓解才不是一个无法复核的结果标签。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 任选一名响应者，都能找到两次合格判定及其先后顺序，ORR 的分子才可信。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-3-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 A 中 ORR 只是支持性终点，不能替代主要 OS 结论。</li><li>随机化减轻组间基线混杂，但开放标签仍可能影响扫描安排和研究者判读，因此评审来源仍要透明。</li><li>案例 A 可比较组间 ORR；案例 B 只能判断是否越过预设单臂阈值，不能证明优于标准方案。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 A 的确认性证据更依赖随机比较和时间结局，影像评审常用于 PFS 支持；案例 B 则把确认 ORR 直接放在阶段决策中心，因此确认规则和分母更敏感。</p><p>案例 A 与案例 B 都可以报告 ORR，但承担的任务不同：前者多为随机试验中的支持性证据，后者直接驱动单臂阶段决策。因此相同的 CR/PR 规则需要放在不同的终点层级和结论边界中解释。</p></div><p class="length-note-5 reading-focus">比较两项研究时，先确认 ORR 在证据链中的位置。它是支持主要生存结论，还是决定单臂研究是否继续？终点责任不同，确认要求、分母敏感性和可写出的结论都会改变。</p><p class="step-landing"><b>这一小步的落点：</b> 确认规则可以相似，但随机试验的支持性 ORR 与单臂主要 ORR 不能承担同样的结论。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-3-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>获得一次 CR/PR 记录</p></div><div class="flow-node"><span>2</span><p>确认评审来源和扫描日期</p></div><div class="flow-node"><span>3</span><p>检查是否满足确认间隔</p></div><div class="flow-node"><span>4</span><p>检查此前是否出现 PD、新病灶、新治疗或手术</p></div><div class="flow-node"><span>5</span><p>按预设规则形成患者级 BOR</p></div><div class="flow-node"><span>6</span><p>无影像和早期死亡保留在分母</p></div><div class="flow-node"><span>7</span><p>报告 ORR、置信区间与证据边界</p></div></div><div class="flow-reading-v9"><h4>从一次 PR 走到确认 ORR</h4><p>沿着扫描日期和评审记录检查：第一次 CR/PR 是否来自指定评审，确认间隔是否满足，期间是否出现进展、新病灶、新治疗或手术，最后才形成患者级 BOR 并进入 ORR。</p><p><strong>结论边界：</strong>该流程能让缓解判定可重复，但不能消除扫描缺失、评审差异或单臂设计的因果限制。影像频率或确认要求改变时，结果不能直接横向比较。</p></div><p class="length-note-6 reading-focus">从 ORR 表中的一名响应者退回患者级 BOR，再退回每次扫描记录。若只能看到最终标签、找不到两次合格判定，确认规则就没有真正落到数据里。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么一次“看起来缓解”的扫描，不能直接算作主要分析中的确认响应。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>影像采集 → reader 判读 → visit response → confirmed BOR/DoR → ORR TFL。</span></div>
+<div class="decision-lab"><h3>当前决策：从每次影像记录到确认 ORR，规则必须逐行可重建</h3><p>RECIST 分类只是起点。主要分析还要定义 reader、窗口、确认间隔、同日冲突、新病灶、早期死亡、无评估、手术和新治疗的优先级。单臂研究的 ORR 依赖分母和确认规则，尤其容易被选择性“可评价”分析放大。</p><div class="decision-grid"><div class="decision-cell"><b>Visit response</b><span>靶病灶、非靶病灶和新病灶共同决定 CR/PR/SD/PD/NE。</span></div><div class="decision-cell"><b>BOR</b><span>在预设评价期间按时间顺序选择最佳可接受响应，不是简单取字母最优。</span></div><div class="decision-cell"><b>确认</b><span>非随机单臂 CR/PR 通常至少 4 周后再次满足要求。</span></div><div class="decision-cell"><b>DoR</b><span>从首次满足 CR/PR 到进展或死亡；确认与起点定义需一致。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：ORR 是支持性终点</h3><p>可比较研究者与独立评审；随机化减轻组间基线混杂，但开放标签仍可能影响扫描和判读。主要 OS 结论不由 ORR 替代。</p><dl><dt>分母</dt><dd>通常 ITT</dd><dt>评审</dt><dd>预设 BICR/研究者</dd><dt>解释</dt><dd>支持肿瘤缩小差异，不自动等同生存获益</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：BICR 确认 ORR 是主要终点</h3><p>确认缓解要求同一评审流程和时间窗。早期死亡、无后续影像和未确认 PR 留在主要分母并计为非缓解；降阶患者与目标方案 T 分开。</p><dl><dt>第一阶段</dt><dd>16 人中至少 11 例确认缓解继续</dd><dt>最终</dt><dd>47 人中至少 34 例越过无效阈值</dd><dt>限制</dt><dd>不能归因于依沃西单抗单独作用</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 的 ORR 可在随机组间比较；案例 B 的 ORR 只能与预设无效率做单臂决策。FOLFOXIRI 本身具备较强缩瘤能力，所以必须结合 DoR、12 月 PFS、安全性和剂量强度解释。</div>
+<h3 class="section-title">十名患者的影像序列推演</h3>
+<div class="table-wrap"><table><thead><tr><th>患者</th><th>影像序列</th><th>患者级判定</th><th>是否响应者</th><th>理由</th></tr></thead><tbody>
+<tr><td>R01</td><td>PR → PR（5 周）</td><td>确认 PR</td><td>是</td><td>满足确认间隔</td></tr>
+<tr><td>R02</td><td>PR → PD</td><td>未确认 PR / PD</td><td>否</td><td>第二次未确认</td></tr>
+<tr><td>R03</td><td>SD → PR → PR</td><td>确认 PR</td><td>是</td><td>从首次 PR 起算 DoR</td></tr>
+<tr><td>R04</td><td>CR → CR</td><td>确认 CR</td><td>是</td><td>所有病灶消失并确认</td></tr>
+<tr><td>R05</td><td>SD → 新病灶</td><td>PD</td><td>否</td><td>新病灶优先</td></tr>
+<tr><td>R06</td><td>首次评价前死亡</td><td>NE/非缓解</td><td>否</td><td>留在主要分母</td></tr>
+<tr><td>R07</td><td>无治疗后影像</td><td>NE/非缓解</td><td>否</td><td>不能从分母删除</td></tr>
+<tr><td>R08</td><td>PR → 手术，无后续可测量病灶</td><td>按预设规则处理</td><td>取决于术前是否确认</td><td>手术不能事后自动确认响应</td></tr>
+<tr><td>R09</td><td>PR（3 周）→ PR</td><td>未满足最小确认间隔</td><td>否</td><td>时间窗不足</td></tr>
+<tr><td>R10</td><td>BICR PR；研究者 SD</td><td>主要按 BICR PR</td><td>按确认状态</td><td>评审来源预先指定</td></tr>
+</tbody></table></div>
+<h3 class="section-title">从源影像到 TFL 的追溯链</h3>
+<div class="trace-chain"><div class="trace-row"><b>原始记录</b><span>病灶测量、非靶病灶状态、新病灶、实际影像日、reader 和可评性。</span></div><div class="trace-row"><b>时点评价</b><span>按照固定算法导出 CR/PR/SD/PD/NE；同日冲突有优先级。</span></div><div class="trace-row"><b>患者级 BOR</b><span>在主要评价期内结合确认规则、PD 和新治疗形成确认 BOR。</span></div><div class="trace-row"><b>输出</b><span>ORR、精确 CI、DoR、不可评价原因、研究者/BICR 对照和患者 listing。</span></div></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Imaging charter</td><td>reader、窗口、测量、确认和争议处理</td><td>首例影像前</td><td>影像/统计</td></tr><tr><td>Protocol endpoint section</td><td>主要 ORR 定义和手术/新治疗规则</td><td>首例入组前</td><td>临床/统计</td></tr><tr><td>SAP response algorithm</td><td>BOR、确认、NE、DoR 和敏感性</td><td>分析前冻结</td><td>统计</td></tr><tr><td>ADRS specification</td><td>访视级与患者级变量、来源和标志</td><td>编程前</td><td>统计/程序</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>明确 BICR 为主要评审，确认间隔、评价期和新治疗/手术规则。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>实际扫描日、reader、可评原因。</li><li>靶/非靶/新病灶结构化。</li><li>影像上传失败与临床未扫描分开。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>先定义 visit response，再定义 confirmed BOR、响应者和 DoR；无评估患者的主要处理透明。</p><p>保留 <code>AVALC</code>、<code>ANL01FL</code>、<code>CONFIRMFL</code>、<code>DTYPE</code>、<code>SRCDOM</code>。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>独立逐例手工核对边界患者；检查 BICR 与研究者差异表。</p><p>主表同时给出响应数、分母、ORR、精确 CI 和关键脚注。</p></article></div><details><summary>R 实现：确认响应的简化教学算法</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>d &lt;- d[order(d$assessment_date), ]
+confirmed_pr &lt;- any(d$response[-nrow(d)] %in% c("CR","PR") &amp;
+                    d$response[-1] %in% c("CR","PR") &amp;
+                    diff(d$assessment_date) &gt;= 28)
+# 正式实现需按每次候选响应逐一匹配确认访视，并处理 PD、新治疗和窗口</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“目标方案集中 34/47 例达到 BICR 确认 CR/PR，精确 95% CI 为……；结果越过教学阈值，但需要随机研究验证增量贡献。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“剔除无扫描和早期死亡后，ORR 为……，证明双特异性抗体具有独立活性。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>影像序列 listing</b>逐行显示日期、reader 和响应。</div><div class="deliverable"><b>BOR/ORR 程序</b>确认、NE 和分母规则。</div><div class="deliverable"><b>ORR/DoR TFL</b>主表、对照表和脚注。</div><div class="deliverable"><b>QC 样例</b>未确认 PR、新病灶和手术边界。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">官方标准</span><div><a href="https://recist.eortc.org/recist-1-1/" rel="noopener noreferrer" target="_blank">RECIST 1.1 Guidelines</a><small>响应分类、靶病灶和非随机研究确认要求。</small></div></div><div class="evidence-item"><span class="kind">方法学论文</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/19097774/" rel="noopener noreferrer" target="_blank">New response evaluation criteria in solid tumours: RECIST 1.1</a><small>RECIST 1.1 原始方法学论文。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="3" hidden="" id="chapter-4">
+<header class="chapter-head-v9">
+<div class="stage-label">第一阶段：先把研究问题想明白</div>
+<div class="chapter-number">第 4 章</div>
+<h2>生存时间到底从哪里算到哪里？</h2>
+<p>总生存期（OS）、无进展生存期（PFS）与固定时间生存率</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-4-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-4-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-4-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-4-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-4-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-4-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-4-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">停药、新治疗、影像进展和死亡，哪一天才是终点？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 A</span><span>总生存期的起点和事件最清楚，便于建立“先做患者级事件流程，再调用模型”的顺序。</span></div><p>一名患者在 1 月 10 日随机，5 月停药，6 月开始新治疗，7 月影像确认进展，8 月死亡。总生存期和无进展生存期分别算到哪一天？新治疗开始日是否应该删失？</p><p>时间结局看似只是日期相减，真正决定答案的是起点、事件来源、同日优先级、最后一次充分评估，以及缺失扫描和后续治疗怎样处理。</p><div class="step-expansion"><p>时间结局必须同时固定起点、事件、删失、数据来源和日期优先级。停药、新治疗、手术、缺失扫描和死亡并不是自动的事件或删失点，它们怎样处理取决于终点和研究问题。</p><p>本章真正的分界是：起点、事件和删失优先级如何共同定义时间结局。先把这个分界说清，源日期、事件候选、ADTTE 派生、KM/Cox 输出和风险人数才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“生存时间到底从哪里算到哪里？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>生存时间到底从哪里算到哪里？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-4-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 A 的总生存期从随机化日算起，任何原因死亡都是事件；停药、后续治疗和局部治疗不会让主要 OS 在当天停止计算。</p><p>PFS 则要按预先规定的影像或临床进展来源选择事件日期。固定时间 PFS 率来自 Kaplan–Meier 风险集，不是只在“刚好有 12 个月扫描”的患者中计算比例。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>时间结局必须同时固定起点、事件、删失、数据来源和日期优先级。停药、新治疗、手术、缺失扫描和死亡并不是自动的事件或删失点，它们怎样处理取决于终点和研究问题。</p><p>把“最后一次有记录的日期”机械当作删失日，可能把已发生但未及时记录的进展当成无事件，也可能把新治疗后的信息全部丢掉。模型无法修复错误的患者级事件流程。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“起点、事件和删失优先级如何共同定义时间结局”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当影像计划、随访来源或治疗后事件策略改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-4-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>患者可能同时出现停药、新治疗、临床恶化、影像进展和死亡。若不先规定日期优先级，不同程序会选出不同事件日。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>在新治疗日直接删失，可能把即将进展的高风险患者提前移出风险集；只看有完整 12 个月记录者，则会产生明显的完整病例选择。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>删失表示在已知最后一个可用时间点后不再观察到结局，并不等于患者没有发生事件。删失规则隐含对未观察结局的假设。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>案例 A 的 OS treatment-policy 处理依赖持续生存随访。PFS 结论还依赖扫描频率、失访机制和组间评估完整性。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里第一次正式使用删失（censoring）。删失表示在某个时间点以后不再知道目标事件何时发生，而不是患者“没有事件”。删失规则必须与随访过程和可验证假设相匹配。</p><p>遇到类似问题，先按时间顺序列出随机、扫描、进展、新治疗、死亡和最后随访，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“起点、事件和删失优先级如何共同定义时间结局”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-4-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">先不要看 KM 曲线。挑一名患者，列出随机日期、每次充分影像、新治疗、手术、死亡和最后确认存活日期，再看 SAP 如何从这些候选日期中选出事件或删失。</p><div class="project-chain"><div class="project-row"><b>Protocol</b><span>明确起点、事件、影像频率、死亡来源和停药后随访。</span></div><div class="project-row"><b>CRF</b><span>记录每次实际扫描、充分性、新治疗、手术、死亡和最后确认存活证据。</span></div><div class="project-row"><b>SAP</b><span>用患者级流程表规定缺失扫描、同日事件、新治疗和敏感性情景。</span></div><div class="project-row"><b>分析数据</b><span>在 ADTTE 保存 STARTDT、ADT、AVAL、CNSR、事件/删失原因和来源。</span></div><div class="project-row"><b>TFL</b><span>KM 图与表显示截止日期、事件数、删失原因、风险人数和固定时间估计。</span></div><div class="project-row"><b>QC</b><span>逐例检查负时间、日期优先级和 12 个月风险集人数。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“OS 从随机日期计算至任何原因死亡；存活患者在最后确认存活日期删失。PFS 的事件和删失按预设影像与死亡优先级表派生。”</p>
+<p><strong>分析动作：</strong>先在 ADTTE 保存 STARTDT、ADT、AVAL、CNSR、事件或删失原因和来源，再用 KM 或 Cox 汇总；同日事件、缺失扫描和新治疗须按 SAP 顺序逐例处理。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>y &lt;- survival::Surv(a$time, a$event)
+fit &lt;- survival::survfit(y ~ arm, data = a)</code><small>对应下载脚本：R/07_case_A_primary_analysis.R。患者级 time 与 event 必须先按规则派生，survfit 只负责汇总。</small></div><p><strong>结果怎样写：</strong>KM 图和表应同时给事件数、删失原因、风险人数和固定时间估计。风险比需要结合随访成熟度与比例风险假设解释。</p>
+<p class="demo-why"><b>为什么重要：</b> 生存函数只汇总已经派生好的患者级时间。若起点、事件或删失原因不能回到源日期，曲线再平滑，也无法证明每名患者被按同一规则处理。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 先把一名患者的起点、事件或删失原因说清，再谈 KM、Cox 和固定时间生存率。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-4-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 B 的 12 个月 PFS 可从首次治疗或预先指定的入组日起算，必须与方案和估计目标一致。</li><li>单臂 PFS 受评估频率和历史比较影响更大，不能把固定时间估计写成随机比较。</li><li>手术和新治疗的处理可能因研究问题不同而改变，不能直接照搬案例 A 的所有规则。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 B 的 12 个月 PFS 率也应来自 KM 风险集，而不是只计算有完整 12 个月随访者的比例；但单臂结果仍缺少随机对照，不能写成相对疗效优势。</p><p>案例 B 的 12 个月 PFS 也需要 KM 风险集，但它缺少随机对照，更容易受影像频率、历史背景和手术或新治疗规则影响。方法名称相同，不代表估计对象和证据强度相同。</p></div><p class="length-note-5 reading-focus">能否照搬规则，取决于 time zero、评估计划和治疗后事件策略是否一致。只要其中一项不同，12 个月 PFS 与随机组间 PFS 就不能因为都来自 KM 而直接比较。</p><p class="step-landing"><b>这一小步的落点：</b> 案例 B 可以用 KM 估计 12 个月 PFS，却不能把这个单臂数字写成相对疗效优势。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-4-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>列出随机/入组、扫描、新治疗、手术、死亡等日期</p></div><div class="flow-node"><span>2</span><p>固定 time zero</p></div><div class="flow-node"><span>3</span><p>构建所有候选事件</p></div><div class="flow-node"><span>4</span><p>按 SAP 的优先级选择事件或删失</p></div><div class="flow-node"><span>5</span><p>保存日期、标志、原因和来源</p></div><div class="flow-node"><span>6</span><p>用 KM 等方法汇总患者级结果</p></div><div class="flow-node"><span>7</span><p>结合风险人数和随访完整性解释</p></div></div><div class="flow-reading-v9"><h4>先派生患者，再汇总曲线</h4><p>从全部候选日期出发，先固定 time zero，再按 SAP 的优先级确定事件或删失，并保存原因和来源。KM 或 Cox 位于这条链的末端，不负责替代前面的临床规则。</p><p><strong>结论边界：</strong>正确派生能保证时间尺度一致，却不能让信息性失访自动消失。若影像计划、随访来源或治疗后事件策略不同，应重新评估删失假设。</p></div><p class="length-note-6 reading-focus">从图表中的删失标记抽查患者，回到 ADTTE 的日期、标志和原因，再回到影像或生存源记录。无法解释的删失不应被曲线自动掩盖。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么生存分析的核心是患者级事件和删失规则，而不是函数名称。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>源日期 → 候选事件 → event/censor reason → ADTTE → KM/模型/TFL。</span></div>
+<div class="decision-lab"><h3>当前决策：先写患者级事件流程，再调用生存分析函数</h3><p>OS/PFS 的关键不是 <code>Surv()</code>，而是 time zero、事件来源、同日优先级、最后充分评估、缺失扫描、新治疗和数据截止。固定时间 PFS 率来自 KM 风险集，不是“有 12 个月记录者中的比例”。</p><div class="decision-grid"><div class="decision-cell"><b>OS</b><span>随机化至任何原因死亡；真正失访在最后已知存活日删失。</span></div><div class="decision-cell"><b>PFS</b><span>随机化/入组至首次进展或死亡；进展来源、缺失扫描和新治疗规则须预设。</span></div><div class="decision-cell"><b>12 月 PFS</b><span>KM 在 365 天的估计与 CI；风险集含义必须可解释。</span></div><div class="decision-cell"><b>成熟度</b><span>数据截止、事件数、随访分布和风险人数共同决定，不只看中位数。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：OS 为主要终点</h3><p>time zero 为随机化日。任何原因死亡为事件；停药、后续治疗和局部治疗后继续随访。主要结论依赖死亡事件核实、失访机制和组间随访完整性。</p><dl><dt>主要输出</dt><dd>KM、分层 log-rank、HR、固定时间生存率</dd><dt>敏感性</dt><dd>失访情景、日期不完整、非 PH 补充</dd><dt>截止</dt><dd>事件驱动并报告实际信息量</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：12 月 PFS 作为关键次要</h3><p>time zero 为首次治疗/入组中预先指定的起点；进展由 BICR 或预设来源判定。需要说明手术、新治疗、缺失扫描和早期死亡如何进入事件流程。</p><dl><dt>主要输出</dt><dd>12 月 KM PFS 率、PFS 曲线、DoR</dd><dt>单臂限制</dt><dd>历史比较受评估频率和人群差异影响</dd><dt>成熟度</dt><dd>风险人数与扫描完成率并列</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 的随机化使组间比较可解释，但删失和后续治疗仍需管理；案例 B 的单臂 PFS 对影像频率、历史队列定义和选择更敏感。固定时间 PFS 可以描述持久性，却不能消除单臂因果限制。</div>
+<h3 class="section-title">同一患者的日期推演</h3>
+<div class="table-wrap"><table><thead><tr><th>记录</th><th>日期</th><th>OS</th><th>主要 PFS</th><th>敏感性情景</th></tr></thead><tbody>
+<tr><td>随机/入组</td><td>2026-01-10</td><td>time zero</td><td>time zero</td><td>固定</td></tr>
+<tr><td>最后充分影像 SD</td><td>2026-05-01</td><td>无影响</td><td>潜在删失锚点</td><td>需判断后续缺失</td></tr>
+<tr><td>停药</td><td>2026-05-15</td><td>继续随访</td><td>不自动删失</td><td>while-on-treatment 另一个问题</td></tr>
+<tr><td>新抗癌治疗</td><td>2026-06-01</td><td>不删失</td><td>按主要规则处理</td><td>可在敏感性中于前一充分评估删失</td></tr>
+<tr><td>临床进展</td><td>2026-06-18</td><td>无影响</td><td>取决于 endpoint 是否接受临床 PD</td><td>影像限定 vs 临床/影像复合</td></tr>
+<tr><td>影像 PD</td><td>2026-07-03</td><td>无影响</td><td>事件</td><td>若连续缺失扫描，需预设回溯规则</td></tr>
+<tr><td>死亡</td><td>2026-08-20</td><td>事件</td><td>若尚未 PD，则死亡事件</td><td>同日事件优先级需冻结</td></tr>
+</tbody></table></div>
+<h3 class="section-title">PFS 事件与删失的患者级流程</h3>
+<div class="step-list"><div class="step"><h3>确定起点</h3><p>随机试验通常从随机化；单臂可从首次治疗，但必须与 estimand 和 protocol 一致。</p></div><div class="step"><h3>构建所有候选事件</h3><p>影像 PD、临床 PD（如允许）、死亡、新治疗、手术和最后充分评估。</p></div><div class="step"><h3>按优先级选择</h3><p>同日死亡/PD、缺失扫描后 PD、新治疗前后评价必须逐项编码。</p></div><div class="step"><h3>保存理由</h3><p>患者级数据同时保存 event flag、analysis date、censor/event reason 和 source。</p></div></div>
+<div class="callout warning"><b>常见错误</b>将“没有在 12 个月恰好完成扫描”的患者排除后计算比例；在新治疗日统一删失但不讨论信息性；使用首次给药替代随机化起点来消除治疗前事件；只报告中位 PFS 不报告风险人数和随访。</div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Protocol endpoint definition</td><td>起点、事件、删失、评估频率</td><td>首例入组前</td><td>临床/统计/影像</td></tr><tr><td>SAP time-to-event rules</td><td>日期优先级、缺失扫描、新治疗和敏感性</td><td>分析前冻结</td><td>统计</td></tr><tr><td>ADTTE specification</td><td>参数、日期、事件标志、原因和来源</td><td>编程前</td><td>统计/程序</td></tr><tr><td>TFL shells</td><td>KM、风险表、固定时间估计、listing</td><td>数据库锁定前</td><td>统计</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>明确死亡来源、影像频率、进展定义和停药后随访；新治疗不应在实施层面导致主要数据停止收集。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>每次实际扫描和充分性。</li><li>死亡多来源核实和最后存活证据。</li><li>新治疗、手术、失访与联系尝试。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>用患者级流程表规定所有事件组合；12 月 PFS 指定 KM 和 CI 方法。</p><p>保存 <code>STARTDT</code>、<code>ADT</code>、<code>AVAL</code>、<code>CNSR</code>、<code>EVNTDESC</code>、<code>SRCDOM</code>。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>逐例核对日期最小值、同日优先级和负时间；独立复算 12 月风险人数。</p><p>KM 图/表显示截止日期、事件、删失原因、风险人数和固定时间估计。</p></article></div><details><summary>R 实现：OS/PFS 患者级派生</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>a &lt;- read_utf8("case_A_patient.csv")
+resp &lt;- read_utf8("case_A_response.csv")
+resp$assessment_date &lt;- as_date(resp$assessment_date)
+
+resp$last_alive_date &lt;- a$last_alive_date[match(resp$patient_id, a$patient_id)]
+valid &lt;- resp$adequate == "Y" &amp;
+  !is.na(resp$assessment_date) &amp;
+  resp$assessment_date &lt;= resp$last_alive_date
+adequate &lt;- resp[valid, ]
+last_assessment &lt;- aggregate(
+  assessment_date ~ patient_id, data = adequate, FUN = max)
+a$last_adequate_assessment &lt;- last_assessment$assessment_date[
+  match(a$patient_id, last_assessment$patient_id)]
+
+# 进展或死亡取较早者；两者均无时，在最后一次充分评估日删失
+candidate &lt;- pmin(a$progression_date, a$death_date, na.rm = TRUE)
+none &lt;- is.na(a$progression_date) &amp; is.na(a$death_date)
+candidate[none] &lt;- as.numeric(a$last_adequate_assessment[none])
+a$PFS_date &lt;- as.Date(candidate, origin = "1970-01-01")
+# 仍无法派生者单独输出 listing，不静默排除</code></pre></div></details><details><summary>R 实现：12 个月 KM PFS 率</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>fit &lt;- survival::survfit(
+  survival::Surv(PFS_days, PFS_event) ~ 1, data = adtte_b)
+summary(fit, times = 365, extend = TRUE)
+# 输出 estimate、95% CI、风险人数和累计事件，不计算完整病例比例</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“在数据截止日，12 个月 PFS 的 KM 估计为……，95% CI 为……；12 个月仍在风险集人数为……。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“在有 12 个月扫描的患者中，80% 未进展，因此 12 个月 PFS 率为 80%。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>事件流程表</b>每种日期组合的决定。</div><div class="deliverable"><b>ADTTE 规格</b>事件、删失和理由。</div><div class="deliverable"><b>KM/风险表</b>固定时间估计与成熟度。</div><div class="deliverable"><b>患者 listing</b>源日期到最终分析日。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">方法学标准</span><div><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-trial-endpoints-approval-cancer-drugs-and-biologics" rel="noopener noreferrer" target="_blank">Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics</a><small>肿瘤终点的解释、评估和偏倚考虑。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E9_Guideline.pdf" rel="noopener noreferrer" target="_blank">ICH E9 Statistical Principles</a><small>生存分析、删失和预设分析的一般原则。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="4" hidden="" id="chapter-5">
+<header class="chapter-head-v9">
+<div class="stage-label">第二阶段：看决定怎样落到项目里</div>
+<div class="chapter-number">第 5 章</div>
+<h2>怎样把研究问题写成一份能执行的方案？</h2>
+<p>Protocol synopsis 与终点体系</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-5-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-5-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-5-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-5-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-5-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-5-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-5-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">方案摘要里有很多终点，团队真的知道哪个结论最重要吗？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 A</span><span>确认性随机试验要求目的、终点层级、样本量和错误率形成一条完整证据路径。</span></div><p>一次方案会议上，团队列出了 OS、PFS、ORR、安全性、生活质量和多个生物标志物。每个指标都重要，但如果没有层级、时间点和分析责任，这仍然只是一张愿望清单。</p><p>可执行的方案摘要必须让研究目的、设计、人群、治疗、主要终点、阶段性决策和分析互相对得上。</p><div class="step-expansion"><p>方案摘要必须让研究目的、设计、人群、治疗、终点层级、评估计划和分析责任互相对齐。任何一项只写成口号，后续 CRF、SAP 和 TFL 都会出现不同版本的解释。</p><p>本章真正的分界是：研究目的、终点层级和分析责任是否真正对齐。先把这个分界说清，synopsis、评估计划、样本量假设、SAP 和 TFL shell才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“怎样把研究问题写成一份能执行的方案？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>怎样把研究问题写成一份能执行的方案？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-5-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 A 将总生存期设为主要终点，预设 PFS 可承担关键次要角色，ORR、安全性和其他结果用于支持或补充解释。终点层级与多重性、期中分析和最终结论强度相连。</p><p>方案摘要不需要装下全部编程细节，但必须锁定研究真正承诺回答的问题，以及各终点在证据链中的位置。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>方案摘要必须让研究目的、设计、人群、治疗、终点层级、评估计划和分析责任互相对齐。任何一项只写成口号，后续 CRF、SAP 和 TFL 都会出现不同版本的解释。</p><p>终点越多并不代表证据越完整。若主要、关键次要和探索终点没有层级，团队可能在结果出来后挑选最有利的指标，样本量与错误率控制也失去明确对象。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“研究目的、终点层级和分析责任是否真正对齐”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当主要终点、比较目标或确认性责任改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-5-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>同一研究可以收集很多结果。没有终点层级，团队可能在结果出来后挑选最有利指标，报告也无法说明哪些结论经过正式错误率控制。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>把 endpoint 和 estimand 当作同义词，会漏掉分母、治疗后事件和总体汇总方式。仅写“主要终点为 OS”仍不足以执行。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>终点（endpoint）描述可观察结果怎样定义；估计目标描述完整治疗效应问题。两者必须对应，但承担的内容不同。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>案例 A 的确认性层级依赖随机设计和预设错误率控制。探索终点可以丰富解释，却不能在事后替代失败的主要终点。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里的关键是终点体系（endpoint hierarchy）。它不仅排列名称，还规定哪个终点承担主要证据责任、哪些终点受多重性保护、哪些只能提供支持或探索性信息。</p><p>遇到类似问题，先按时间顺序列出临床目的、终点、评估时间、分析方法和结论层级，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“研究目的、终点层级和分析责任是否真正对齐”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-5-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">把 synopsis 当作一条证据路径来读：研究目的指向哪个主要终点，评估计划怎样产生该终点，样本量依赖什么假设，SAP 如何分析，TFL 又准备怎样呈现。任何一段脱节，方案都还不能执行。</p><div class="project-chain"><div class="project-row"><b>目的与设计</b><span>一句话说明要比较的治疗策略、目标人群和证据类型。</span></div><div class="project-row"><b>终点体系</b><span>为主要、关键次要、其他次要和探索终点分别写清定义与责任。</span></div><div class="project-row"><b>评估计划</b><span>提前规定影像频率、确认规则、生存随访和样本时间点。</span></div><div class="project-row"><b>阶段决策</b><span>把正式期中分析、Simon 阶段或安全先导的触发条件写入方案。</span></div><div class="project-row"><b>分析连接</b><span>保证样本量假设、分析集、效应量和终点层级一致。</span></div><div class="project-row"><b>TFL shell</b><span>在数据库锁定前就让标题、分母、截止日期和脚注与方案承诺对齐。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“主要目的为比较策略 A 与策略 B 对全部随机化患者 OS 的影响；主要终点为 OS，关键次要终点按预设层级检验。”</p>
+<p><strong>分析动作：</strong>方案中的每个终点要映射到评估时间、数据域、分析集、效应量和 TFL shell；样本量假设与主要终点必须使用同一事件定义。</p>
+<p><strong>结果怎样写：</strong>最终报告按终点层级区分确认性、支持性和探索性结论，不能因某个次要终点数值更好就替代主要终点。</p>
+<p class="demo-why"><b>为什么重要：</b> 主要终点若没有唯一的评估、分析和输出落点，团队就会在实施后才补定义。那时改变的不只是文字，而是样本量依据、数据收集和最终结论责任。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 从研究目的走到 TFL shell，每个主要或关键次要终点都有唯一落点，方案摘要才是一份执行承诺。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-5-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 B 的主要终点是 BICR 确认 ORR，关键次要可包括 12 个月 PFS 率。</li><li>DoR、安全性、转化切除率和生物标志物承担持续性、可实施性和探索机制的角色。</li><li>单臂终点体系用于决定是否值得推进，不能承担随机比较的因果结论。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 B 的单臂 IIT 可以把确认 ORR 与 Simon 阶段决策连接，但结论责任仍是“是否值得继续验证”，而不是证明联合方案优于现有标准。</p><p>案例 B 的 synopsis 把确认 ORR、Simon 阶段决策和安全先导连在一起，目的是筛选是否值得继续验证；案例 A 则围绕随机比较和确认性终点组织。两者都要完整，但结论责任不同。</p></div><p class="length-note-5 reading-focus">判断两份方案能否共用写法，先看最终决策是什么：确认一种治疗策略的比较效果，还是决定单臂方案是否进入下一步。这个差异会一路改变终点层级、样本量、阶段规则和报告措辞。</p><p class="step-landing"><b>这一小步的落点：</b> 案例 B 的方案可以支持“是否继续验证”，不能沿用案例 A 的确认性结论口径。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-5-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>从临床目的出发</p></div><div class="flow-node"><span>2</span><p>确定设计和目标人群</p></div><div class="flow-node"><span>3</span><p>选定主要终点及完整定义</p></div><div class="flow-node"><span>4</span><p>安排关键次要和支持性终点</p></div><div class="flow-node"><span>5</span><p>连接评估计划、样本量和阶段决策</p></div><div class="flow-node"><span>6</span><p>预先形成分析与输出框架</p></div><div class="flow-node"><span>7</span><p>按终点层级限制最终结论</p></div></div><div class="flow-reading-v9"><h4>把方案读成一条因果清楚的链</h4><p>从临床目的开始，依次确认目标人群、主要终点、评估计划、样本量与阶段决策，再落到 SAP 和 TFL。每个环节都应解释前一环提出的问题，而不是另起一套术语。</p><p><strong>结论边界：</strong>一份完整方案能够减少后续歧义，却不能替代可行性、外部证据和实施质量。研究问题改变时，终点体系、样本量和数据计划都要同步更新。</p></div><p class="length-note-6 reading-focus">从一个拟写的主要结论往回找：对应哪个 TFL、哪个分析、哪套评估和哪个方案目标。若回不到唯一位置，说明终点体系还只是列表，没有形成证据路径。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么方案摘要应是一条从研究目的通向结论的证据路径，而不是终点和术语的清单。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>Estimand → endpoint hierarchy → protocol synopsis → schedule of assessments。</span></div>
+<div class="decision-lab"><h3>当前决策：终点体系是证据路径，不是指标清单</h3><p>Synopsis 必须让目的、设计、人群、治疗、终点、样本量与分析互相对得上。主要、关键次要、其他次要和探索终点承担不同证据责任；endpoint 是可观测结果的定义，estimand 是完整治疗效应问题，二者不能互换。</p><div class="decision-grid"><div class="decision-cell"><b>选择标准</b><span>临床相关性、客观性、成熟度、可操作性、评价频率和受随机后事件影响程度。</span></div><div class="decision-cell"><b>开放标签风险</b><span>扫描时点、停药、后续治疗和研究者判读可能受知晓分组影响。</span></div><div class="decision-cell"><b>时间窗</b><span>必须在 protocol/影像章程中定义，而不是分析时按数据分布选择。</span></div><div class="decision-cell"><b>层级责任</b><span>主要终点失败后，次要终点是否可确认性解释取决于预设多重性策略。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>Ⅲ期确认性终点体系</h3><p>主要终点 OS；关键次要终点可包括 PFS；ORR、安全性、PRO 等作为其他次要或支持性终点。终点层级与 alpha 分配、正式期中分析和 CSR 结论强度相连。</p><dl><dt>主要终点</dt><dd>OS</dd><dt>评估核心</dt><dd>死亡事件完整性、信息成熟度</dd><dt>影像角色</dt><dd>PFS/ORR 支持性，需预设评审与敏感性</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>单臂Ⅱ期与转化终点体系</h3><p>主要终点为 BICR 确认 ORR；关键次要终点为 12 个月 PFS 率；DoR、PFS、OS、安全性和转化切除率为其他次要；ctDNA 清除和免疫微环境变化为探索终点。</p><dl><dt>主要终点</dt><dd>确认 ORR</dd><dt>关键限制</dt><dd>FOLFOXIRI 本身可产生肿瘤缩小</dd><dt>证据责任</dt><dd>支持继续研究，不证明新增药物贡献</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 需要控制总体Ⅰ类错误并形成确认性证据；案例 B 的终点体系更关注快速决策、持续获益、安全可实施性与机制探索。案例 B 即使 ORR 越过阈值，也必须同时看 DoR、12 月 PFS、曲线、转化手术、剂量强度和历史比较不确定性。</div>
+<h3 class="section-title">两个完整 synopsis 的骨架</h3>
+<div class="table-wrap compare-table"><table><thead><tr><th>项目</th><th>CRC-ADVANCE-01</th><th>CRC-IMMUNE-IIT-01</th></tr></thead><tbody>
+<tr><td>设计</td><td>开放标签、1:1 随机、Ⅲ期、事件驱动</td><td>单臂Ⅱ期 IIT；安全先导＋Simon 两阶段</td></tr>
+<tr><td>人群</td><td>MSS/pMMR 不可切除晚期 CRC</td><td>初治、不可切除 MSS/pMMR mCRC，不额外富集</td></tr>
+<tr><td>治疗</td><td>试验策略 A vs 标准策略 B</td><td>依沃西单抗＋FOLFOXIRI；目标方案 T／预设降阶 D</td></tr>
+<tr><td>主要终点</td><td>OS</td><td>BICR 确认 ORR</td></tr>
+<tr><td>关键次要</td><td>预设 PFS 等</td><td>12 个月 PFS 率</td></tr>
+<tr><td>阶段决策</td><td>约 70% OS 信息量正式期中</td><td>两周期安全先导；Simon 第一阶段无效早停</td></tr>
+<tr><td>证据边界</td><td>随机比较支持策略间因果解释，仍受实施和缺失影响</td><td>单臂不能证明优于 FOLFOXIRI 或新增药物独立贡献</td></tr>
+</tbody></table></div>
+<div class="callout warning"><b>真实药物背景</b>依沃西单抗在本文仅作为真实机制背景：它是同时靶向 PD-1 与 VEGF-A 的四价双特异性抗体。本文的 CRC 联合方案、剂量层级、疗效和安全结果均为教学案例，不代表已获证实的适应证或真实研究结果。</div>
+<h3 class="section-title">Schedule of Assessments 必须提前回答</h3>
+<div class="step-list"><div class="step"><h3>基线可测量病灶</h3><p>明确影像模态、基线窗口、靶/非靶病灶和中央影像传输要求。</p></div><div class="step"><h3>固定影像频率</h3><p>例如每 8 周一次，不因临床判断或治疗组随意改变；超窗原因结构化记录。</p></div><div class="step"><h3>确认缓解</h3><p>单臂研究 CR/PR 在至少 4 周后再次确认；预设如何处理手术、新治疗和无后续扫描。</p></div><div class="step"><h3>生存与转化样本</h3><p>治疗停止后仍有生存随访；血液和组织采样与临床时间点对齐。</p></div></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Protocol synopsis</td><td>目的、设计、终点层级、分析和阶段决策</td><td>首例入组前</td><td>临床/统计</td></tr><tr><td>Endpoint definition table</td><td>起点、事件、窗口、确认、缺失和评审</td><td>首例入组前</td><td>统计/影像</td></tr><tr><td>Schedule of Assessments</td><td>影像、实验室、生存、组织与血液采样</td><td>首例入组前</td><td>临床/运营/转化</td></tr><tr><td>TFL shells</td><td>标题、分母、时间点与脚注</td><td>数据库锁定前</td><td>统计/医学写作</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>用一句话将每个目标与终点相连；明确独立影像评审、确认规则、随访和多重性地位。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>影像实际日期而非仅访视名。</li><li>新病灶、不可评原因、评审来源。</li><li>手术意图、日期和切除状态。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>分别定义主要、关键次要、其他次要和探索终点。12 月 PFS 率指定 KM 方法与 CI。</p><p>终点规格逐项写出 source、time origin、event、censor、window、analysis flag。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>检查 endpoint 表是否能由现有 CRF 字段重建；检查影像计划与扫描数据是否一致。</p><p>终点表显示分析集、评审来源、确认要求、数据截止和成熟度。</p></article></div><details><summary>R 实现：精确二项区间与固定时间 KM 的接口</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code># ORR
+binom.test(responders, denominator, conf.level = 0.95)
+# 12-month PFS is a KM estimate, not a complete-case proportion
+fit &lt;- survival::survfit(Surv(pfs_days, pfs_event) ~ 1, data = adtte_b)
+summary(fit, times = 365, extend = TRUE)</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“确认 ORR 为主要终点；12 个月 PFS 率、DoR 与安全性用于描述获益的持续性和可实施性。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“ORR 较高证明依沃西单抗使 FOLFOXIRI 更有效。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>双案例 synopsis</b>可下载完成版和空白模板。</div><div class="deliverable"><b>终点层级表</b>每个终点的证据地位与多重性角色。</div><div class="deliverable"><b>评估计划</b>影像、随访和转化采样的初稿。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">官方标准</span><div><a href="https://recist.eortc.org/recist-1-1/" rel="noopener noreferrer" target="_blank">RECIST 1.1 Guidelines</a><small>靶病灶、响应分类和非随机研究的确认要求。</small></div></div><div class="evidence-item"><span class="kind">原始研究</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/38642937/" rel="noopener noreferrer" target="_blank">Phase 1a dose escalation study of ivonescimab</a><small>用于核对 PD-1/VEGF-A 双靶点机制；不能外推案例疗效。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/ICH_Step4_M11_Final_TechnicalSpecification_2025_1119.pdf" rel="noopener noreferrer" target="_blank">ICH M11 Clinical electronic Structured Harmonised Protocol</a><small>Protocol 结构化与跨章节一致性视野。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="5" hidden="" id="chapter-6">
+<header class="chapter-head-v9">
+<div class="stage-label">第二阶段：看决定怎样落到项目里</div>
+<div class="chapter-number">第 6 章</div>
+<h2>为什么样本量和停止规则必须提前定？</h2>
+<p>试验设计、样本量与决策规则</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-6-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-6-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-6-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-6-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-6-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-6-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-6-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">看到前几名患者效果不错，可以临时多收几例吗？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 B</span><span>安全先导和 Simon 两阶段把“是否继续”变成清晰、可复算的阶段决策。</span></div><p>单臂研究开始后，前几名患者出现缓解，但也有严重毒性。团队想继续观察几例再决定。这样的灵活看似稳妥，却可能让样本量、错误率和停止边界随着数据变化。</p><p>设计要在入组前回答：什么结果说明方案缺乏前景、什么安全信号必须暂停、什么条件允许进入下一阶段。</p><div class="step-expansion"><p>样本量和停止边界依赖目标效应、错误率、把握度、可评价定义和数据成熟条件。阶段决策必须在看见开放结果前固定，并由有明确权限的委员会按冻结数据执行。</p><p>本章真正的分界是：阶段阈值是否来自预先设定的目标效应和错误率。先把这个分界说清，设计参数、可计入名单、阶段边界、冻结结果和决策记录才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“为什么样本量和停止规则必须提前定？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>为什么样本量和停止规则必须提前定？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-6-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 B 先用两周期安全先导判断目标联合方案是否安全且可实施；通过后，按预设 Simon 两阶段规则评估确认 ORR。教学设定中，第一阶段 16 名目标方案患者若确认缓解不超过 10 人则停止，达到 11 人可继续；总样本 47 人，至少 34 人越过无效阈值。</p><p>这些数字是教学设定，不是现实处方或真实试验建议。价值在于每个阈值都在看见结果之前冻结，并能由独立程序复算。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>样本量和停止边界依赖目标效应、错误率、把握度、可评价定义和数据成熟条件。阶段决策必须在看见开放结果前固定，并由有明确权限的委员会按冻结数据执行。</p><p>“再多看几例”不是中性的做法。若团队根据当前缓解或毒性不断改变入组数和阈值，实际假阳性率、停止概率和研究资源都会偏离原设计。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“阶段阈值是否来自预先设定的目标效应和错误率”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当p0、p1、可评价定义、信息量或错误率分配改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-6-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>样本量同时受目标效应、错误率、把握度、失访、不可评价、入组速度和决策代价影响，不是一个孤立数字。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>看到结果后延长第一阶段或改变可计入人群，会让实际错误率偏离设计；把降阶患者并入目标方案决策也会改变治疗条件。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>Simon 两阶段设计允许在第一阶段疗效不足时提前停止，以减少无效暴露；安全先导则同时观察严重事件、延迟、相对剂量强度和永久停药。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>阶段规则只有在同一入组标准、目标方案、评审流程和主要终点定义下才可执行。真实设计必须由临床、统计和安全团队结合真实剂量确认。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>随机试验常用信息比例（information fraction）描述期中时已获得多少主要终点信息；单臂研究可使用 Simon 两阶段设计，把早停无效和继续入组写成可复算的整数边界。</p><p>遇到类似问题，先按时间顺序列出设计参数、入组、观察窗完成、数据冻结、计数和决策，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“阶段阈值是否来自预先设定的目标效应和错误率”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-6-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">把阶段决策拆成可核对的五件事：设计参数是什么，哪些患者可以计入，数据在何时冻结，观察到的响应数落在哪条边界，委员会最后记录了什么决定。</p><div class="project-chain"><div class="project-row"><b>Protocol</b><span>记录效应假设、样本量、阶段阈值、硬暂停事件、降阶路径和先导并入条件。</span></div><div class="project-row"><b>Committee charter</b><span>规定谁看开放数据、何时开会、绿黄红阈值和决策记录格式。</span></div><div class="project-row"><b>CRF</b><span>逐周期记录各组分实际给药、延迟、减量、停药、RLT 和硬暂停事件。</span></div><div class="project-row"><b>SAP</b><span>冻结阶段数据截止、BICR 状态、不可评价处理和精确二项决策。</span></div><div class="project-row"><b>阶段报告</b><span>同时呈现疗效数、安全事件、周期进入率、组分 RDI 和方案偏离。</span></div><div class="project-row"><b>QC</b><span>独立复算 alpha、power、PET、期望样本量和每阶段分母。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“第一阶段纳入 16 例目标方案患者；确认缓解数不超过 10 例则停止，至少 11 例方可进入第二阶段。总样本 47 例，成功阈值为至少 34 例确认缓解。”</p>
+<p><strong>分析动作：</strong>独立程序复算 alpha、power、PET 和期望样本量；阶段报告从冻结的可计入名单统计响应数，并把不可评价、降阶和安全先导患者逐例说明。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>decision &lt;- if (N &lt; n1) "not_ready" else
+  if (N == n1 &amp;&amp; x &lt;= r1) "stop_for_futility" else
+  if (N &gt;= n &amp;&amp; x &gt;= r) "crosses_teaching_threshold" else
+  if (N &gt;= n) "does_not_cross_threshold" else "continue_accrual"</code><small>对应下载脚本：R/08_case_B_simon_and_orr.R。决策同时检查实际分母 N 和响应数 x，不能只看比例。</small></div><p><strong>结果怎样写：</strong>决策记录应写明实际分母、观察结果与预设边界的关系。越过阈值只支持按方案继续或考虑后续验证，不等同于已证明临床获益。</p>
+<p class="demo-why"><b>为什么重要：</b> 只报一个响应率会掩盖阶段分母和整数边界。实际分母、可计入规则或冻结状态只要与设计不同，原先计算的错误率和决策性能就不再自动成立。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 实际分母和响应数能一一对应到预设边界，阶段决定才不是看见结果后的临时判断。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-6-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 A 是事件驱动的随机Ⅲ期，教学设定需要约 508 个 OS 事件，而总随机人数还取决于入组和随访。</li><li>约 70% 信息量的正式期中分析使用预设 alpha spending，不是简单套用 p&lt;0.05。</li><li>案例 A 主要控制重复检验的错误率；案例 B 主要限制无效或不可实施方案继续暴露。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 A 的事件驱动期中分析需要 alpha spending、DMC 防火墙和最终检验衔接；案例 B 的 Simon 决策主要围绕整数响应数，两者不能共用同一停止逻辑。</p><p>案例 A 的事件驱动期中分析围绕信息比例和 alpha spending；案例 B 的 Simon 设计围绕可计入患者与整数响应数。它们都要求预设和冻结，但控制的错误与暴露风险并不相同。</p></div><p class="length-note-5 reading-focus">看到“期中”或“停止规则”时，不要先套同一套边界。先确认统计目标是控制重复检验错误，还是尽早停止无效方案；再检查信息量、分母和委员会权限。</p><p class="step-landing"><b>这一小步的落点：</b> Simon 的整数边界不能替代随机试验的 alpha spending，反过来也一样。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-6-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>把临床假设转成目标效应和可接受错误率</p></div><div class="flow-node"><span>2</span><p>选择与问题匹配的设计</p></div><div class="flow-node"><span>3</span><p>计算事件数或阶段样本量</p></div><div class="flow-node"><span>4</span><p>定义可计入人群和数据成熟条件</p></div><div class="flow-node"><span>5</span><p>预设继续、停止、暂停和降阶规则</p></div><div class="flow-node"><span>6</span><p>委员会按冻结数据执行</p></div><div class="flow-node"><span>7</span><p>记录实际结果与预设边界的关系</p></div></div><div class="flow-reading-v9"><h4>从设计参数走到一次真实决定</h4><p>先把目标效应和可接受错误率转成样本量或事件数，再定义可计入人群、数据成熟条件和停止边界。委员会只能在冻结数据满足触发条件后执行这些规则。</p><p><strong>结论边界：</strong>预设边界控制的是特定假设和数据结构下的决策性能。真实发生率、失访、评审延迟或方案改变后，原边界不能未经重算继续使用。</p></div><p class="length-note-6 reading-focus">从决策备忘录中的“继续”或“停止”往回核对：当时的分母、响应数和数据版本是否与设计完全一致。任何事后更换口径，都需要重新评估设计性能。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么样本量、阶段分母和停止边界必须在看见结果前确定。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>Endpoint → design assumptions → sample size/information → stage rules → committee decision。</span></div>
+<div class="decision-lab"><h3>当前决策：把科学假设变成可审核的样本量与停止规则</h3><p>样本量不是单个数字，而是效应假设、错误率、信息量、失访、不可评价、入组速度和决策代价的共同结果。所有数字在本课程中均为教学设定，真实设计必须由有经验的临床统计师与相关专家确认。</p><div class="decision-grid"><div class="decision-cell"><b>案例 A</b><span>事件驱动 OS；HR、双侧 α、把握度和总死亡事件决定主要信息量。</span></div><div class="decision-cell"><b>案例 B</b><span>先验证联合方案能否实施，再用 Simon 两阶段控制无效项目的资源暴露。</span></div><div class="decision-cell"><b>不能事后改</b><span>p0/p1、阶段阈值、可评价规则、降阶并入规则和停止边界。</span></div><div class="decision-cell"><b>必须复算</b><span>名义与实际错误率、PET、期望样本量、边界变化的敏感性。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：约 508 个 OS 事件</h3><p><span class="case-badge setting">教学设定</span> 等比例分组、HR=0.75、双侧 α=0.05、把握度 90%，Schoenfeld 近似需要约 508 个死亡事件。总随机人数还取决于入组期、随访期、退出和事件发生率。</p><dl><dt>正式期中</dt><dd>约 70% 信息量，即约 356 个事件</dd><dt>总样本量示意</dt><dd>约 550 人，仅作教学演示</dd><dt>关键复核</dt><dd>事件数与边界生成程序一致</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：9→12 安全先导＋16/47 Simon</h3><p><span class="case-badge setting">教学设定</span> 安全先导先入 9 例，前两周期综合评价；黄色可扩至 12。通过后，Simon optimal：p0=0.60、p1=0.78、单侧 α=0.05、power=0.80；n1=16，≤10 缓解停止；总 N=47，≥34 缓解越过无效阈值。</p><dl><dt>实际 α</dt><dd>约 0.0454</dd><dt>实际 power</dt><dd>约 0.8010</dd><dt>PET(p0)</dt><dd>约 0.6712</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>随机Ⅲ期依赖组间比较和事件信息；单臂Ⅱ期依赖与预设无效率的二项决策。Simon 设计拒绝 H0 不能证明依沃西单抗的独立贡献，因为所有患者同时接受 FOLFOXIRI。</div>
+<h3 class="section-title">安全先导的教学操作规则</h3>
+<div class="table-wrap"><table><thead><tr><th>层面</th><th>绿色</th><th>黄色</th><th>红色/硬暂停</th></tr></thead><tbody>
+<tr><td>方案限制性毒性（RLT）</td><td>9 例中 ≤2，且无硬暂停事件</td><td>9 例中 3：暂停扩至 12；12 例中 ≤3 可讨论继续</td><td>9 例中 ≥4，或 12 例中 ≥4</td></tr>
+<tr><td>立即硬暂停</td><td>无</td><td>单一罕见严重事件待因果复核</td><td>任何治疗相关死亡、胃肠穿孔、4 级出血、动脉血栓；或首 6 例中 ≥2 RLT</td></tr>
+<tr><td>进入周期 3</td><td>≥75% 在第 43 天前开始</td><td>60%–&lt;75%</td><td>&lt;60%</td></tr>
+<tr><td>组分 RDI</td><td>中位数 ≥80%</td><td>70%–&lt;80%</td><td>&lt;70%</td></tr>
+<tr><td>永久停药</td><td>≤20%</td><td>&gt;20%–33%</td><td>&gt;33%</td></tr>
+</tbody></table></div>
+<div class="callout warning"><b>RLT 的教学定义</b>患者在前两个周期发生任一预设事件即记为 RLT：治疗相关死亡；持续或复杂的 4 级骨髓抑制；发热性中性粒细胞减少；充分支持治疗下仍持续的 ≥3 级腹泻；≥3 级出血、血栓、胃肠穿孔、无法控制的高血压；导致永久停用的 ≥3 级免疫相关事件；因治疗相关毒性无法在第 35 天前接受周期 2，或在两周期内关键组分 RDI &lt;70%。真实方案必须由临床、药物警戒和统计团队重新定义。</div>
+<div class="metric-row"><div class="metric"><small>p0</small><strong>0.60</strong></div><div class="metric"><small>p1</small><strong>0.78</strong></div><div class="metric"><small>阶段 1</small><strong>16 / ≥11</strong></div><div class="metric"><small>总阶段</small><strong>47 / ≥34</strong></div></div>
+<h3 class="section-title">先导患者是否并入 Simon</h3>
+<div class="trace-chain"><div class="trace-row"><b>可并入</b><span>同一入组标准、同一目标方案 T、同一 BICR 评价、同一主要终点窗口，并完成主要终点评价。</span></div><div class="trace-row"><b>不并入</b><span>接受降阶方案 D、入组标准变化、影像规则变化或缺少可比主要终点评价者；这些患者在安全性和探索性疗效中单列。</span></div><div class="trace-row"><b>不可评价</b><span>为保持决策保守性，主要 Simon 分母不通过“补招后删除原患者”来美化；可预设实际入组膨胀至约 50 人应对行政不可评价，但决策人群规则必须固定。</span></div></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Protocol</td><td>样本量假设、阶段设计、先导边界、降阶路径</td><td>首例入组前</td><td>统计/临床/安全</td></tr><tr><td>SAP</td><td>精确二项决策、不可评价与并入规则</td><td>首例入组前或阶段开放前</td><td>统计</td></tr><tr><td>Safety Committee Charter</td><td>硬暂停、可实施性指标和记录模板</td><td>首例入组前</td><td>临床/药物警戒/统计</td></tr><tr><td>Randomization/DMC plan</td><td>案例 A 事件和期中信息规则</td><td>首例入组前</td><td>统计/DMC</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>参数全部标注“教学设定”；目标方案 T 与降阶 D 只用协议定义，不在课程中给出现实处方剂量。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>周期和各组分实际给药。</li><li>延迟、减量、停药原因。</li><li>RLT、AESI 和硬暂停事件可逐例重建。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>冻结 Simon 阈值、阶段 1 数据截止、BICR 状态、不可评价规则和先导并入条件。</p><p>分析变量包括 <code>LEADINFL</code>、<code>DOSELVL</code>、<code>RLTFL</code>、<code>SIMONFL</code>、<code>CONFRESP</code>。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>用独立程序复算 alpha、power、PET 和期望样本量；逐例核对阶段分母。</p><p>阶段性 memo 同时报告疗效数、安全事件、RDI、延迟和方案偏离。</p></article></div><details><summary>R 实现：精确复算 Simon operating characteristics</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>simon_oc &lt;- function(n1, n, r1, r, p) {
+  xs &lt;- (r1 + 1):n1
+  reject &lt;- sum(dbinom(xs, n1, p) *
+                pbinom(r - xs - 1, n - n1, p, lower.tail = FALSE))
+  pet &lt;- pbinom(r1, n1, p)
+  c(reject = reject, PET = pet,
+    EN = n1 + (n - n1) * (1 - pet))
+}
+simon_oc(16, 47, 10, 34, 0.60) # alpha, PET0, EN0
+simon_oc(16, 47, 10, 34, 0.78) # power, PET1, EN1</code></pre></div></details><details><summary>R 实现：案例 A 事件数近似</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>alpha &lt;- 0.05; power &lt;- 0.90; HR &lt;- 0.75
+z_alpha &lt;- qnorm(1 - alpha/2)
+z_beta  &lt;- qnorm(power)
+events &lt;- 4 * (z_alpha + z_beta)^2 / log(HR)^2
+ceiling(events) # 约 508 个 OS 事件（教学设定）</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“观察到的确认 ORR 越过预设无效阈值，支持考虑后续随机验证。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“Simon 设计证明联合方案优于 FOLFOXIRI，且证明依沃西单抗贡献。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>设计参数表</b>两个案例的假设、错误率和信息量。</div><div class="deliverable"><b>决策规则</b>安全先导绿/黄/红＋Simon 阶段阈值。</div><div class="deliverable"><b>复核脚本</b>精确二项 OC 和事件数计算。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">方法学论文</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/2702835/" rel="noopener noreferrer" target="_blank">Simon R. Optimal two-stage designs for phase II clinical trials</a><small>单臂Ⅱ期两阶段设计的经典方法。</small></div></div><div class="evidence-item"><span class="kind">正式指导</span><div><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adaptive-design-clinical-trials-drugs-and-biologics-guidance-industry" rel="noopener noreferrer" target="_blank">FDA Adaptive Designs for Clinical Trials</a><small>阶段性修改、预设规则和可靠解释的一般原则。</small></div></div><div class="evidence-item"><span class="kind">正式指导</span><div><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/optimizing-dosage-human-prescription-drugs-and-biological-products-treatment-oncologic-diseases" rel="noopener noreferrer" target="_blank">FDA Optimizing Dosage of Oncology Drugs</a><small>剂量优化应综合安全性、耐受性、药理和疗效；本课程不替代真实剂量决策。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="6" hidden="" id="chapter-7">
+<header class="chapter-head-v9">
+<div class="stage-label">第二阶段：看决定怎样落到项目里</div>
+<div class="chapter-number">第 7 章</div>
+<h2>研究开始前，究竟要收集哪些信息？</h2>
+<p>CRF、数据库与样本采集计划</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-7-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-7-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-7-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-7-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-7-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-7-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-7-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">只有“有血样”和“做过影像”，为什么还是无法分析？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 B</span><span>临床数据、给药数据、影像和转化样本同时存在，最能展示不同数据粒度和追溯要求。</span></div><p>数据库里写着患者“完成影像”和“采集血样”，却没有实际日期、处理延迟、评审来源、检测批次和失败原因。分析时，团队无法判断扫描是否在窗口内，也无法把 ctDNA 结果与正确时间点配对。</p><p>研究问题必须在数据库上线前被翻译成字段、日期、主键和允许值。统计模型不能补回从未采集的信息。</p><div class="step-expansion"><p>每个数据域必须先规定一行代表什么、主键是什么、哪些日期和状态不可缺少。扫描、给药、样本和不良事件的粒度不同，不能为了方便全部压成一张患者级宽表。</p><p>本章真正的分界是：每个数据域的一行代表什么，以及哪些时间点不能缺少。先把这个分界说清，CRF、数据库主键、样本台账、数据检查和派生规格才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“研究开始前，究竟要收集哪些信息？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>研究开始前，究竟要收集哪些信息？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-7-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 B 需要同时建立临床、给药、影像、手术、样本和 assay 元数据。每张表先说明“一行代表什么”，再确定主键、实际日期、来源、质量标志和失败原因。</p><p>样本采集不只是“有或没有”。计划时间、实际时间、处理延迟、批次、检测版本、QC 状态和可分析状态必须分开记录。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>每个数据域必须先规定一行代表什么、主键是什么、哪些日期和状态不可缺少。扫描、给药、样本和不良事件的粒度不同，不能为了方便全部压成一张患者级宽表。</p><p>只记录“已完成”或“未完成”会丢失实际时间、窗口偏差、失败原因和来源。等到分析阶段再询问这些信息，往往已经无法从源文件可靠重建。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“每个数据域的一行代表什么，以及哪些时间点不能缺少”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当数据粒度、时间窗、检测流程或评审来源改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-7-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>不同域的数据粒度不同：一名患者、一周期、一种给药组分、一次扫描、一个不良事件或一份样本。直接多对多合并会复制记录和计数。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>只记录访视名，不记录实际日期，会使时间窗、事件顺序和样本配对无法复核；只写“其他原因”也无法解释缺失机制。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>主键用来唯一识别一行记录。分析前必须确认主键唯一、无孤儿记录，并明确多记录怎样聚合到患者级。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>数据能够支持结论，取决于字段定义和采集质量。样本可分析集只代表完成采集、QC 和检测的人群，不能自动代表全队列。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里的基础概念是数据粒度（data grain）。粒度说明一条记录对应一个患者、一次访视、一次给药、一个事件还是一个样本；主键则保证每条事实能够唯一定位。</p><p>遇到类似问题，先按时间顺序列出计划、采集、处理、检测、入库和分析，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“每个数据域的一行代表什么，以及哪些时间点不能缺少”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-7-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">从最终要分析的事实倒推数据结构：每个域的一行代表什么，主键如何唯一，哪些日期必须保存实际值，样本失败发生在哪一步，派生变量又来自哪些源字段。</p><div class="project-chain"><div class="project-row"><b>CRF specification</b><span>为 DM/RAND、EX、RS、AE、DS、SAMPLE 等域定义一行含义、主键、允许值和 query。</span></div><div class="project-row"><b>实际日期</b><span>保存随机、给药、扫描、采样、处理、进展、死亡和新治疗的真实日期及精度。</span></div><div class="project-row"><b>样本手册</b><span>规定采集、处理、运输、冻存、批次和失败分类。</span></div><div class="project-row"><b>数据管理计划</b><span>写清编码、清理、冻结、锁库、审计轨迹和版本。</span></div><div class="project-row"><b>分析数据规格</b><span>为每个派生变量记录源字段、算法、分析目的和审阅状态。</span></div><div class="project-row"><b>QC</b><span>检查主键唯一、日期倒置、孤儿记录、合并前后行数以及样本漏斗逐层一致。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“影像域每行代表一次实际扫描；至少保存患者、扫描日期、评审来源、评价充分性和不可评价原因。样本域另存实际采集、处理延迟、批次和 QC 状态。”</p>
+<p><strong>分析动作：</strong>数据检查先验证主键唯一、日期顺序和孤儿记录，再按患者与时间点合并；分析数据规格记录每个派生变量的源字段、算法和用途。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>checks$B_sample_duplicate &lt;- sum(
+  duplicated(bs[c("patient_id", "timepoint")])
+)</code><small>对应下载脚本：R/03_data_checks.R。这里检查教学样本台账的患者—时间点主键；真实项目还需按正式数据规格确定完整主键。</small></div><p><strong>结果怎样写：</strong>数据漏斗应显示计划、采集、处理、检测和可分析各层人数，使缺失发生在哪一步可以被追溯，而不是只报告最后可分析样本数。</p>
+<p class="demo-why"><b>为什么重要：</b> 只保留“最终可分析”状态会把重复、漏采、处理失败和检测失败混在一起。把数据粒度和失败原因结构化，才可能判断缺失发生在哪里、是否与结局有关。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 能从一个分析变量退回唯一的源记录、主键和实际日期，数据设计才真正服务研究问题。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-7-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 A 的核心域更集中在随机、给药、后续治疗、影像和生存状态。</li><li>随机化日是主要时间结局的起点；安全性暴露则从首次实际用药出发，不能混用。</li><li>案例 A 也需要实际扫描日和后续治疗，但不承担案例 B 那样复杂的 assay 版本与动态样本配对。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 A 更强调随机、后续治疗和生存随访；案例 B 同时依赖周期给药、影像和动态样本。两者共享数据原则，但字段和时间粒度不能机械复制。</p><p>案例 A 更依赖随机、给药、后续治疗和生存随访；案例 B 还要连接周期给药、影像与动态样本。共同原则是保存真实时间和失败原因，不能把字段集合机械复制。</p></div><p class="length-note-5 reading-focus">比较两项研究的数据需求时，先问每条记录代表哪个事实、在哪个时间点产生、缺失后会影响哪个分析。研究问题不同，数据域和时间粒度自然不同。</p><p class="step-landing"><b>这一小步的落点：</b> 两项研究可以共用数据治理原则，却不能共用一张不区分临床随访和样本链的“大表”。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-7-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>从研究问题列出必须观察的事实</p></div><div class="flow-node"><span>2</span><p>确定每个数据域一行代表什么</p></div><div class="flow-node"><span>3</span><p>设计主键、实际日期和允许值</p></div><div class="flow-node"><span>4</span><p>把缺失与失败原因结构化</p></div><div class="flow-node"><span>5</span><p>冻结 CRF、数据库和样本手册</p></div><div class="flow-node"><span>6</span><p>建立源数据到分析变量的追溯</p></div><div class="flow-node"><span>7</span><p>用自动检查发现重复、孤儿和日期错误</p></div></div><div class="flow-reading-v9"><h4>从研究问题倒推每一行数据</h4><p>先列出必须观察的事实，再为每个数据域规定一行含义、主键、实际日期和允许值；随后把失败原因与派生规格接上，最后用检查程序寻找重复、孤儿和日期冲突。</p><p><strong>结论边界：</strong>良好数据库设计能够防止结构性缺失，却不能保证现场记录真实或检测可靠。任何变量改名都必须同步更新字典、代码、正文和下载资源。</p></div><p class="length-note-6 reading-focus">从一个异常结果往回追时，应能判断问题发生在采集、录入、合并、样本处理还是派生。若所有缺失只剩一个空值，就失去了修复和解释的依据。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么数据库设计要从研究问题和数据粒度出发，而不是先画一张大表。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>Protocol/SoA → CRF 与样本手册 → 数据库 → 清理/冻结 → 分析数据规格。</span></div>
+<div class="decision-lab"><h3>当前决策：每一行数据代表什么，必须在数据库上线前说清</h3><p>临床、影像、给药、不良事件和转化样本的数据粒度不同。直接按 patient_id 多对多合并会复制记录；只记录访视名而不记录实际日期，会使窗口、事件顺序和样本配对无法复核。</p><div class="decision-grid"><div class="decision-cell"><b>数据库层</b><span>主键、域、一对一/一对多、日期精度、编码、query 和冻结规则。</span></div><div class="decision-cell"><b>样本层</b><span>计划与实际时间、处理延迟、材料、批次、assay 版本、QC 与可分析状态。</span></div><div class="decision-cell"><b>分析层</b><span>先在原粒度完成检查和派生，再汇总到患者级；保留来源变量。</span></div><div class="decision-cell"><b>质量风险</b><span>孤儿记录、重复键、日期倒置、批次混合、样本失败被当成随机缺失。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：确认性试验的数据域</h3><p>核心域包括 DM/RAND、EX、DS、AE、CM、RS/影像、生存状态、实验室、后续治疗和手术。随机化日期是主要时间结局 time zero；安全性暴露则以首次实际用药为参考。</p><dl><dt>关键键</dt><dd>患者、访视、病灶、事件、给药记录</dd><dt>追溯重点</dt><dd>随机分层、死亡源、扫描和后续治疗</dd><dt>标准视野</dt><dd>CDASH/SDTM/ADaM，不写成规范大全</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：临床＋样本的双层数据模型</h3><p>除临床域外，还需要 cycle/component 给药、BICR 影像、手术、组织/血液样本、ctDNA、assay QC 和批次元数据。样本可分析性本身是一个需要解释的结局。</p><dl><dt>样本主键</dt><dd>patient_id＋timepoint＋sample_id</dd><dt>配对关系</dt><dd>baseline 与 on-treatment 不能靠行顺序</dd><dt>关键风险</dt><dd>获益患者更容易获得治疗中组织</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 的主要风险是随机比较所需关键事件是否完整一致；案例 B 还必须管理样本选择、前分析条件、批次和检测版本。临床数据库“有一行样本记录”不等于该样本可用于生物标志物分析。</div>
+<h3 class="section-title">数据域地图</h3>
+<div class="table-wrap"><table><thead><tr><th>域/表</th><th>一行代表</th><th>推荐主键</th><th>关键字段</th><th>典型检查</th></tr></thead><tbody>
+<tr><td>DM/RAND</td><td>一名患者</td><td>patient_id</td><td>随机日、组别、分层</td><td>唯一、日期完整、分层值合法</td></tr>
+<tr><td>EX/CYCLE</td><td>一次组分给药</td><td>patient_id＋cycle＋component</td><td>计划/实际日期和剂量</td><td>孤儿、重复、延迟和负剂量</td></tr>
+<tr><td>RS/RESPONSE</td><td>一次评审时点评价</td><td>patient_id＋date＋reader</td><td>CR/PR/SD/PD/NE、新病灶</td><td>同日冲突、窗口、reader 来源</td></tr>
+<tr><td>AE</td><td>一次不良事件</td><td>patient_id＋ae_id</td><td>术语、grade、seriousness、因果</td><td>开始早于用药、等级非法、重复</td></tr>
+<tr><td>SAMPLE</td><td>一次样本采集</td><td>sample_id</td><td>时间点、处理、批次、QC</td><td>计划/实际偏差、重复配对、失败原因</td></tr>
+<tr><td>ctDNA</td><td>一次 assay 结果</td><td>sample_id＋assay_version</td><td>检出、数值、LOD、批次</td><td>样本不存在、版本混合、低于 LOD</td></tr>
+</tbody></table></div>
+<h3 class="section-title">样本采集不是“有血/有组织”四个字</h3>
+<div class="trace-chain"><div class="trace-row"><b>前分析变量</b><span>采血管、处理延迟、离心条件、冻存温度、运输、组织缺血时间、肿瘤含量。</span></div><div class="trace-row"><b>检测元数据</b><span>批次、assay version、试剂批号、LOD/LOQ、失败原因、重复检测和最终可报告标志。</span></div><div class="trace-row"><b>临床对齐</b><span>实际采样日与给药、影像、进展和手术日期对齐；访视标签不能替代实际时间。</span></div><div class="trace-row"><b>责任留痕</b><span>谁修改、为什么修改、旧值是什么、何时冻结；数据清理不应覆盖原始事实。</span></div></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>CRF/eCRF specification</td><td>域、字段、允许值、日期精度和 query</td><td>数据库上线前</td><td>数据/临床</td></tr><tr><td>Data management plan</td><td>编码、清理、冻结、锁库和审计轨迹</td><td>首例入组前</td><td>数据管理</td></tr><tr><td>Sample handling manual</td><td>采集、处理、运输、冻存和失败分类</td><td>首例采样前</td><td>转化/实验室</td></tr><tr><td>Analysis data spec</td><td>源变量、派生、分析标志和追溯</td><td>编程前</td><td>统计/程序</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>在 protocol 与实验室手册中写明必须采集的数据和时间窗；不要把关键字段留给“分析时尽量获取”。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>实际日期、日期精度和来源。</li><li>结构化失败原因与 query。</li><li>样本 QC 与 analyzable flag 分开。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>定义多记录如何聚合、同日事件优先级、部分日期规则和批次处理。</p><p>每个派生变量记录 source、algorithm、analysis purpose 和 review status。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>程序主动检查主键唯一、孤儿记录、日期倒置、多对多连接前后行数。</p><p>样本 accountability 表分开展示计划、采集、检测、QC 通过和进入分析的人数。</p></article></div><details><summary>R 实现：主键、孤儿和多对多风险检查</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>assert_unique(dm, "patient_id", "DM")
+stopifnot(!any(!ex$patient_id %in% dm$patient_id))
+key &lt;- c("patient_id", "assessment_date", "reader", "visit")
+duplicates &lt;- response[duplicated(response[key]) |
+                       duplicated(response[key], fromLast = TRUE), ]
+# 不要直接 merge(AE, RESPONSE, by="patient_id")：会形成多对多复制</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“治疗中组织可分析集占全队列的 42%；失败主要来自临床恶化、拒绝重复活检和样本 QC 失败。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“我们分析了 42% 的患者，因此这些组织结果代表整个队列。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>数据域地图</b>每张表的一行、主键和关系。</div><div class="deliverable"><b>CRF 字段清单</b>日期、原因和评审来源明确。</div><div class="deliverable"><b>样本追踪表</b>计划→采集→检测→QC→可分析。</div><div class="deliverable"><b>Query 示例</b>重复、孤儿、日期和批次问题。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">正式标准</span><div><a href="https://www.cdisc.org/standards/foundational/sdtm" rel="noopener noreferrer" target="_blank">CDISC SDTM</a><small>临床研究数据的组织与交换框架。</small></div></div><div class="evidence-item"><span class="kind">正式标准</span><div><a href="https://www.cdisc.org/standards/foundational/adam" rel="noopener noreferrer" target="_blank">CDISC ADaM / ADaMIG</a><small>分析数据追溯、复现和审阅原则。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/ICH%20E6%28R3%29_Step4_FinalConsolidatedGuideline_2026_0616_.pdf" rel="noopener noreferrer" target="_blank">ICH E6(R3) Good Clinical Practice</a><small>截至 2026-08-05 的 ICH Step 4 合并文本；强调可靠结果与适合目的的数据治理。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="7" hidden="" id="chapter-8">
+<header class="chapter-head-v9">
+<div class="stage-label">第二阶段：看决定怎样落到项目里</div>
+<div class="chapter-number">第 8 章</div>
+<h2>统计分析计划到底在提前约定什么？</h2>
+<p>SAP、主要分析与敏感性分析</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-8-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-8-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-8-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-8-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-8-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-8-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-8-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">主要分析不显著，能不能换一个更合适的模型？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 A</span><span>随机Ⅲ期的主要模型、效应量、诊断和敏感性分析责任最完整。</span></div><p>数据库锁定后，主要 Cox 模型的结果不理想，另一个时间点的生存率差和 RMST 看起来更有利。团队能否把后者改成主要结论？</p><p>SAP 的作用不是提供许多可选模型，而是在不改变研究问题的前提下，把分析集、变量、模型、缺失、诊断、敏感性和输出冻结成唯一可执行路径。</p><div class="step-expansion"><p>SAP 要在揭盲或主要分析前，把分析集、派生规则、模型、效应量、缺失处理、敏感性目的和输出形式写成可执行约定。它不是把统计方法名称集中列一次。</p><p>本章真正的分界是：主要分析与敏感性分析分别固定或改变了哪些假设。先把这个分界说清，SAP ID、分析集、派生变量、模型程序、诊断和 TFL才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“统计分析计划到底在提前约定什么？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>统计分析计划到底在提前约定什么？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-8-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 A 预设分层 log-rank 作为主要检验，以分层 Cox 模型给出风险比和置信区间，并结合 Kaplan–Meier 曲线和固定时间生存率解释。比例风险假设异常时，RMST 或时间变化效应可作为预设补充，但不能事后替换主要分析。</p><p>敏感性分析用于检验结论对关键假设的依赖，不是结果不理想后的分母或模型购物。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>SAP 要在揭盲或主要分析前，把分析集、派生规则、模型、效应量、缺失处理、敏感性目的和输出形式写成可执行约定。它不是把统计方法名称集中列一次。</p><p>只写“使用 Cox 模型”或“进行敏感性分析”仍不足以复现结果。分层因子、时间起点、事件规则、协变量、置信区间和模型失败后的处理都可能改变输出。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“主要分析与敏感性分析分别固定或改变了哪些假设”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当研究问题、模型假设、缺失处理或治疗中事件策略改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-8-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>同一数据可以用许多模型、协变量和时间窗分析。若选择发生在看见结果后，名义 p 值和区间不再反映预先计划的不确定性。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>把 HR=0.76 解读为每名患者寿命都延长 24%，忽略了 HR 是瞬时风险的相对量，也可能依赖比例风险假设。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>主要分析回答预先定义的核心问题；敏感性分析保持核心问题，改变关键未观察假设；补充估计目标则可能主动回答另一个临床问题。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>模型结论依赖数据完整性、分层变量、软件选项和假设诊断。即使主要结果成立，也要结合事件数、曲线和绝对时间点差异解释。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里需要区分估计方法（estimator）与估计结果（estimate）。前者是从数据得到结果的规则，后者是最终数字；SAP 必须说明方法怎样对应估计目标和结论。</p><p>遇到类似问题，先按时间顺序列出分析集、事件派生、模型、诊断、敏感性分析和输出，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“主要分析与敏感性分析分别固定或改变了哪些假设”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-8-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">拿一个主要分析逐项核对：SAP 条款是否明确分析集、派生、模型和效应量；数据规格是否给出变量来源；程序是否固定公式和版本；TFL 是否同时呈现估计、不确定性和分母。</p><div class="project-chain"><div class="project-row"><b>Protocol</b><span>锁定主要问题、终点、分析原则和关键阶段规则。</span></div><div class="project-row"><b>SAP</b><span>逐项写明分析集、派生、模型、效应量、检验、CI、诊断、缺失和敏感性目的。</span></div><div class="project-row"><b>数据规格</b><span>把每个 SAP 条款映射到变量、参数、来源和算法。</span></div><div class="project-row"><b>程序计划</b><span>固定脚本顺序、软件和包版本、随机种子、日志和输出编号。</span></div><div class="project-row"><b>TFL</b><span>同时给估计、区间、事件数、风险人数和分析集，不只给 p 值。</span></div><div class="project-row"><b>QC</b><span>核对分母、日期规则、因子水平、默认软件选项，并建立 SAP ID 到输出的双向追溯。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“主要 OS 分析在 ITT 集中采用分层 log-rank 检验，并用分层 Cox 模型估计 HR 及 95% CI；同时报告预设时间点的 KM 生存率。”</p>
+<p><strong>分析动作：</strong>程序按 SAP ID 调用冻结的分析集和派生变量，保存模型公式、因子水平、软件版本和诊断；敏感性分析只改变预先声明的关键假设。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>cox &lt;- survival::coxph(
+  y ~ arm + strata(strat_ras, region),
+  data = a, ties = "efron"
+)</code><small>对应下载脚本：R/07_case_A_primary_analysis.R。分组、分层因子和 ties 处理与项目脚本一致。</small></div><p><strong>结果怎样写：</strong>TFL 同时显示估计值、区间、事件数、风险人数和分析集。p 值不能脱离效应大小、数据成熟度和假设成立情况单独解释。</p>
+<p class="demo-why"><b>为什么重要：</b> 若程序能运行却回不到明确的 SAP 条款，分析自由度仍然藏在代码里。把 SAP ID、变量、程序和输出连起来，才能区分预设实现与看见结果后的选择。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 每个主要模型和输出都能回指到唯一 SAP 条款，统计分析计划才真正冻结了分析路径。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-8-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 B 的主要分析是确认响应人数、目标方案分母、ORR、精确二项置信区间和 Simon 阶段决策。</li><li>response-evaluable 分析只回答条件性描述，不能替代包含无评价患者的主要分析。</li><li>12 个月 PFS、DoR、安全性和历史背景帮助解释持续性与可实施性，但不能写成随机比较。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 B 的确认 ORR 主要使用精确二项区间和 Simon 决策，不需要照搬 Cox 模型；但同样要预先冻结分母、确认规则和不可评价处理。</p><p>案例 B 不需要照搬案例 A 的 Cox 模型，而要冻结确认 ORR、精确二项区间和 Simon 决策。两者共同之处是先定分母和关键假设，不是共用同一种统计方法。</p></div><p class="length-note-5 reading-focus">比较 SAP 时，重点不是模型是否相同，而是主要分析固定了哪些假设、敏感性分析只改变哪一项。若备选分析回答了另一个问题，就不能包装成对主要结论的简单稳健性检查。</p><p class="step-landing"><b>这一小步的落点：</b> 方法可以不同；主要路径、分母和每个敏感性分析的角色都必须在结果揭盲前说清。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-8-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>Protocol 锁定临床承诺</p></div><div class="flow-node"><span>2</span><p>SAP 把承诺细化为唯一规则</p></div><div class="flow-node"><span>3</span><p>数据规格连接源字段和派生</p></div><div class="flow-node"><span>4</span><p>程序按冻结版本运行</p></div><div class="flow-node"><span>5</span><p>诊断和敏感性检验关键假设</p></div><div class="flow-node"><span>6</span><p>TFL 同时呈现估计与不确定性</p></div><div class="flow-node"><span>7</span><p>解释不超出预设问题和设计</p></div></div><div class="flow-reading-v9"><h4>把 SAP 条款一路连到输出</h4><p>Protocol 先锁定临床承诺，SAP 将其细化为分析集、派生和模型，数据规格与程序再实现这些规则，TFL 最后同时呈现估计值、区间和分母。</p><p><strong>结论边界：</strong>SAP 可以减少分析自由度，但不能把错误的研究问题变正确。若方案发生实质变化，应保留版本、修改理由和盲态状态，而不是静默覆盖。</p></div><p class="length-note-6 reading-focus">从一个表格数字回到 SAP ID，检查分析集、变量、模型、软件选项和诊断是否都有记录。找不到唯一条款的结果，不应被当作预设主要分析。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么 SAP 要在看见结果前冻结唯一主要路径，并说明每个备选分析究竟改变了什么。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>Protocol → SAP → analysis data specification → program → TFL；每一步双向可追溯。</span></div>
+<div class="decision-lab"><h3>当前决策：SAP 必须把 protocol 的临床承诺变成唯一可执行的分析</h3><p>Protocol 决定研究目的、设计和关键终点；SAP 在不改变问题的前提下细化分析集、变量派生、模型、缺失、诊断、敏感性和 TFL。看到治疗效果后选择最有利模型，不是“优化分析”，而是引入选择偏倚。</p><div class="decision-grid"><div class="decision-cell"><b>冻结时点</b><span>主要比较揭盲或可识别治疗效应之前；关键规则不应在阶段数据已知后修改。</span></div><div class="decision-cell"><b>主要分析</b><span>一个清楚的分析集、模型、效应量、检验和 CI；不堆砌多个“共同主要”。</span></div><div class="decision-cell"><b>敏感性</b><span>考察对不可验证假设的依赖；supplementary analysis 回答不同 estimand。</span></div><div class="decision-cell"><b>双向追溯</b><span>SAP 条款可以定位到变量、函数、输出；每个主要输出能回到 SAP。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：分层 log-rank＋Cox＋KM</h3><p>主要检验为预设分层 log-rank；效应估计为分层 Cox HR 与 CI，同时给 KM 曲线和固定时间差。比例风险诊断异常时，RMST 或时间变化效应作为预设补充，不替换失败的主要分析。</p><dl><dt>分层</dt><dd>使用随机化分层因素及预设合并规则</dd><dt>转换</dt><dd>ITT 主要；IPCW/RPSFTM 为补充 estimand</dd><dt>缺失</dt><dd>失访情景和随访完整性</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：ORR 精确 CI＋Simon 决策</h3><p>主要分析报告确认响应数、分母、ORR 和精确二项 CI，并应用预设阶段阈值。12 月 PFS、DoR、安全性和历史背景不能被写成随机比较。</p><dl><dt>无评估</dt><dd>保留主要分母并按预设归类</dd><dt>降阶</dt><dd>与目标方案分开</dd><dt>标志物</dt><dd>不改变主要 ORR 结论</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 的主要模型服务随机化组间效应；案例 B 的主要分析服务单臂决策。二者都需要估计与不确定性，但案例 B 的 P 值/阈值不具有治疗增量因果含义。</div>
+<h3 class="section-title">敏感性矩阵：改变什么，回答什么</h3>
+<div class="table-wrap"><table><thead><tr><th>分析</th><th>保持不变</th><th>改变的假设/问题</th><th>角色</th></tr></thead><tbody>
+<tr><td>案例 A 失访不利情景</td><td>ITT 与 OS treatment-policy estimand</td><td>失访后死亡分布</td><td>敏感性</td></tr>
+<tr><td>案例 A IPCW/RPSFTM</td><td>人群和原分组</td><td>假设没有治疗转换的反事实问题</td><td>补充 estimand</td></tr>
+<tr><td>案例 A RMST</td><td>OS 数据与随访窗</td><td>效应汇总尺度，不依赖恒定 HR</td><td>预设补充</td></tr>
+<tr><td>案例 B 无评估计非缓解</td><td>主要 ORR 分母</td><td>主要保守规则</td><td>主要</td></tr>
+<tr><td>案例 B response-evaluable</td><td>响应定义</td><td>缩小分母，回答条件性问题</td><td>描述性，不替代主要</td></tr>
+<tr><td>案例 B 降阶并入</td><td>无</td><td>改变治疗条件与主要人群</td><td>通常不允许事后作为主要</td></tr>
+</tbody></table></div>
+<h3 class="section-title">SAP 条款到代码的双向追溯</h3>
+<div class="trace-chain"><div class="trace-row"><b>SAP §6.2</b><span>主要 OS：ITT；分层 log-rank；Cox HR；分层因素来自随机化；Efron ties。</span></div><div class="trace-row"><b>数据规格</b><span><code>PARAMCD=OS</code>、<code>ITTFL=Y</code>、<code>AVAL</code> 天、<code>CNSR</code>、分层变量。</span></div><div class="trace-row"><b>程序</b><span><code>07_case_A_primary_analysis.R</code>；函数与输入版本写入日志。</span></div><div class="trace-row"><b>输出</b><span>T-OS-01：事件、KM、HR/CI、p 值、风险表和脚注。</span></div><div class="trace-row"><b>QC</b><span>独立事件计数、分层频数和未分层复算；边界患者 listing。</span></div></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Protocol</td><td>主要分析原则、终点和关键假设</td><td>首例入组前</td><td>临床/统计</td></tr><tr><td>SAP</td><td>完整派生、模型、诊断、敏感性和 TFL</td><td>揭盲/主要分析前</td><td>统计</td></tr><tr><td>Analysis data spec</td><td>变量、来源、算法、参数和标志</td><td>编程前</td><td>统计/程序</td></tr><tr><td>Programming plan</td><td>脚本顺序、日志、版本和 QC</td><td>编程启动前</td><td>统计编程</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>Protocol 不应塞入所有编程细节，但必须锁定主要问题、终点、设计和关键阶段规则。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>收集模型所需分层、协变量和事件原因。</li><li>不完整日期和原因分类支持预设派生。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>主要模型、效应量、检验、CI、诊断、缺失和每个敏感性分析的目的逐项写清。</p><p>建立 SAP ID → data spec ID → program → output 的映射表。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>代码审阅不仅看语法，还核对分母、日期规则、因子水平和默认软件选项。</p><p>输出同时给估计、区间、事件数和分析集，不只给 p 值。</p></article></div><details><summary>R 实现：案例 A 主要分析骨架</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>y &lt;- survival::Surv(time = adtte$AVAL, event = 1 - adtte$CNSR)
+logrank &lt;- survival::survdiff(
+  y ~ TRT01P + strata(STRATRAS, REGION), data = adtte)
+cox &lt;- survival::coxph(
+  y ~ TRT01P + strata(STRATRAS, REGION),
+  data = adtte, ties = "efron")
+exp(cbind(HR = coef(cox), confint(cox)))</code></pre></div></details><details><summary>R 实现：案例 B 主要 ORR</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>main &lt;- subset(adrs_b, ORR_T_FL == "Y")
+x &lt;- sum(main$confirmed_BOR %in% c("CR","PR"))
+n &lt;- nrow(main)
+ci &lt;- binom.test(x, n)$conf.int
+decision &lt;- if (n == 16 &amp;&amp; x &lt;= 10) "stop" else
+            if (n &gt;= 47 &amp;&amp; x &gt;= 34) "crosses threshold" else "continue/not final"</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“主要 HR 与 CI 应结合 KM 曲线、比例风险诊断和固定时间生存差解释。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“HR=0.76 表示每名患者的寿命都延长 24%，且任何时间都成立。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>SAP 目录</b>双案例统一结构。</div><div class="deliverable"><b>SAP 节选</b>OS、ORR、12 月 PFS 和安全性。</div><div class="deliverable"><b>敏感性矩阵</b>每项分析改变的假设清楚。</div><div class="deliverable"><b>追溯表</b>SAP→变量→代码→TFL→QC。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E9_Guideline.pdf" rel="noopener noreferrer" target="_blank">ICH E9 Statistical Principles</a><small>统计分析计划、主要分析和预设原则。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf" rel="noopener noreferrer" target="_blank">ICH E9(R1)</a><small>敏感性分析与 estimand 对齐。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/ICH%20E6%28R3%29_Step4_FinalConsolidatedGuideline_2026_0616_.pdf" rel="noopener noreferrer" target="_blank">ICH E6(R3)</a><small>SAP 与 protocol 一致、可靠结果和数据治理。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="8" hidden="" id="chapter-9">
+<header class="chapter-head-v9">
+<div class="stage-label">第三阶段：看结果怎样产生并接受复核</div>
+<div class="chapter-number">第 9 章</div>
+<h2>研究进行到一半，什么时候可以继续、停止或调整？</h2>
+<p>期中分析、多重性与阶段性决策</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-9-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-9-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-9-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-9-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-9-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-9-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-9-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">事件数还没到最终目标，p 值已经小于 0.05，能提前宣布成功吗？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 A</span><span>正式期中分析能清楚展示信息量、错误率、非盲权限和委员会治理怎样同时工作。</span></div><p>随机试验积累到约七成死亡事件时，非盲报告显示两组有差异。直接套用常规 0.05 阈值看起来很自然，但同一假设已经被提前检验一次。</p><p>每次正式查看疗效数据都会影响错误率，也会带来信息泄露和治理风险。期中分析必须按实际信息量、预设边界和委员会权限执行。</p><div class="step-expansion"><p>期中分析必须事先规定目的、触发条件、可看数据的人、允许采取的行动以及与最终分析的错误率关系。开放结果的传播本身也会影响研究行为。</p><p>本章真正的分界是：期中查看的目的、信息量和可见权限是否预先限定。先把这个分界说清，触发条件、冻结快照、边界程序、独立 QC、DMC 纪要和最终分析才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“研究进行到一半，什么时候可以继续、停止或调整？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>研究进行到一半，什么时候可以继续、停止或调整？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-9-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 A 的教学设定在约 70% OS 信息量时进行正式期中分析，并使用 O’Brien–Fleming 类型 alpha spending。疗效边界通常比 0.05 更严格；DMC 根据章程查看开放数据，赞助方盲态团队只接收建议。</p><p>非约束性无效性建议可减少无效继续风险，但不应被解释为已证明无效。每次决定都要记录数据快照、实际信息量、边界和未成熟部分。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>期中分析必须事先规定目的、触发条件、可看数据的人、允许采取的行动以及与最终分析的错误率关系。开放结果的传播本身也会影响研究行为。</p><p>在日常运营报表里顺便查看疗效趋势，可能造成隐性期中分析。团队即使没有正式停止，也可能改变入组、随访或解释，从而破坏盲态和最终检验。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“期中查看的目的、信息量和可见权限是否预先限定”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当查看时间、信息比例、边界或允许采取的行动改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-9-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>期中和最终对同一假设重复检验，会增加至少一次假阳性的概率；多个关键终点和大量亚组还会进一步扩大多重性。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>“期中 p&lt;0.05”并不等于越过预设界值。非计划查看或泄露组间结果，也可能改变试验实施和后续判断。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>信息量常以累计主要事件数衡量。Alpha spending 根据实际信息比例分配允许使用的Ⅰ类错误，而不是只按日历时间。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>期中结论依赖事件核实、数据库清理、开放报告防火墙和边界复算。委员会还需综合安全性、成熟度和外部信息。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里的核心工具是 alpha 消耗（alpha spending）。它把总体第一类错误率分配到不同信息时间点，使期中和最终检验仍属于同一预先规划的决策体系。</p><p>遇到类似问题，先按时间顺序列出事件成熟、数据冻结、非盲分析、独立复核、委员会建议和执行，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“期中查看的目的、信息量和可见权限是否预先限定”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-9-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">期中分析首先是权限与版本问题。先核对触发条件和实际信息量，再确认使用了哪个冻结快照、哪套边界程序、谁完成独立复算、谁能看到开放结果，以及正式决定怎样归档。</p><div class="project-chain"><div class="project-row"><b>Protocol</b><span>规定期中目的、次数、触发条件、允许修改范围和后续随访。</span></div><div class="project-row"><b>DMC charter</b><span>明确成员、非盲统计、开放/封闭报告、会议流程和信息防火墙。</span></div><div class="project-row"><b>Interim SAP</b><span>按实际信息比例计算边界，冻结数据快照和输出。</span></div><div class="project-row"><b>决策备忘录</b><span>记录输入、边界、结果、建议、赞助方决定和后续行动。</span></div><div class="project-row"><b>多重性地图</b><span>显示 OS 期中/最终、关键终点和探索亚组各自的错误率地位。</span></div><div class="project-row"><b>QC</b><span>另一个程序或软件复算边界，并核对委员会报告事件数与主数据库一致。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“正式 OS 期中分析在约 70% 信息量触发；非盲统计按实际事件数计算边界，仅向 DMC 提供开放报告，研究团队保持盲态。”</p>
+<p><strong>分析动作：</strong>程序使用冻结数据快照复算信息比例、疗效边界和无效性规则；独立 QC 用另一实现核对事件数、界值和建议文本。</p>
+<div class="key-code-v9"><b>实现逻辑（明确标注为伪代码）</b><code>if (actual_events &gt;= planned_interim_events) {
+  freeze_snapshot()
+  apply_pre_specified_boundary()
+  run_independent_qc()
+}</code><small>这是治理流程伪代码，不是可直接运行的 R。原下载包未包含正式的 group-sequential 边界计算程序；正式项目必须补充经验证的边界程序和独立复算。</small></div><p><strong>结果怎样写：</strong>会议纪要需区分统计建议与赞助方决定，并记录继续、停止或调整的依据。越过边界仍要结合安全性、数据质量和外部证据解释。</p>
+<p class="demo-why"><b>为什么重要：</b> 只要数据被额外查看、边界实现未验证或开放结果越过权限，后续推断就可能受到影响。把“谁在何时看到什么”记录清楚，与计算边界同样重要。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 触发条件、冻结数据、边界实现、查看权限和决策纪要能互相对应，期中治理才算完整。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-9-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 B 的 Simon 第一阶段按目标方案可计入患者和确认缓解数决策，不使用随机试验的 alpha spending 逻辑。</li><li>安全委员会可在达到阶段 1 人数之前因硬暂停事件介入。</li><li>两种设计都要求冻结数据、限制权限和归档决定，但统计目标与治理结构不能互换。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 B 的安全先导和 Simon 第一阶段通常按完成观察窗的人数与整数事件决策，不承担随机试验相同的总体 alpha 分配，但仍需冻结分母和权限。</p><p>案例 B 的 Simon 第一阶段和安全先导通常按整数人数与事件决策，不承担案例 A 相同的总体 alpha 分配；但同样不能边入组边改变分母，也不能让未授权角色提前看到开放结果。</p></div><p class="length-note-5 reading-focus">判断期中规则能否照搬，先区分三件事：查看的目的、触发所依据的信息、谁有权看到结果。统计边界相似并不代表治理权限和最终推断相同。</p><p class="step-landing"><b>这一小步的落点：</b> 整数阶段规则与事件驱动边界的统计目标不同，但冻结数据和限制开放结果的治理要求同样不能省略。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-9-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>达到预设信息量或阶段人数</p></div><div class="flow-node"><span>2</span><p>冻结数据和未解决病例状态</p></div><div class="flow-node"><span>3</span><p>按预设算法计算边界</p></div><div class="flow-node"><span>4</span><p>由授权角色查看开放结果</p></div><div class="flow-node"><span>5</span><p>综合疗效、安全性和成熟度</p></div><div class="flow-node"><span>6</span><p>形成建议与正式决定</p></div><div class="flow-node"><span>7</span><p>继续随访并保存全部版本和理由</p></div></div><div class="flow-reading-v9"><h4>把一次期中查看拆成七个受控动作</h4><p>达到预设信息量后先冻结数据和未决病例，再按预设程序计算边界，由授权角色查看开放结果并形成建议；研究团队随后按正式决定继续随访并保存全部版本。</p><p><strong>结论边界：</strong>期中方法只在预定时间、数据成熟度和防火墙成立时有效。额外查看、延迟事件或方案修改都可能要求重新评估推断和报告方式。</p></div><p class="length-note-6 reading-focus">从 DMC 纪要往回核对事件数、数据截止、边界版本和访问记录。若无法说明谁在何时获得了哪些信息，就不能把期中查看视为受控过程。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么阶段性决策是一套预设的统计与治理流程，而不只是一个 p 值或响应人数。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>设计参数 → charter/SAP → 数据快照 → 边界复算 → 委员会建议 → 决策留痕。</span></div>
+<div class="decision-lab"><h3>当前决策：每次看数据和每个可确认性终点都消耗错误率与治理资源</h3><p>正式期中分析不是提前偷看，Simon 第一阶段也不是随意“看一眼”。二者都要求预设时间点、数据冻结、决策规则、角色权限和记录，但统计目标与治理结构不同。</p><div class="decision-grid"><div class="decision-cell"><b>案例 A</b><span>以 OS 信息量触发，alpha spending 控制重复检验；DMC 独立审阅非盲数据。</span></div><div class="decision-cell"><b>案例 B</b><span>Simon 阶段 1 控制无效早停；安全暂停可在任何时点触发。</span></div><div class="decision-cell"><b>多个终点</b><span>终点层级与多次分析应在同一总体错误率框架中考虑。</span></div><div class="decision-cell"><b>实际信息</b><span>使用实际事件比例生成边界，而不是机械套用目标 70%。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：约 70% OS 信息量正式期中</h3><p>教学设定总事件约 508，目标期中约 356 事件。采用 O’Brien–Fleming 类型 alpha spending；疗效边界严格，非约束性 futility 可降低无效继续风险。DMC 依据 charter 查看开放报告。</p><dl><dt>触发</dt><dd>实际确认 OS 事件数</dd><dt>治理</dt><dd>独立 DMC、非盲统计、防火墙</dd><dt>报告</dt><dd>实际信息比例、边界、序贯相容解释</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：Simon 阶段与安全委员会</h3><p>阶段 1 在目标方案可计入患者达到 16 人且主要响应状态冻结后评估：≤10 例确认缓解停止，≥11 例可继续。安全委员会可因硬暂停事件更早介入。</p><dl><dt>触发</dt><dd>可计入患者和确认响应，不是日历日期</dd><dt>治理</dt><dd>安全委员会＋影像/统计数据清理</dd><dt>修改</dt><dd>阶段后修改方案需说明新队列和解释断点</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 管理确认性总体错误率和保密性；案例 B 主要管理资源效率与安全可实施性。Simon 阶段不应被包装成注册性Ⅲ期的正式期中分析，也不允许看完阶段 1 后临时降低阈值。</div>
+<h3 class="section-title">案例 A 的错误率地图</h3>
+<div class="table-wrap"><table><thead><tr><th>来源</th><th>为什么产生错误率问题</th><th>预设控制</th><th>输出要求</th></tr></thead><tbody>
+<tr><td>OS 期中＋最终</td><td>同一假设被重复检验</td><td>alpha spending / group sequential boundary</td><td>实际信息、名义边界、累计 alpha</td></tr>
+<tr><td>OS＋关键 PFS</td><td>多个可确认性终点</td><td>层级、graphical procedure 或 gatekeeping</td><td>每个假设的可用 alpha 和状态</td></tr>
+<tr><td>多亚组</td><td>大量探索性比较</td><td>不作确认性声明；交互与区间为主</td><td>标注探索性和多重性限制</td></tr>
+<tr><td>多次 DMC 审阅</td><td>非计划疗效查看可能泄露信息</td><td>charter、开放/封闭报告、防火墙</td><td>访问日志和会议记录</td></tr>
+</tbody></table></div>
+<h3 class="section-title">阶段性 decision memo 必须包含</h3>
+<div class="trace-chain"><div class="trace-row"><b>数据版本</b><span>截止日期、数据库快照、事件/响应确认状态、未解决 query。</span></div><div class="trace-row"><b>实际信息</b><span>OS 事件数或 Simon 可计入人数；目标与实际差异。</span></div><div class="trace-row"><b>边界与结果</b><span>使用的软件、版本、输入、独立复算和决策对照。</span></div><div class="trace-row"><b>安全与可实施性</b><span>不能只给疗效数字；RLT、SAE、AESI、RDI、延迟和停药并列。</span></div><div class="trace-row"><b>建议与决定</b><span>委员会建议、赞助方/研究者决定、偏离建议的理由和后续行动。</span></div></div>
+<div class="callout error"><b>禁止的做法</b>用计划 70% 而不看实际信息比例；DMC 以外团队获得非盲趋势；阶段 1 不达阈值后改成“临床上仍有希望”继续；看到亚组后修改主要人群；只保存结论、不保存输入与边界复算。</div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Protocol</td><td>期中/阶段分析目的、次数、触发和决策</td><td>首例入组前</td><td>统计/临床</td></tr><tr><td>DMC/Committee Charter</td><td>角色、开放报告、会议和防火墙</td><td>首例入组前</td><td>DMC/安全委员会</td></tr><tr><td>SAP/Interim SAP</td><td>边界算法、实际信息、数据快照和输出</td><td>首次分析前</td><td>非盲统计</td></tr><tr><td>Decision memo</td><td>输入、结果、建议、决定和行动</td><td>每次会议即时归档</td><td>委员会/赞助方</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>正式期中分析和 Simon 第一阶段分别写清触发、数据成熟、修改限制和后续随访。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>事件/响应确认状态。</li><li>query 与未解决病例。</li><li>非盲访问控制和输出版本。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>案例 A 使用实际信息比例计算边界；案例 B 阶段阈值严格按可计入目标方案人群。</p><p>保存 <code>INFOFRAC</code>、<code>BOUNDARY</code>、<code>STAGE</code>、<code>DECISION</code> 与数据快照 ID。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>另一个程序/软件复算边界；委员会报告中的事件数与主数据库一致。</p><p>阶段性表和 memo 显示未成熟数据、决策不确定性与继续随访要求。</p></article></div><details><summary>R 实现：实际信息比例与教学事件数</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>total_events &lt;- 508
+observed_events &lt;- 356
+information_fraction &lt;- observed_events / total_events
+stopifnot(information_fraction &gt; 0, information_fraction &lt;= 1)
+# 正式 OBF spending 应用验证过的软件按实际信息比例生成；
+# 本课程不提供可用于真实监管试验的最终边界。</code></pre></div></details><details><summary>R 实现：Simon 阶段判断</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>if (stage == 1L &amp;&amp; n_evaluable == 16L) {
+  decision &lt;- if (confirmed_responses &lt;= 10L) "STOP_FUTILITY" else "CONTINUE"
+}
+if (stage == 2L &amp;&amp; n_evaluable &gt;= 47L) {
+  decision &lt;- if (confirmed_responses &gt;= 34L) "CROSSES_THRESHOLD" else "NO_GO"
+}</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“DMC 在实际信息比例 0.701 时应用预设 spending 边界；建议基于疗效、成熟安全性和外部信息综合形成。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“期中 p&lt;0.05，因此试验可以提前宣告成功。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>DMC/委员会对照</b>角色、权限和数据。</div><div class="deliverable"><b>Interim workbook</b>实际信息与边界输入。</div><div class="deliverable"><b>多重性图</b>终点与分析时间点的 alpha 路径。</div><div class="deliverable"><b>Decision memo</b>可审计的建议与决定。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">正式指导</span><div><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adaptive-design-clinical-trials-drugs-and-biologics-guidance-industry" rel="noopener noreferrer" target="_blank">FDA Adaptive Designs for Clinical Trials</a><small>预设适应性规则、模拟/错误率和报告原则。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E9_Guideline.pdf" rel="noopener noreferrer" target="_blank">ICH E9 Statistical Principles</a><small>期中分析、独立委员会和多重性的一般原则。</small></div></div><div class="evidence-item"><span class="kind">草案指南</span><div><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/e20-adaptive-designs-clinical-trials" rel="noopener noreferrer" target="_blank">ICH E20 Adaptive Designs (Step 2 draft)</a><small>截至 2026-08-05 仍为草案；仅作最新方法学视野，不替代最终指导。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="9" hidden="" id="chapter-10">
+<header class="chapter-head-v9">
+<div class="stage-label">第三阶段：看结果怎样产生并接受复核</div>
+<div class="chapter-number">第 10 章</div>
+<h2>方案在真实患者中能不能安全地执行？</h2>
+<p>安全性、剂量强度与方案可实施性</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-10-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-10-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-10-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-10-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-10-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-10-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-10-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">没有触发治疗相关死亡，就能说方案“总体可控”吗？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 B</span><span>多组分联合方案的两周期安全先导同时关注严重毒性、延迟、减量和实际暴露。</span></div><p>前 12 名患者中，3 人发生方案限制性毒性；没有达到硬暂停边界，但多名患者延迟进入第三周期，伊立替康和 5-FU 的相对剂量强度下降。</p><p>安全性不只是数有多少不良事件。团队还要判断目标联合方案能否按计划给出，以及毒性是否迫使患者持续减量、延迟或永久停用关键组分。</p><div class="step-expansion"><p>安全性与可实施性需要同时观察事件严重程度、医学严重性、发生时间、剂量暴露、周期进入、减量和永久停药。单看 AE 发生率无法判断方案能否按计划交付。</p><p>本章真正的分界是：安全事件与实际暴露能否共同说明方案是否可实施。先把这个分界说清，AE、给药记录、组分 RDI、暂停规则、医学审阅和委员会决定才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“方案在真实患者中能不能安全地执行？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>方案在真实患者中能不能安全地执行？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-10-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 B 的安全先导按患者逐例审阅前两个周期的 RLT、严重事件、特别关注事件、周期进入率、各组分相对剂量强度和永久停药。若硬暂停事件出现，立即按章程处理；即使未触发硬停止，黄色可实施性信号也需要预设降阶或扩展评估。</p><p>“未触发停止边界”不等于“已经证明安全”。结果只能说明在当前人数、观察窗和支持治疗下，是否有理由按预设路径继续。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>安全性与可实施性需要同时观察事件严重程度、医学严重性、发生时间、剂量暴露、周期进入、减量和永久停药。单看 AE 发生率无法判断方案能否按计划交付。</p><p>把最高等级、SAE、RLT 和 AESI 混成一个“严重毒性”指标，会掩盖它们不同的决策作用。事件数也不能直接当作发生患者数，因为同一患者可能有多条记录。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“安全事件与实际暴露能否共同说明方案是否可实施”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当观察窗、剂量方案、组分计划或暂停标准改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-10-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>患者发生率、重复事件数、严重程度、seriousness 和因果关系是不同维度；组合方案还需要按组分计算实际暴露。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>把重复 AE 当成多名患者会夸大发生率；把所有组分压成一个剂量强度，又会掩盖某一关键药物持续减量。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>相对剂量强度（RDI）比较实际给药与计划给药。案例 B 以组分和计划周期为单位，而不是给组合方案一个模糊总值。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>可实施性判断依赖完整给药记录、合理观察窗和预先定义的 RLT/硬暂停规则。真实剂量和支持治疗必须由专业团队另行确认。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>严重程度等级与严重不良事件（serious adverse event, SAE）是不同维度；相对剂量强度（relative dose intensity, RDI）则衡量实际给药相对于计划给药的程度。</p><p>遇到类似问题，先按时间顺序列出给药、毒性、延迟、减量、停药和恢复，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“安全事件与实际暴露能否共同说明方案是否可实施”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-10-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">把“安全性可接受”拆开看：发生了哪些事件、多少患者受影响、各组分实际给了多少、周期是否延迟、是否触发暂停，以及委员会如何结合个案作出继续或降阶决定。</p><div class="project-chain"><div class="project-row"><b>Protocol safety section</b><span>定义 RLT、AESI、硬暂停事件、观察窗、支持治疗和降阶路径。</span></div><div class="project-row"><b>Safety charter</b><span>规定逐例审阅内容、绿黄红阈值、会议触发和记录。</span></div><div class="project-row"><b>CRF/Exposure</b><span>保存每个组分的计划和实际日期、剂量、延迟、减量、停药和原因。</span></div><div class="project-row"><b>SAP</b><span>分别汇总患者发生率、事件数、最差等级、首次发生时间、暴露和停药。</span></div><div class="project-row"><b>安全仪表盘</b><span>并列呈现 RLT、严重事件、周期进入率、组分 RDI 和永久停药。</span></div><div class="project-row"><b>QC</b><span>核对 SAE 与等级逻辑，复算累计剂量和患者级去重。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“安全先导在预设观察窗内逐例审阅 RLT、硬暂停事件、周期 3 按时进入和各组分 RDI；触发红色边界时暂停并由委员会审议。”</p>
+<p><strong>分析动作：</strong>患者发生率先按患者和术语去重，暴露程序按组分累计计划与实际剂量；仪表盘并列显示 RLT、SAE、延迟、减量、RDI 和停药。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>summary_patient &lt;- aggregate(
+  cbind(any_AE = rep(1, nrow(ae)),
+        grade3 = as.integer(ae$grade &gt;= 3),
+        SAE = as.integer(ae$serious == "Y")) ~ patient_id,
+  data = ae, FUN = max
+)</code><small>对应下载脚本：R/09_safety_and_exposure.R。先把多条事件压到患者级，再计算发生患者数。</small></div><p><strong>结果怎样写：</strong>报告应区分“发生了毒性”与“方案无法持续实施”。可行性结论需要同时依赖事件模式、暴露下降和方案偏离，而不是单个百分比。</p>
+<p class="demo-why"><b>为什么重要：</b> 只数 AE 会忽略方案是否还能按计划实施；只看 RDI 又可能掩盖少数严重事件。患者发生率、事件数、暴露和医学判断必须放在一起，才回答可实施性问题。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 事件、患者和给药组分三条线能在同一决策记录中对上，安全先导才不是一张 AE 汇总表。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-10-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 A 的安全性按实际治疗组描述，并结合组间暴露差异解释。</li><li>随机对照可以比较患者发生率，但开放标签下治疗相关性判断仍可能受预期影响，因此全因 TEAE 与相关事件都要透明。</li><li>案例 A 的安全分析不是用来决定单臂先导是否扩展，不能照搬绿黄红规则。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 A 的大样本安全性更适合稳定描述罕见事件和组间差异；案例 B 的先导阶段更强调早期规则和逐例医学判断，阈值不能直接互换。</p><p>案例 A 更适合描述随机组间的总体安全性与暴露差异；案例 B 的先导阶段要用预设门槛支持早期继续、暂停或降阶。发生率可以比较，决策阈值不能互换。</p></div><p class="length-note-5 reading-focus">比较两项研究时，先明确安全分析是在描述总体风险，还是直接决定目标联合方案能否继续。这个目的差异决定观察窗、阈值、逐例审阅和结论措辞。</p><p class="step-landing"><b>这一小步的落点：</b> 随机试验的组间安全性描述不能替代单臂先导的可实施性决策，反之亦然。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-10-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>出现不良事件、延迟或减量</p></div><div class="flow-node"><span>2</span><p>分别识别患者、事件和给药组分</p></div><div class="flow-node"><span>3</span><p>判断是否属于 RLT/AESI/硬暂停</p></div><div class="flow-node"><span>4</span><p>计算周期进入率与组分 RDI</p></div><div class="flow-node"><span>5</span><p>与预设绿黄红边界比较</p></div><div class="flow-node"><span>6</span><p>委员会记录继续、暂停或降阶理由</p></div><div class="flow-node"><span>7</span><p>报告当前观察窗内能支持和不能支持的结论</p></div></div><div class="flow-reading-v9"><h4>把毒性、暴露和决定放在同一条线上</h4><p>出现不良事件或减量后，先区分患者、事件和治疗组分，再判断是否触发 RLT、AESI 或硬暂停，并计算周期进入率与组分 RDI，最后由委员会记录继续、暂停或降阶的理由。</p><p><strong>结论边界：</strong>安全汇总不能替代个案医学审阅，也不能从小样本排除低频严重风险。剂量、支持治疗或观察窗改变后，原可实施性结论需要重新评估。</p></div><p class="length-note-6 reading-focus">从委员会决定往回看，不仅要找到严重事件，还要找到剂量延迟、减量和永久停药。若报告只剩一个发生率，就无法判断方案是否真的按计划实施。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么“安全性可接受”必须同时有事件、实际暴露和方案可实施性证据。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>AE/给药源记录 → Safety Set → worst grade/RDI → 先导仪表盘 → 委员会决定。</span></div>
+<div class="decision-lab"><h3>当前决策：安全性不只数 AE，还要判断联合方案能否按计划实施</h3><p>AE、TEAE、TRAE、SAE、AESI、grade 和 seriousness 是不同维度。患者发生率要按患者计数，事件数要保留重复事件；剂量强度要按治疗组分和计划暴露计算。安全先导的核心问题是：目标联合方案 T 在前两个周期是否安全且可实施。</p><div class="decision-grid"><div class="decision-cell"><b>正确分母</b><span>至少接受一次研究治疗的 Safety Set；不同组分暴露分母明确。</span></div><div class="decision-cell"><b>患者 vs 事件</b><span>“多少患者发生”与“发生多少次”不能混用；worst grade 是患者级派生。</span></div><div class="decision-cell"><b>剂量强度</b><span>实际累计剂量/计划累计剂量，并结合时间、延迟、减量和永久停药。</span></div><div class="decision-cell"><b>归因</b><span>联合治疗中毒性归因不确定；不能把所有事件机械归给某一组分。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：随机组间描述安全性</h3><p>安全性按实际治疗和实际暴露呈现；比较患者发生率、严重程度、SAE/AESI、停药和暴露差异。开放标签下归因判断可能受预期影响，因此全因 TEAE 与治疗相关事件都要透明。</p><dl><dt>分母</dt><dd>实际治疗 Safety Set</dd><dt>暴露</dt><dd>治疗时长、剂量、延迟、停药</dd><dt>解释</dt><dd>不把无显著差异写成安全性等同</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：两周期安全先导仪表盘</h3><p>逐例审阅 RLT、治疗相关死亡、骨髓抑制/感染、腹泻、出血、血栓、高血压、蛋白尿、免疫相关 AE，以及依沃西单抗与 FOLFOXIRI 各组分的延迟、减量和永久停药。</p><dl><dt>硬门槛</dt><dd>立即暂停/红色规则</dd><dt>软判断</dt><dd>周期 3、RDI、延迟和停药</dd><dt>降阶</dt><dd>目标 T 与预设 D 分队列解释</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 主要描述随机策略的总体安全性和暴露；案例 B 的安全先导直接决定是否继续目标联合方案。案例 B 不能只看“没有 DLT”，因为两周期内的剂量延迟和组分强度下降可能使后续 ORR 阶段评估的是另一个实际方案。</div>
+<h3 class="section-title">安全先导患者级审阅表</h3>
+<div class="table-wrap"><table><thead><tr><th>患者</th><th>RLT/严重事件</th><th>周期 2/3</th><th>组分 RDI</th><th>永久停药</th><th>决策贡献</th></tr></thead><tbody>
+<tr><td>B003</td><td>3级发热性中性粒细胞减少，SAE</td><td>延迟 7 天；可进入周期 3</td><td>伊立替康 78%</td><td>否</td><td>RLT 1；感染风险</td></tr>
+<tr><td>B006</td><td>持续 3级腹泻</td><td>周期 2 延至第 38 天</td><td>5-FU/伊立替康 &lt;70%</td><td>否</td><td>RLT 2；触发可实施性红/黄审阅</td></tr>
+<tr><td>B009</td><td>3级免疫相关肝炎</td><td>依沃西单抗永久停用</td><td>免疫组分低</td><td>是</td><td>RLT 3；9例时黄色扩展</td></tr>
+<tr><td>B013–B015</td><td>降阶方案 D</td><td>按预设路径</td><td>化疗组分约 80%</td><td>按实际</td><td>不混入目标方案 Simon；用于降阶描述</td></tr>
+</tbody></table></div>
+<h3 class="section-title">从给药记录到 RDI</h3>
+<div class="trace-chain"><div class="trace-row"><b>计划暴露</b><span>每周期、每组分、计划日期和计划剂量；不能只保留“完成/未完成”。</span></div><div class="trace-row"><b>实际暴露</b><span>实际日期、剂量、输注是否完成、暂停和永久停用。</span></div><div class="trace-row"><b>派生</b><span>累计实际剂量/累计计划剂量；延迟天数、减量周期、停药前暴露。</span></div><div class="trace-row"><b>解释</b><span>高 ORR 若伴随大幅减量或不可持续毒性，不能只报疗效而忽略可实施性。</span></div></div>
+<div class="callout fact"><b>CTCAE v6.0 状态</b>截至 2026-08-05，NCI 当前页面列出 CTCAE v6.0（2025，MedDRA 28.0）。真实研究必须在方案、数据库和 SAP 中冻结实际采用的 CTCAE 版本，并处理版本升级的映射和实施日期。</div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Protocol Safety Section</td><td>RLT、AESI、硬暂停、降阶和支持治疗</td><td>首例入组前</td><td>临床/安全</td></tr><tr><td>Safety Committee Charter</td><td>逐例审阅、绿黄红阈值和记录</td><td>首例入组前</td><td>安全委员会</td></tr><tr><td>CRF/Exposure</td><td>事件、组分给药、延迟、减量、停药</td><td>数据库上线前</td><td>数据/临床</td></tr><tr><td>SAP/TFL</td><td>患者发生率、事件数、worst grade、RDI</td><td>分析前冻结</td><td>统计</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>明确安全观察窗、RLT 构成、硬暂停事件和预设降阶；真实剂量须由专业团队另行确认。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>grade 与 seriousness 分字段。</li><li>每个组分实际剂量和原因。</li><li>AESI 的临床细节和处理。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>患者发生率去重，事件数保留；worst grade、首次发生时间、暴露和停药并列。</p><p>RDI 以组分和计划周期为单位；避免把组合方案压成单一“dose intensity”。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>SAE 与 grade 逻辑核对；重复事件患者级聚合；给药汇总与源记录累计一致。</p><p>TEAE、grade≥3、SAE、AESI、停药、延迟、RDI 和患者 profile。</p></article></div><details><summary>R 实现：患者发生率与 worst grade</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>ae_saf &lt;- subset(ae, patient_id %in% safety_ids)
+patient_ae &lt;- aggregate(grade ~ patient_id + term,
+                        data = ae_saf, FUN = max)
+any_teae &lt;- length(unique(ae_saf$patient_id))
+rate &lt;- any_teae / length(safety_ids)
+# 事件数 = nrow(ae_saf)；患者发生数 = unique patient_id</code></pre></div></details><details><summary>R 实现：组分相对剂量强度</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>rdi &lt;- aggregate(cbind(actual_dose_pct, planned_dose_pct) ~
+                 patient_id + component, data = cycle, FUN = sum)
+rdi$RDI &lt;- rdi$actual_dose_pct / rdi$planned_dose_pct
+# 延迟和永久停药应另列，避免相同 RDI 掩盖不同实施路径</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“前 12 例中 3 例发生 RLT；目标方案未触及预设硬停止边界，但周期 3 按时进入率与组分 RDI 处于黄色区间，委员会建议按预设降阶路径继续评估。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“总体 AE 可控，因此联合方案安全。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>两周期安全表</b>逐例 RLT/AESI/SAE。</div><div class="deliverable"><b>Exposure/RDI</b>按组分和周期。</div><div class="deliverable"><b>安全仪表盘</b>绿黄红与决策理由。</div><div class="deliverable"><b>患者 profile</b>严重或限制性事件全路径。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">官方标准</span><div><a href="https://dctd.cancer.gov/research/ctep-trials/for-sites/adverse-events" rel="noopener noreferrer" target="_blank">NCI CTCAE and AE Reporting</a><small>当前 CTCAE 版本和 AE 报告资源。</small></div></div><div class="evidence-item"><span class="kind">正式指导</span><div><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/optimizing-dosage-human-prescription-drugs-and-biological-products-treatment-oncologic-diseases" rel="noopener noreferrer" target="_blank">FDA Optimizing Dosage of Oncology Drugs</a><small>以综合安全性、耐受性和剂量强度支持剂量优化。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="10" hidden="" id="chapter-11">
+<header class="chapter-head-v9">
+<div class="stage-label">第三阶段：看结果怎样产生并接受复核</div>
+<div class="chapter-number">第 11 章</div>
+<h2>生物标志物怎样从“有变化”走到“有解释”？</h2>
+<p>转化医学与动态生物标志物</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-11-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-11-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-11-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-11-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-11-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-11-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-11-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">只有活到第 8 周并成功采血的人，能代表全部患者吗？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 B</span><span>动态 ctDNA 和配对组织最能展示样本分母、时间选择、批次和生存到采样所带来的偏倚。</span></div><p>研究中，基线 ctDNA 阳性且第 8 周样本可分析的患者里，很多人出现“清除”，并且后续 PFS 较长。看起来这像是一个很有希望的预测标志物。</p><p>但第 8 周样本只来自仍在随访、能够采血且检测通过的人。早期死亡、病情恶化、漏采和 QC 失败者被排除后，分析人群已经发生了选择。</p><div class="step-expansion"><p>动态生物标志物分析必须先固定样本时间点、基线状态、检测性能、失败原因和可分析人群。样本缺失通常与病情、毒性和现场流程有关，不能当作随机缺失。</p><p>本章真正的分界是：样本可用性和 landmark 条件限定了哪一类患者。先把这个分界说清，样本漏斗、检测批次、动态分析集、landmark 数据和关联模型才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“生物标志物怎样从“有变化”走到“有解释”？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>生物标志物怎样从“有变化”走到“有解释”？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-11-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 B 的 ctDNA 清除只在基线阳性且目标动态样本可分析者中定义；基线阴性不是“清除成功”，漏采和 QC 失败也必须单列。与后续结局的关联应使用预设 landmark 或时间依赖方法，并明确这是探索性结果。</p><p>单臂动态标志物通常只能描述预后性或治疗中关联，不能证明它预测了新增药物的特异获益。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>动态生物标志物分析必须先固定样本时间点、基线状态、检测性能、失败原因和可分析人群。样本缺失通常与病情、毒性和现场流程有关，不能当作随机缺失。</p><p>在所有有结果的样本中比较“清除”与结局，会把基线阴性、未采集、检测失败和早期进展混在一起。漂亮的关联图可能主要反映谁活得足够久并完成采样。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“样本可用性和 landmark 条件限定了哪一类患者”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当采样时间点、检测性能、landmark 时间或缺失机制改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-11-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>从全治疗集到基线样本、基线阳性、动态可分析和 landmark 人群，每一步都会减少分母，而且减少原因可能与预后相关。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>排除 landmark 前早死或进展者，会让“有动态样本”的组天然拥有一段必须存活的时间，形成 immortal-time 和选择偏倚。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>Landmark 分析在预先指定时间点重新定义风险集，只比较在该时点仍满足纳入条件的人；它不能恢复被排除患者的随机可比性。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>结果依赖采样时间、处理延迟、检测下限、assay 版本、批次桥接和缺失机制。Cutpoint 也应有外部或预设依据。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里需要使用 landmark 分析（landmark analysis）。它在预先指定的时间点，只纳入当时仍符合条件且已有标志物状态的患者，再从该时间点向后观察结局，以减少保证时间偏倚。</p><p>遇到类似问题，先按时间顺序列出基线样本、动态样本、检测结果、landmark 和后续结局，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“样本可用性和 landmark 条件限定了哪一类患者”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-11-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">先画出样本漏斗，再谈关联：多少患者计划采样、实际采集、通过 QC、完成检测、基线阳性并有动态样本；随后再核对批次、landmark 条件和模型使用的是哪一层分母。</p><div class="project-chain"><div class="project-row"><b>Protocol/生物标志物计划</b><span>写明探索角色、样本时间点、临床问题和不能支持的预测性声明。</span></div><div class="project-row"><b>样本台账</b><span>逐层记录计划、采集、处理、QC、检测、版本和可分析状态。</span></div><div class="project-row"><b>Assay 元数据</b><span>保存批次、LOD/LOQ、版本切换、桥接和失败原因。</span></div><div class="project-row"><b>分析计划</b><span>预设 baseline-positive 集、动态可分析集、landmark 时间和模型。</span></div><div class="project-row"><b>输出</b><span>先展示分母漏斗和缺失原因，再展示清除率、关联估计和区间。</span></div><div class="project-row"><b>QC</b><span>检查基线阴性是否被错误归类，复算各层分母，并评估批次与结局是否混杂。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“ctDNA 清除仅在基线 ctDNA 阳性且预设动态样本可分析者中定义；landmark 时间、纳入条件、批次和失败原因在分析前冻结。”</p>
+<p><strong>分析动作：</strong>程序先建立计划—采集—处理—检测—可分析漏斗，再派生 baseline-positive、动态可分析和 landmark 标志；模型同时保存批次与关键临床协变量。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>basepos &lt;- unique(ctd$patient_id[
+  ctd$timepoint == "baseline" &amp; ctd$baseline_positive == "Y"
+])
+dyn &lt;- subset(ctd, patient_id %in% basepos &amp; timepoint == "C2D1")</code><small>对应下载脚本：R/10_biomarker_landmark.R。基线阴性患者不进入‘清除’定义，动态样本缺失也不能改写成未清除。</small></div><p><strong>结果怎样写：</strong>输出先报告每层分母和缺失原因，再给清除率、关联估计及区间。相关性只能支持探索性生物学解释，不能自动写成预测性或替代终点。</p>
+<p class="demo-why"><b>为什么重要：</b> 动态分析只覆盖活到采样时点且样本成功的患者。若早期事件和样本失败没有在漏斗中出现，所谓“清除率”或结局关联就可能被选择性分母放大。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 每一名被排除的患者都能在样本漏斗中找到原因，动态标志物结果才有可解释的分母。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-11-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 A 的预设亚组更适合评估治疗效应是否一致，应报告交互估计和置信区间。</li><li>一个亚组显著、另一个不显著，并不能证明效应不同；真正关注的是交互和不确定性。</li><li>随机对照能更接近预测性问题，但样本缺失、多重性和低把握度仍限制结论。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 A 可在随机框架内探索标志物与治疗效应交互，但仍需要预设和外部验证；案例 B 更容易获得动态样本，却更受单臂混杂和选择性缺失限制。</p><p>案例 A 的随机框架可以探索标志物与治疗效应交互；案例 B 的动态样本更适合生成机制假设，却更受单臂混杂和存活到采样影响。两类分析不能只因都叫“亚组”或“标志物”而互换结论。</p></div><p class="length-note-5 reading-focus">比较标志物结果时，先看是否有对照、谁能进入分析、时间点如何限定。随机交互更接近预测性问题，单臂动态关联通常仍只能支持探索性解释。</p><p class="step-landing"><b>这一小步的落点：</b> 动态关联可以生成假设；没有随机对照和独立验证，不能把它写成预测性标志物结论。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-11-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>提出标志物与临床结局的明确问题</p></div><div class="flow-node"><span>2</span><p>固定样本时间和检测方法</p></div><div class="flow-node"><span>3</span><p>展示从全队列到可分析集的分母漏斗</p></div><div class="flow-node"><span>4</span><p>预设 landmark/时间依赖方法</p></div><div class="flow-node"><span>5</span><p>估计关联并报告不确定性</p></div><div class="flow-node"><span>6</span><p>检查批次、缺失和生存到采样偏倚</p></div><div class="flow-node"><span>7</span><p>把结果标注为探索性并要求独立验证</p></div></div><div class="flow-reading-v9"><h4>先看谁进入了样本分析</h4><p>从明确的生物学问题出发，固定采样时间和检测方法，再展示全队列到可分析集的漏斗；之后才选择 landmark 或时间依赖方法，并检查批次、缺失和存活到采样偏倚。</p><p><strong>结论边界：</strong>landmark 能减少部分时间偏倚，但不能消除未测量混杂、检测误差或样本选择。时间点、LOD、assay 版本改变后，清除定义和结果不可直接照搬。</p></div><p class="length-note-6 reading-focus">从一条“ctDNA 清除与结局相关”的结果往回追，先核对基线阳性和动态样本分母，再看早期死亡、漏采和 QC 失败去了哪里。分母不透明时，模型系数不能单独承担解释。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么动态生物标志物的解释必须从样本分母和时间结构开始。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>样本计划 → accountability/QC → biomarker-evaluable set → 预设模型 → 探索性解释/验证。</span></div>
+<div class="decision-lab"><h3>当前决策：把转化医学从“标志物清单”变成预先定义的样本、分母和时间设计</h3><p>单臂研究中的标志物分析通常只能描述预后性或治疗中关联，难以区分真正预测性效应。动态标志物还受 baseline positivity、存活到采样时点、样本成功、批次和 landmark 选择影响。</p><div class="decision-grid"><div class="decision-cell"><b>角色区分</b><span>入组标志物、分层因素、预设亚组、探索标志物、预测性假设和伴随诊断不是同义词。</span></div><div class="decision-cell"><b>动态分母</b><span>只有基线 ctDNA 阳性者才能“清除”；动态样本可分析者是更小的条件性集合。</span></div><div class="decision-cell"><b>时间偏倚</b><span>能进入 W8/landmark 的患者必须存活并保持随访，早期死亡不能被无声排除。</span></div><div class="decision-cell"><b>高维风险</b><span>批次、过拟合、事后 cutpoint、多重检验和缺乏独立验证。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：预设亚组与交互</h3><p>RAS、BRAF、肝转移等亚组用于评估一致性和异质性假设。应报告交互估计和区间，不用“一个显著、一个不显著”证明效应不同。</p><dl><dt>主要问题</dt><dd>随机治疗效应是否随标志物改变</dd><dt>方法</dt><dd>交互项、连续变量、收缩/多重性视野</dd><dt>责任</dt><dd>确认性亚组需强预设与足够信息</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：ctDNA 与免疫微环境探索</h3><p>探索 RAS/BRAF、肝转移、PD-L1、免疫浸润、VEGF/血管生成指标、基线与动态 ctDNA、配对组织变化，以及它们与持续临床获益的关联。</p><dl><dt>不能证明</dt><dd>预测性标志物或伴随诊断</dd><dt>关键分母</dt><dd>baseline-positive、动态可分析、配对组织</dd><dt>解释</dt><dd>探索性关联，需要独立验证</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>随机试验能够通过交互模型更接近预测性问题；单臂研究缺少未接受该方案的对照，通常无法区分“患者本来预后较好”与“标志物预测该方案特异获益”。案例 B 的机制结果应生成假设，而不是替代临床证据。</div>
+<h3 class="section-title">ctDNA 清除的分母漏斗</h3>
+<div class="table-wrap"><table><thead><tr><th>层级</th><th>定义</th><th>不能混淆的对象</th><th>输出</th></tr></thead><tbody>
+<tr><td>全治疗集</td><td>至少一次治疗</td><td>未治疗患者</td><td>样本计划完成率</td></tr>
+<tr><td>基线样本集</td><td>基线血样采集且 QC 通过</td><td>采集失败/QC 失败</td><td>基线可测率</td></tr>
+<tr><td>基线 ctDNA 阳性集</td><td>基线高于预设检测阈值</td><td>基线阴性者不是“未清除”</td><td>清除可定义分母</td></tr>
+<tr><td>动态可分析集</td><td>基线阳性＋目标动态时间点 QC 通过</td><td>早死、漏采、QC 失败</td><td>清除率与缺失原因</td></tr>
+<tr><td>Landmark 集</td><td>在预设 landmark 仍存活/在观察且有分类</td><td>landmark 前事件者</td><td>landmark 后 PFS/DoR 关联</td></tr>
+</tbody></table></div>
+<h3 class="section-title">样本级推演</h3>
+<div class="table-wrap"><table><thead><tr><th>患者</th><th>基线</th><th>C2D1/W8</th><th>归类</th><th>偏倚提醒</th></tr></thead><tbody>
+<tr><td>M01</td><td>ctDNA 阳性，QC PASS</td><td>低于 LOD</td><td>清除</td><td>需报告 assay/LOD 和时间窗</td></tr>
+<tr><td>M02</td><td>ctDNA 阴性</td><td>阴性</td><td>清除不适用</td><td>不能记作“清除成功”</td></tr>
+<tr><td>M03</td><td>阳性</td><td>早期死亡未采</td><td>动态不可评价</td><td>排除会产生 immortal-time/选择偏倚</td></tr>
+<tr><td>M04</td><td>阳性</td><td>样本 QC 失败</td><td>不可评价</td><td>与临床漏采原因分开</td></tr>
+<tr><td>M05</td><td>组织基线成功</td><td>仅因获益可重复活检</td><td>配对组织</td><td>配对集偏向获益患者</td></tr>
+<tr><td>M06</td><td>batch A / v1.0</td><td>batch B / v1.1</td><td>需桥接或分层</td><td>不能直接当作同一尺度</td></tr>
+</tbody></table></div>
+<h3 class="section-title">探索分析的最低标准</h3>
+<div class="trace-chain"><div class="trace-row"><b>预设</b><span>标志物角色、连续/分类尺度、时间点、阈值来源、分析集和主要关联模型。</span></div><div class="trace-row"><b>缺失</b><span>按临床、操作、样本质量、assay 失败和早期事件分类；展示全队列漏斗。</span></div><div class="trace-row"><b>批次</b><span>在看临床结局前确定 QC、归一化、批次调整和版本桥接。</span></div><div class="trace-row"><b>多重性</b><span>报告检验数量、FDR/调整方法或明确不作确认性控制；效应量和区间优先。</span></div><div class="trace-row"><b>验证</b><span>探索发现需独立队列、预设 assay 与 cutpoint 验证；单臂相关性不能称为预测性。</span></div></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>Biomarker analysis plan</td><td>角色、时间点、分母、模型、多重性</td><td>数据库锁定/assay 解盲前</td><td>转化/统计</td></tr><tr><td>Sample accountability</td><td>计划、采集、QC、assay 和可分析</td><td>每次数据冻结</td><td>实验室/数据</td></tr><tr><td>Assay metadata</td><td>版本、批次、LOD/LOQ、桥接和失败</td><td>检测前/版本切换前</td><td>实验室</td></tr><tr><td>Landmark specification</td><td>时间点、纳入、事件起点和缺失</td><td>看结局前</td><td>统计/临床</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>探索终点和样本时间点写入 protocol；预测性/伴随诊断仅作为待验证假设。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>实际采样、处理延迟、批次和 assay version。</li><li>基线阳性与 QC 状态分开。</li><li>早期死亡和漏采原因结构化。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>连续分析优先；cutpoint 需来源；landmark 和时间依赖方法的风险集明确。</p><p>清除变量只在 baseline-positive set 定义；paired set 和全队列分开。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>复算分母漏斗；检查 baseline-negative 是否被错误记为未清除/清除；批次与结局是否混杂。</p><p>样本 accountability、缺失表、ctDNA 清除、landmark 关联和探索 forest。</p></article></div><details><summary>R 实现：ctDNA 清除只在基线阳性者中定义</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>basepos_ids &lt;- unique(ctdna$patient_id[
+  ctdna$timepoint == "baseline" &amp; ctdna$baseline_positive == "Y"])
+dynamic &lt;- subset(ctdna,
+  patient_id %in% basepos_ids &amp; timepoint == "C2D1")
+dynamic$clearance &lt;- dynamic$detected == "N"
+# baseline-negative patients are outside the clearance estimand</code></pre></div></details><details><summary>R 实现：landmark 数据集</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code>landmark_day &lt;- 56
+lm &lt;- subset(patient,
+  treated == 1 &amp; early_death != "Y")
+lm &lt;- merge(lm, dynamic[c("patient_id","clearance")],
+            by="patient_id", all.x=TRUE)
+lm$clearance[is.na(lm$clearance)] &lt;- NA  # 不把漏采当未清除
+# 从 landmark 后重新定义风险时间；报告被排除的早期事件</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“在基线 ctDNA 阳性且 C2D1 样本可分析的患者中，清除与 landmark 后持续获益存在探索性关联；该分析受动态样本选择和未测量混杂影响，需要独立验证。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“ctDNA 清除证明了治疗机制，并可预测哪些患者从依沃西单抗获益。”</p></article></div>
+<h3 class="section-title">本章累积交付物</h3><div class="deliverable-list"><div class="deliverable"><b>Biomarker plan</b>角色、分母和模型。</div><div class="deliverable"><b>Sample accountability</b>完整漏斗与失败原因。</div><div class="deliverable"><b>Landmark 定义</b>早期事件透明。</div><div class="deliverable"><b>解释边界</b>预后性/预测性/机制结论分开。</div></div><div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">正式指导</span><div><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/use-circulating-tumor-deoxyribonucleic-acid-early-stage-solid-tumor-drug-development-guidance" rel="noopener noreferrer" target="_blank">FDA: Use of ctDNA for Early-Stage Solid Tumor Drug Development</a><small>正式适用范围为早期实体瘤；本课仅借鉴 assay、采样和解释的一般原则。</small></div></div><div class="evidence-item"><span class="kind">方法学框架</span><div><a href="https://pubmed.ncbi.nlm.nih.gov/16106022/" rel="noopener noreferrer" target="_blank">REMARK reporting recommendations for tumor marker studies</a><small>肿瘤标志物研究的设计、分析和透明报告。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf" rel="noopener noreferrer" target="_blank">ICH E9(R1)</a><small>动态事件和缺失需与明确问题和假设对齐。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section><section class="chapter-v9" data-chapter="11" hidden="" id="chapter-12">
+<header class="chapter-head-v9">
+<div class="stage-label">第三阶段：看结果怎样产生并接受复核</div>
+<div class="chapter-number">第 12 章</div>
+<h2>一项分析怎样变成可复核的结论？</h2>
+<p>TFL、QC、追溯与结果解释</p>
+</header>
+<nav aria-label="本章学习步骤" class="step-nav-v9"><button aria-controls="chapter-12-step-1" data-step-go="0" type="button"><span>1</span><b>情景</b></button><button aria-controls="chapter-12-step-2" data-step-go="1" type="button"><span>2</span><b>结论</b></button><button aria-controls="chapter-12-step-3" data-step-go="2" type="button"><span>3</span><b>推理</b></button><button aria-controls="chapter-12-step-4" data-step-go="3" type="button"><span>4</span><b>落地</b></button><button aria-controls="chapter-12-step-5" data-step-go="4" type="button"><span>5</span><b>对照</b></button><button aria-controls="chapter-12-step-6" data-step-go="5" type="button"><span>6</span><b>收束</b></button></nav>
+<div class="step-stage"><article class="lesson-step active" data-step="0" id="chapter-12-step-1">
+<div class="step-kicker">第 1 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">表格里的一个数字，另一个人能从源数据重新做出来吗？</h3>
+<div class="chapter-case-line"><span class="case-tag">案例 A</span><span>确认性主要结论要求从论文句子反向追溯到 TFL、程序、分析变量、源数据和方案规则。</span></div><p>结果报告写着“试验组降低死亡风险”，但审阅者追问：这句话来自哪张表、哪个单元格、哪个分析数据集和哪条 SAP 规则？程序使用了什么版本，关键事件又怎样核对？</p><p>完整交付不是把 Protocol、CRF、SAP、代码和表格分别做完，而是让任何重要结论都能沿同一条链反向重建。</p><div class="step-expansion"><p>可复核结论需要从研究问题一路追到 Protocol、SAP、数据规格、程序、TFL 和解释语句。任何关键数字都应能找到输入版本、算法、日志和独立核对记录。</p><p>本章真正的分界是：每个结论能否反查到数据、规则、程序和复核记录。先把这个分界说清，SAP ID、数据版本、程序、TFL、QC 记录和解释 memo才不会各自采用不同口径。</p></div><p class="length-note-1 reading-focus">读到这里，先不用判断哪一种分析方法更高级。只要能指出“一项分析怎样变成可复核的结论？”中的冲突发生在研究问题、分母、时间顺序或证据责任的哪一处，就已经抓住后续判断的入口；术语会在需要时再出现。</p><div class="question-box"><b>本章核心问题</b><span>一项分析怎样变成可复核的结论？</span></div>
+</article><article class="lesson-step" data-step="1" hidden="" id="chapter-12-step-2">
+<div class="step-kicker">第 2 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">先看当前案例的结论</h3>
+<div class="conclusion-box"><span>先看结论</span><p>案例 A 的主要 OS 结论必须与随机化、预设估计目标、期中/最终错误率、数据成熟度、主要模型和敏感性分析一致。论文或 CSR 中的每句话都应指向明确的 TFL 单元格和分析版本。</p><p>QC 优先覆盖主要终点、阶段决策、关键安全性和容易改变分母的规则。最终解释同时写明可以支持、仅探索和不能支持的结论。</p></div><div class="condition-box-v9"><h4>这个结论依赖哪些条件</h4><p>可复核结论需要从研究问题一路追到 Protocol、SAP、数据规格、程序、TFL 和解释语句。任何关键数字都应能找到输入版本、算法、日志和独立核对记录。</p><p>程序能够运行并不等于结果可靠。手工改表、复制旧脚注、包版本变化、随机种子缺失或分析集名单未冻结，都可能让同一代码包无法重建原结果。</p></div><p class="step-landing"><b>这一小步的落点：</b>先把“每个结论能否反查到数据、规则、程序和复核记录”作为当前案例的判断基准，再检查结论依赖的条件。</p>
+<p class="length-note-2 reading-focus">审阅这条结论时，应把适用条件和替代处理放在同一处。尤其当数据截止、程序版本、派生规则或解释口径改变时，原来的分母、事件规则或解释不能只换一个术语继续使用；需要从研究问题重新推导。</p></article><article class="lesson-step" data-step="2" hidden="" id="chapter-12-step-3">
+<div class="step-kicker">第 3 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">顺着问题往下想</h3>
+<div class="reason-grid-v9"><section class="reason-card-v9"><h4>现实麻烦</h4><p>同一数字可能因数据截止、分母、软件版本、默认选项或脚注变化而改变。没有 manifest 和版本记录，重跑结果无法确认是否同一分析。</p></section><section class="reason-card-v9"><h4>容易出错的直觉</h4><p>表格看起来整齐、代码没有报错，并不等于实现正确。最危险的错误通常是分母、日期优先级、重复计数和结论超出设计。</p></section><section class="reason-card-v9"><h4>必要术语</h4><p>TFL 指表、图和列表。追溯链把 Protocol/SAP 条款、源数据、分析变量、程序、输出单元格和解释语句连接起来。</p></section><section class="reason-card-v9"><h4>成立条件</h4><p>可复核性依赖稳定文件名、数据冻结 ID、程序版本、输入 hash、日志和独立复算。解释还必须服从设计能够承担的证据强度。</p></section></div><div class="term-explain-v9"><h4>把术语放回当前问题</h4><p>这里的核心概念是追溯性（traceability）。它要求正向说明一个方案承诺怎样变成数据和输出，也要求反向说明报告中的数字来自哪个变量、程序和数据版本。</p><p>遇到类似问题，先按时间顺序列出研究问题、文件规则、数据、程序、输出、QC 和文字结论，再选择术语和分析方法。这样更容易看出哪一步改变了比较对象、分母或可解释人群。</p></div><p class="step-landing"><b>这一小步的落点：</b>先识别错误做法会怎样扭曲“每个结论能否反查到数据、规则、程序和复核记录”，再记住本章术语。</p>
+</article><article class="lesson-step" data-step="3" hidden="" id="chapter-12-step-4">
+<div class="step-kicker">第 4 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">这个决定怎样落到项目中</h3>
+<p class="reading-focus">从最终报告的一条关键数字开始，依次找到 TFL 单元格、分析数据参数、程序版本、SAP 条款和源记录，再看独立 QC 用什么不同路径完成复算。</p><div class="project-chain"><div class="project-row"><b>TFL shells/index</b><span>在锁库前固定标题、分母、截止、单位、脚注和输出编号。</span></div><div class="project-row"><b>分析包 manifest</b><span>记录输入数据、脚本顺序、软件/包版本、seed、hash 和 sessionInfo。</span></div><div class="project-row"><b>QC plan/log</b><span>按风险列出独立复算、程序审阅、患者级核对和问题处理。</span></div><div class="project-row"><b>追溯矩阵</b><span>建立 Protocol/SAP ID → 数据规格 → 程序 → 输出 → 解释语句。</span></div><div class="project-row"><b>Interpretation memo</b><span>分开记录可支持、探索性和不能支持的结论。</span></div><div class="project-row"><b>最终项目包</b><span>保留数据、字典、R 脚本、TFL、证据台账和所有关键版本。</span></div></div><div class="worked-demo-v9">
+<h4>完整示范：从文件写法到结果解释</h4>
+<p><strong>真实文件写法：</strong>“每个主要和关键次要输出建立唯一 TFL ID；分析包保存输入数据、脚本顺序、软件与包版本、seed、hash、sessionInfo、日志和 QC 结论。”</p>
+<p><strong>分析动作：</strong>主程序生成结果后，独立或半独立程序复算关键数字；追溯矩阵把 SAP ID、分析变量、程序文件、输出编号和解释 memo 逐项连接。</p>
+<div class="key-code-v9"><b>与下载脚本一致的关键代码</b><code>tab &lt;- table(main$best_confirmed_response)
+x2 &lt;- sum(tab[names(tab) %in% c("CR", "PR")])
+stopifnot(x1 == x2)</code><small>对应下载脚本：R/12_qc_checks.R。QC 用不同计数路径复算响应人数，而不是比较两个来源相同的成品对象。</small></div><p><strong>结果怎样写：</strong>最终结论分成可支持、探索性和不能支持三层，并保留数据截止、分析集、效应量、不确定性与限制。审阅者可以从文字反查到患者级证据。</p>
+<p class="demo-why"><b>为什么重要：</b> 把代码、表格和文字分别归档并不等于可复核。只有结论能沿唯一链条退回规则、数据与复算记录，另一名分析者才可能重建它。</p>
+</div><p class="step-landing"><b>这一小步的落点：</b> 一条关键结论能从文字退回 TFL、程序、SAP 和患者级证据，分析交付才算可复核。</p>
+</article><article class="lesson-step" data-step="4" hidden="" id="chapter-12-step-5">
+<div class="step-kicker">第 5 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">换成另一类研究时，哪里不能照搬？</h3>
+<div class="contrast-box"><h4>不能直接照搬的地方</h4><ul><li>案例 B 的最终责任是判断是否值得随机验证，而不是宣告已经优于标准方案。</li><li>最终包需要同时展示 ORR/Simon、DoR/PFS、安全先导、组分暴露、样本漏斗和标志物限制。</li><li>越过单臂阈值和未触发硬停止边界，仍不能分离新增药物贡献，也不能把相关标志物写成预测性。</li></ul></div><div class="contrast-reason-v9"><h4>差异从哪里来</h4><p>案例 A 的确认性包更强调错误率、主要终点和随机化追溯；案例 B 的 IIT 包还要突出阶段边界、目标方案分母和探索标志物限制。QC 原则相同，证据责任不同。</p><p>案例 A 的确认性包强调随机化、主要终点和错误率；案例 B 的 IIT 包还要把阶段阈值、目标方案分母、安全可实施性和探索性标志物限制放在一起。追溯方法相同，允许的结论强度不同。</p></div><p class="length-note-5 reading-focus">比较两类证据包时，不要只看文件是否齐全。要看每条结论承担什么责任：确认随机治疗策略差异，还是支持进一步随机验证。证据责任决定哪些限制必须写进 interpretation memo。</p><p class="step-landing"><b>这一小步的落点：</b> 同样完整的追溯链，可以支持不同强度的结论；设计边界不能被文件数量放大。</p>
+</article><article class="lesson-step" data-step="5" hidden="" id="chapter-12-step-6">
+<div class="step-kicker">第 6 步 · 约 3–5 分钟</div>
+<h3 tabindex="-1">用决策流程图收束</h3>
+<div class="decision-flow"><div class="flow-node"><span>1</span><p>从一条拟写的结论出发</p></div><div class="flow-node"><span>2</span><p>定位对应 TFL 单元格和脚注</p></div><div class="flow-node"><span>3</span><p>定位分析数据参数、分母和截止</p></div><div class="flow-node"><span>4</span><p>定位程序版本和 SAP 条款</p></div><div class="flow-node"><span>5</span><p>回到源记录核对关键患者</p></div><div class="flow-node"><span>6</span><p>由独立 QC 复算高风险结果</p></div><div class="flow-node"><span>7</span><p>在 interpretation memo 中限制结论强度</p></div></div><div class="flow-reading-v9"><h4>从一句结论反向走完整条链</h4><p>先定位结论对应的 TFL 单元格和脚注，再找到分析参数、分母、数据截止、程序版本与 SAP 条款，最后回到关键患者，并由独立 QC 复算高风险结果。</p><p><strong>结论边界：</strong>完整追溯能发现和解释错误，却不能替代科学判断。若源数据质量不足或研究设计不能支持某种结论，再完善的程序包也不能扩大证据边界。</p></div><p class="length-note-6 reading-focus">真正的验收不是确认“文件都在”，而是让另一名分析者选择一个关键数字后，能够沿追溯矩阵重建并解释它。任何断点都应留下问题记录，而不是靠人工记忆补上。</p><div class="chapter-outcome"><b>这一章结束后，应该能说清：</b><span>为什么最终交付的标准不是表格很多，而是关键结论能够被另一名分析者独立重建。</span></div><details class="deep-layer"><summary><span>继续深入</span><small>完整定义、公式、R 代码、QC、证据与原始项目示范</small></summary><div class="deep-body"><div class="position-strip"><b>本章在项目中的位置</b><span>冻结数据 → 运行分析 → QC → TFL → interpretation memo → CSR/论文；全过程版本化。</span></div>
+<div class="decision-lab"><h3>最终任务：让任何关键结论都能被另一个人独立重建</h3><p>可审计交付不是把代码、表格和论文分别做完，而是建立反向追溯：论文句子来自哪个 TFL 单元格，单元格来自哪个分析变量，变量来自哪些源记录和 SAP 规则，程序在什么版本和种子下运行，QC 怎样证明实现一致。</p><div class="decision-grid"><div class="decision-cell"><b>TFL shell</b><span>标题、分析集、截止、单位、分母和脚注在锁库前审阅。</span></div><div class="decision-cell"><b>追溯</b><span>Protocol → SAP → data spec → program → cell → report sentence。</span></div><div class="decision-cell"><b>QC</b><span>关键风险独立复算；不要求所有程序机械双编程。</span></div><div class="decision-cell"><b>解释</b><span>统计显著、临床意义、证据强度和因果责任分开。</span></div></div></div>
+<div class="case-overview"><article class="case-panel a"><span class="case-badge a">案例 A</span><h3>案例 A：确认性证据责任</h3><p>主要 OS 结论必须与随机化、预设 estimand、正式期中/最终错误率、数据成熟度和敏感性一致。亚组和非 PH 结果不能事后替代主要分析。</p><dl><dt>核心包</dt><dd>ITT/ADTTE、OS TFL、期中记录、QC</dd><dt>可支持</dt><dd>策略 A vs B 的随机化比较</dd><dt>仍需限定</dt><dd>HR 解释、失访、后续治疗和成熟度</dd></dl></article><article class="case-panel b"><span class="case-badge b">案例 B</span><h3>案例 B：探索性推进责任</h3><p>最终包同时展示 ORR/Simon、DoR/PFS、安全先导、组分暴露、样本漏斗和 biomarker 结果。结论应是“是否值得随机验证”，而不是“已证明优于标准”。</p><dl><dt>核心包</dt><dd>目标方案分母、BICR、RDI、样本 QC</dd><dt>可支持</dt><dd>越过教学无效率和可实施性描述</dd><dt>不可支持</dt><dd>新增药物独立贡献/预测性标志物</dd></dl></article></div><div class="callout fact"><b>为什么二者不同</b>案例 A 的随机化和错误率控制允许更强的治疗策略因果解释；案例 B 的单臂设计主要用于筛选信号、评估可实施性和生成转化假设。两者都必须让分母、规则和不确定性在 TFL 与文字中可见。</div>
+<h3 class="section-title">最终反向追溯示例</h3>
+<div class="trace-chain"><div class="trace-row"><b>论文句子</b><span>“在目标方案 ORR 集中，确认 ORR 越过预设 Simon 教学阈值。”</span></div><div class="trace-row"><b>TFL 单元格</b><span>T-B-ORR-01：响应者 34；分母 47；精确 CI；脚注含 BICR 和 NE 规则。</span></div><div class="trace-row"><b>分析变量</b><span><code>ORR_T_FL=Y</code>、<code>CONFIRMED_BOR</code>、<code>RESPFL</code>。</span></div><div class="trace-row"><b>源数据</b><span>入组/给药、BICR visit response、实际影像日期、新治疗和死亡。</span></div><div class="trace-row"><b>SAP 条款</b><span>§8.1 目标方案集；§8.2 确认规则；§8.3 阶段阈值。</span></div><div class="trace-row"><b>QC</b><span>独立按患者列表计数；确认分母未删除 NE；Simon OC 精确复算。</span></div></div>
+<h3 class="section-title">最低 TFL 包</h3>
+<div class="table-wrap"><table><thead><tr><th>输出</th><th>分析集/分母</th><th>关键脚注</th><th>核心 QC</th></tr></thead><tbody>
+<tr><td>Disposition / baseline</td><td>随机/入组、治疗、各分析集</td><td>排除原因和实际治疗</td><td>患者数与 ADSL 一致</td></tr>
+<tr><td>ORR / DoR</td><td>目标方案；全治疗描述</td><td>BICR、确认、NE、数据截止</td><td>患者 listing 独立计数</td></tr>
+<tr><td>OS/PFS / 12月 PFS</td><td>endpoint-specific</td><td>起点、事件、删失、风险人数</td><td>事件日期与 ADTTE</td></tr>
+<tr><td>TEAE / SAE / AESI</td><td>Safety Set</td><td>患者发生率、版本、worst grade</td><td>患者去重与事件数分开</td></tr>
+<tr><td>Exposure / RDI</td><td>按组分治疗者</td><td>计划周期、延迟、永久停药</td><td>累计剂量复算</td></tr>
+<tr><td>Sample accountability</td><td>全队列→可分析集</td><td>采集、QC、assay 版本、失败</td><td>样本台账逐层一致</td></tr>
+<tr><td>ctDNA clearance</td><td>baseline-positive＋动态可分析</td><td>LOD、时间点、缺失</td><td>基线阴性不进入分母</td></tr>
+</tbody></table></div>
+<h3 class="section-title">风险导向 QC</h3>
+<div class="check-grid"><div class="check-item">主要分母与患者级 listing 一致。</div><div class="check-item">所有事件日期有来源和优先级。</div><div class="check-item">Simon 参数由独立程序复算。</div><div class="check-item">12 月 PFS 来自 KM 而非完整病例比例。</div><div class="check-item">AE 患者发生率去重。</div><div class="check-item">RDI 按组分和计划暴露。</div><div class="check-item">ctDNA 清除只在基线阳性者定义。</div><div class="check-item">landmark 早期事件人数透明。</div><div class="check-item">软件版本、seed、sessionInfo 和日志归档。</div><div class="check-item">论文措辞不超出设计支持范围。</div></div>
+<div class="file-landing"><table><caption>本章文件落点</caption><thead><tr><th>项目文件</th><th>本章写入内容</th><th>最晚决策时间</th><th>主要责任角色</th></tr></thead><tbody><tr><td>TFL shells/index</td><td>标题、分母、截止、单位、脚注</td><td>数据库锁定前</td><td>统计/医学写作</td></tr><tr><td>QC plan/log</td><td>关键风险、方法、结果和处理</td><td>编程启动前持续更新</td><td>统计编程/QC</td></tr><tr><td>Analysis package manifest</td><td>数据、程序、版本、输出和 hash</td><td>最终运行前</td><td>统计编程</td></tr><tr><td>Interpretation memo</td><td>可支持/探索/不可支持的结论</td><td>结果解读前</td><td>临床/统计/写作</td></tr></tbody></table></div><div class="impl-tabs"><article class="impl-card"><h4>Protocol 写法</h4><p>Protocol/SAP 的关键句有唯一 ID，方便变更影响评估；每次 amendment 记录哪些数据和输出受影响。</p></article><article class="impl-card"><h4>CRF / 数据库需求</h4><ul><li>最终数据冻结 ID 与截止。</li><li>query 状态和数据源版本。</li><li>所有下载/输出使用稳定文件名。</li></ul></article><article class="impl-card"><h4>SAP 与分析规格</h4><p>分析运行清单记录脚本顺序、package 版本、seed、输入 hash 和 sessionInfo。</p><p>关键 cell 保存源数据范围和派生理由；输出脚注说明分析集和不可评价。</p></article><article class="impl-card"><h4>QC 与 TFL</h4><p>风险导向：主要终点、阶段决策、关键安全性和标志物分母独立复算。</p><p>CSR/论文语言由 interpretation memo 约束，避免超出设计。</p></article></div><details><summary>R 实现：关键结果 QC 与 sessionInfo</summary><div class="details-body"><div class="code-head"><span>R · 教学实现</span><button class="btn small copy" type="button">复制代码</button></div><pre><code># 独立方式复算 ORR 响应者数
+x_program &lt;- sum(main$confirmed_BOR %in% c("CR","PR"))
+x_listing &lt;- sum(table(main$confirmed_BOR)[c("CR","PR")], na.rm=TRUE)
+stopifnot(x_program == x_listing)
+
+# 保存可复现环境
+writeLines(capture.output(sessionInfo()), "output/sessionInfo.txt")
+writeLines("seed=20260805", "output/run_manifest.txt")</code></pre></div></details><div class="speak-grid"><article class="speak-card good"><h4>推荐写法</h4><p>“结果越过单臂教学阈值，且安全先导未触及硬停止边界；这些发现支持考虑后续随机验证，不能证明联合方案优于 FOLFOXIRI。”</p></article><article class="speak-card bad"><h4>不推荐写法</h4><p>“试验成功证明依沃西单抗显著提高疗效，并确认 ctDNA 清除是预测性标志物。”</p></article></div>
+<h3 class="section-title">最终项目包</h3><div class="deliverable-list"><div class="deliverable"><b>双案例 synopsis</b>目的、设计与证据边界。</div><div class="deliverable"><b>Estimand/endpoint</b>问题和终点规则。</div><div class="deliverable"><b>CRF/样本计划</b>数据库与实验室元数据。</div><div class="deliverable"><b>SAP/规格</b>主要与敏感性分析。</div><div class="deliverable"><b>模拟数据/R</b>完整脚本和教学异常。</div><div class="deliverable"><b>TFL/QC/memo</b>输出、复核和解释。</div></div>
+<div class="callout warning"><b>能力边界</b>完成本课程后，读者应能参与、审阅并完成教学型分析交付；复杂注册性设计、正式样本量确认、多重性、适应性设计、真实药物剂量和监管提交仍需临床统计师、临床负责人、数据管理、药物警戒、影像、转化和监管专家共同把关。</div>
+<div class="evidence"><h3>依据和证据状态</h3><div class="evidence-grid"><div class="evidence-item"><span class="kind">正式标准</span><div><a href="https://www.cdisc.org/standards/foundational/adam" rel="noopener noreferrer" target="_blank">CDISC ADaM</a><small>分析数据可追溯、可复现和审阅的核心原则。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://database.ich.org/sites/default/files/ICH%20E6%28R3%29_Step4_FinalConsolidatedGuideline_2026_0616_.pdf" rel="noopener noreferrer" target="_blank">ICH E6(R3)</a><small>可靠结果、适合目的的系统和质量管理。</small></div></div><div class="evidence-item"><span class="kind">正式指南</span><div><a href="https://www.ich.org/page/efficacy-guidelines" rel="noopener noreferrer" target="_blank">ICH E9 / E9(R1)</a><small>统计原则、estimand、敏感性和解释责任。</small></div></div></div></div></div></details>
+</article></div>
+<div class="step-controls-v9">
+<button class="btn-v9 ghost" data-prev-step="" type="button">上一步</button>
+<span aria-live="polite" class="step-status"></span>
+<button class="btn-v9 primary" data-next-step="" type="button">下一步</button>
+</div>
+</section>
+</main></div>
+<div aria-label="课程目录" aria-modal="true" class="mobile-drawer" hidden="" id="mobileDrawer" role="dialog"><div class="drawer-panel"><div class="drawer-head"><b>课程目录</b><button class="drawer-close" id="drawerClose" type="button">关闭</button></div><button class="sidebar-home" data-home="" type="button">课程首页</button><div class="drawer-nav" id="drawerNav"></div></div><button aria-label="关闭目录" class="drawer-backdrop" id="drawerBackdrop" type="button"></button></div>
+<div aria-live="polite" class="toast-v9" id="toast" role="status"></div>
+<script src="app.js"></script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e"}' crossorigin="anonymous"></script>
+</body></html>
