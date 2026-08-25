@@ -382,3 +382,39 @@ body.reading-mode .sidebar-toggle-v9{display:flex}
   .home-page h1{line-height:1.17}
 }
 
+/* Portfolio visual system: preserve the course content and interactions. */
+:root{
+  --bg:#f3eee5;--paper:rgba(255,252,247,.82);--paper2:#ebe4d8;--ink:#24221f;--muted:#6f6a62;
+  --line:rgba(36,34,31,.18);--primary:#c15f3c;--primary2:#a94f31;--primary-soft:#f0ded4;
+  --blue-soft:#eee7df;--amber:#a56b2b;--amber-soft:#f6e9d4;--red:#b84a45;--red-soft:#f6dfdd;
+  --shadow:0 14px 32px rgba(36,34,31,.06);--radius:0;
+}
+body{background:var(--bg);color:var(--ink)}
+h1,h2,h3,.brand{font-family:Georgia,"Times New Roman","Songti SC","STSong",serif}
+.topbar{background:rgba(243,238,229,.92);border-color:var(--line);backdrop-filter:blur(12px)}
+.topbar-inner,.layout,.footer{width:min(1440px,calc(100% - clamp(44px,9vw,144px)))}
+.mark{background:var(--ink);border-radius:0;box-shadow:none}
+.btn{border-radius:0;box-shadow:none;background:transparent}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:var(--paper)}
+.btn:hover{border-color:var(--primary);background:rgba(255,255,255,.35)}
+.layout{margin-top:32px;gap:28px}
+.sidebar,.hero,.chapter,.card,.step,.reasoning-chain,.depth-contract,.lab-block,.reason-card,.worked-example,.reason-step,.assumption-box,.plain-summary{border-radius:0;box-shadow:none;border-color:var(--line)}
+.sidebar,.hero,.chapter{background:var(--paper)}
+.case-mini{border-radius:0;background:var(--primary-soft);border-color:rgba(193,95,60,.28)}
+.hero:after{background:radial-gradient(circle,var(--primary-soft) 0,#ebe4d8 55%,transparent 70%)}
+.hero h1,.chapter h2,.section-title{font-weight:400;letter-spacing:-.045em}
+.eyebrow,.chapter-index,.case-mini small{color:var(--primary)}
+.chapter-btn.active{background:var(--primary-soft);color:var(--primary)}
+.chapter-btn.active span:first-child,.step:before{background:var(--primary)}
+.chapter-btn span:first-child{border-radius:0;background:var(--paper2)}
+.hero-stat,.objective,.step,.card,.callout,.reasoning-chain,.reason-card,.worked-example,.reason-step,.assumption-box,.plain-summary,.depth-contract,.lab-block{background:rgba(255,252,247,.55)}
+.science-rule,.callout.warning,.assumption-box{background:var(--amber-soft);border-color:rgba(165,107,43,.32)}
+.callout.fact,.plain-summary,.callout.error{background:var(--primary-soft);border-color:rgba(193,95,60,.28)}
+.table-wrap,details{border-radius:0;border-color:var(--line)}
+th{background:var(--paper2);color:var(--ink)}
+.tag,.case-tag{border-radius:0;background:transparent;border-color:var(--line)}
+.tag.standard,.tag.teaching,.tag.exploratory{background:var(--primary-soft);color:var(--primary);border-color:rgba(193,95,60,.28)}
+pre{border-radius:0;background:var(--ink)}
+@media(max-width:820px){.layout{width:calc(100% - 36px)}.hero,.chapter{padding:24px}}
+@media(max-width:560px){.topbar-inner,.layout,.footer{width:calc(100% - 20px)}.hero,.chapter{padding:20px}}
+
