@@ -422,4 +422,5 @@ pre{border-radius:0;background:var(--ink)}
 body{font-size:15px}
 .sidebar-progress div,.stage-block>h3,.chapter-nav-v9 button b,.current-steps h3,.current-steps button,.home-eyebrow,.case-card-v9 span,.resource-buttons button,.stage-label,.chapter-number,.step-nav-v9 button b,.lesson-step .step-kicker,.case-tag,.question-box b,.conclusion-box>span,.drawer-stage{font-size:13px}
 .chapter-nav-v9 button span,.step-nav-v9 button span,.flow-node span,.hero-stat small,.time-point span,.evidence-status,.status-chip,.case-badge,.status-label{font-size:12px}
+.brand-mark{border-radius:0;background:url("./assets/project-mark.svg") center/100% 100% no-repeat;color:transparent;font-size:0}
 

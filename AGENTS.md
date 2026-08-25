@@ -70,3 +70,8 @@ npx wrangler pages deploy . --project-name crc-learn
 > - **修改代码后必须同步更新本 AGENTS.md 与 README.md** — 功能增删、版本变更、部署方式变更都需要在两份文档中体现
 > - README.md 面向**人类用户**，AGENTS.md 面向 **AI 代理**，两份文件**不可互相替代**
 > - 项目为多文件结构（`index.html` + `styles.css` + `app.js`），新增/拆分文件时务必同步更新文件清单
+
+
+## 标志维护约定
+
+项目标志采用统一的深灰方章、米白线条与赤陶色识别点，页面标志与 favicon 共用同一 `project-mark.svg`。后续替换必须保持原标志容器宽高，不得借机改变页眉、网格或页面布局。
