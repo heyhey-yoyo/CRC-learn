@@ -402,6 +402,38 @@ h1,h2,h3,.brand{font-family:Georgia,"Times New Roman","Songti SC","STSong",serif
 .sidebar,.hero,.chapter{background:var(--paper)}
 .case-mini{border-radius:0;background:var(--primary-soft);border-color:rgba(193,95,60,.28)}
 .hero:after{background:radial-gradient(circle,var(--primary-soft) 0,#ebe4d8 55%,transparent 70%)}
+
+/* Replace the remaining v9 blue-white surfaces with the shared warm palette. */
+:root{
+  --v9-bg:#f3eee5;--v9-paper:#fbf8f2;--v9-ink:#24221f;--v9-muted:#6f6a62;--v9-line:rgba(36,34,31,.18);
+  --v9-primary:#c15f3c;--v9-primary-soft:#f0ded4;--v9-green:#357b56;--v9-green-soft:#edf4ee;
+  --v9-amber:#a56b2b;--v9-amber-soft:#f6e9d4;--v9-red:#a94f31;--v9-radius:0;--v9-shadow:0 14px 32px rgba(36,34,31,.06);
+  --case-a:#a94f31;--case-a-soft:#f0ded4;--case-b:#357b56;--case-b-soft:#edf4ee;--common:#8e6b80;--common-soft:#f0e9ef;
+}
+body{background:var(--v9-bg);color:var(--v9-ink)}
+.topbar,.course-sidebar,.home-page,.chapter-v9,.sidebar,.hero,.chapter{background:var(--v9-paper);border-color:var(--v9-line);box-shadow:var(--v9-shadow)}
+.topbar{background:rgba(243,238,229,.94)}
+.mark,.brand-mark{background:var(--v9-ink);box-shadow:none}
+.btn-v9,.btn,.course-sidebar button,.resource-buttons button,.resource-btn{border-color:var(--v9-line);color:var(--v9-ink)}
+.btn-v9.primary,.btn.primary{background:var(--v9-primary);border-color:var(--v9-primary);color:#fff}
+.btn-v9:hover,.btn:hover,.resource-buttons button:hover,.resource-btn:hover{border-color:rgba(193,95,60,.45);color:var(--v9-primary)}
+.case-mini,.case-card-v9,.sidebar-progress,.hero-stat,.step,.reason-card-v9,.reason-card,.reason-step,.concept-card,.case-panel,.metric,.hero-outcome,.project-row,.decision-cell,.impl-card,.resource-group{background:rgba(255,252,247,.76);border-color:var(--v9-line)}
+.case-mini{background:linear-gradient(145deg,var(--case-a-soft),#ebe4d8);border-color:rgba(169,79,49,.28)}
+.hero:after{background:radial-gradient(circle,var(--v9-primary-soft) 0,#ebe4d8 55%,transparent 70%)}
+.chapter-nav-v9 button.active,.sidebar-home,.case-tag,.question-box{background:var(--v9-primary-soft);color:var(--v9-primary)}
+.chapter-nav-v9 button.active span,.step-nav-v9 button.active,.step:before,.flow-node span{background:var(--v9-primary);color:#fff}
+.home-eyebrow,.stage-label,.chapter-index,.lesson-step .step-kicker,.case-card-v9 span,.project-row b,.trace-row b{color:var(--v9-primary)}
+.case-card-v9 span,.tag.standard,.status-label.guide,.case-badge.a{color:var(--case-a);background:var(--case-a-soft);border-color:rgba(169,79,49,.28)}
+.case-card-v9:nth-child(2) span,.tag.teaching,.status-label.real,.case-badge.b{color:var(--case-b);background:var(--case-b-soft);border-color:rgba(53,123,86,.28)}
+.case-badge.common,.status-label.standard{color:var(--common);background:var(--common-soft);border-color:rgba(142,107,128,.28)}
+.home-lead,.chapter-head-v9 p,.chapter-lead,.case-card-v9 p,.reason-card-v9 p,.reason-card p,.chapter-case-line,.reading-focus,.project-row span,.impl-card p,.impl-card li,.trace-row span{color:var(--v9-muted)}
+.callout.fact,.plain-summary,.decision-lab,.interpretation,.plain-quote{background:#f4ebe5;border-color:rgba(193,95,60,.28);color:var(--v9-ink)}
+.conclusion-box,.chapter-outcome,.condition-box-v9{background:var(--v9-green-soft);border-color:rgba(53,123,86,.28)}
+.deep-layer,.term-explain-v9,.flow-reading-v9{background:#f0e8de;border-color:var(--v9-line)}
+.pre,.key-code-v9,pre{background:#2d2a27;color:#f3eee5}
+.drawer-panel,.mobile-drawer .drawer-panel,.toast-v9{background:var(--v9-paper);color:var(--v9-ink)}
+.drawer-backdrop{background:rgba(36,34,31,.46)}
+.toast-v9{border:1px solid var(--v9-line);box-shadow:var(--v9-shadow)}
 .hero h1,.chapter h2,.section-title{font-weight:400;letter-spacing:-.045em}
 .eyebrow,.chapter-index,.case-mini small{color:var(--primary)}
 .chapter-btn.active{background:var(--primary-soft);color:var(--primary)}
@@ -423,4 +455,17 @@ body{font-size:15px}
 .sidebar-progress div,.stage-block>h3,.chapter-nav-v9 button b,.current-steps h3,.current-steps button,.home-eyebrow,.case-card-v9 span,.resource-buttons button,.stage-label,.chapter-number,.step-nav-v9 button b,.lesson-step .step-kicker,.case-tag,.question-box b,.conclusion-box>span,.drawer-stage{font-size:13px}
 .chapter-nav-v9 button span,.step-nav-v9 button span,.flow-node span,.hero-stat small,.time-point span,.evidence-status,.status-chip,.case-badge,.status-label{font-size:12px}
 .brand-mark{border-radius:0;background:url("./assets/project-mark.svg") center/100% 100% no-repeat;color:transparent;font-size:0}
+
+/* Final pass for deep lesson content that still used cool blue-white fills. */
+.chapter-case-line,.reading-focus,.step-expansion,.flow-node,.position-strip,.step-landing,.reading-contract,.reasoning-chain,.worked-example,.depth-contract,.lab-block,.formula-card,.interpretation,.output-box,.concept-guide,.plain-bridge{background:#f0e8de;border-color:var(--v9-line);color:var(--v9-ink)}
+.flow-node,.reason-card,.reason-step,.concept-card{border-color:var(--v9-line)}
+.flow-node span,.reason-step:before{background:var(--v9-primary);color:#fff}
+.reason-card.why,.lab-block.result{border-left-color:var(--v9-primary)}
+.reason-card.mechanism{border-left-color:var(--common)}
+.chapter-principle,.evidence-status,.status-chip{background:var(--common-soft);color:var(--common);border-color:rgba(142,107,128,.28)}
+.plain-summary .plain-label,.concept-card .remember,.decision-record p,.output-box code{color:var(--v9-primary)}
+.table-wrap th,.file-landing caption{background:#ebe4d8;color:var(--v9-ink)}
+.reason-card h4,.concept-card h3{color:var(--v9-ink)}
+.reason-card p,.reason-step span,.concept-card p,.plain-summary p,.position-strip span,.reading-focus,.step-expansion{color:var(--v9-muted)}
+.key-code-v9,pre{background:#2d2a27;color:#f3eee5}
 
