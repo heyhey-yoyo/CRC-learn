@@ -31,6 +31,16 @@ python -m http.server 8000
 http://localhost:8000
 ```
 
+## 自动验收
+
+无需安装依赖即可运行：
+
+```bash
+node --test tests/static-smoke.test.mjs
+```
+
+该检查覆盖课程导航、关键章节、本地资源、脚本语法、响应式样式与重复 ID；学习进度和完整课程流程仍在浏览器中手动验证。
+
 ## 部署到 Cloudflare Pages
 
 **通过 GitHub 自动部署**

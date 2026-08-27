@@ -11,6 +11,7 @@ CRC Evidence Lab 是一个面向准博士生和青年研究者的**双案例临�
 | `index.html` | 页面结构（HTML），引用 `styles.css` 与 `app.js` |
 | `styles.css` | 全部样式（原单文件内 `<style>` 抽取，约 52 KB） |
 | `app.js` | 全部交互逻辑与课程内容数据（原单文件内 `<script>` 抽取，约 485 KB） |
+| `tests/static-smoke.test.mjs` | 零依赖静态验收（导航、资源、脚本语法、响应式样式、重复 ID） |
 
 ## 技术栈与运行架构
 
@@ -38,6 +39,10 @@ python -m http.server 8000
 - **版本管理**：版本号以 GitHub Release 为准（当前 v1.0.0）；页面不显示版本号，修改 Release 时无需改页面
 - 保持零依赖原则，未经明确批准不得引入外部库或构建工具
 - **已清理的外部引用**：拆分时移除了原单文件中的 `/Static/`、`/Web/` 外部 CSS/JS 引用（Cloudflare Pages 上不存在、会 404，且代码不依赖它们）；Cloudflare beacon 脚本保留
+
+## 自动验收
+
+无需第三方依赖，运行 `node --test tests/static-smoke.test.mjs` 可检查课程导航、固定章节入口、本地资源、脚本语法、响应式样式与重复 ID。课程进度保存与完整学习流程仍需在浏览器中手动验证。
 
 ## 部署
 
