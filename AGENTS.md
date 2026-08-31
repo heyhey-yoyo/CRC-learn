@@ -4,15 +4,6 @@
 
 CRC Evidence Lab 是一个面向准博士生和青年研究者的**双案例临床试验分步学习课程**网页，纯静态多文件实现（`index.html` + `styles.css` + `app.js`），零依赖、零构建，目标部署平台为 Cloudflare Pages。
 
-## 项目结构
-
-| 文件 | 作用 |
-| --- | --- |
-| `index.html` | 页面结构（HTML），引用 `styles.css` 与 `app.js` |
-| `styles.css` | 全部样式（原单文件内 `<style>` 抽取，约 52 KB） |
-| `app.js` | 全部交互逻辑与课程内容数据（原单文件内 `<script>` 抽取，约 485 KB） |
-| `tests/static-smoke.test.mjs` | 零依赖静态验收（导航、资源、脚本语法、响应式样式、重复 ID） |
-
 ## 技术栈与运行架构
 
 | 技术 | 说明 |
@@ -21,13 +12,28 @@ CRC Evidence Lab 是一个面向准博士生和青年研究者的**双案例临�
 | localStorage | 学习进度本地持久化，键前缀请保持稳定 |
 | Cloudflare Pages | 静态托管，构建命令留空，构建输出目录为 `/` |
 
-## 本地运行
+## 项目结构
+
+| 文件 | 作用 |
+| --- | --- |
+| `index.html` | 页面结构（HTML），引用 `styles.css` 与 `app.js` |
+| `styles.css` | 全部样式（约 52 KB） |
+| `app.js` | 全部交互逻辑与课程内容数据（约 485 KB） |
+| `tests/static-smoke.test.mjs` | 零依赖静态验收（导航、资源、脚本语法、响应式样式、重复 ID） |
+
+## 运行与构建
+
+无构建步骤，直接用浏览器打开 `index.html` 即可。如需本地静态预览：
 
 ```bash
 python -m http.server 8000
 ```
 
 浏览器打开 `http://localhost:8000`。也可直接双击 `index.html` 在浏览器中打开（无构建、无依赖）。
+
+## 测试
+
+无需第三方依赖，运行 `node --test tests/static-smoke.test.mjs` 可检查课程导航、固定章节入口、本地资源、脚本语法、响应式样式与重复 ID。课程进度保存与完整学习流程仍需在浏览器中手动验证。
 
 ## 代码组织与风格约定
 
@@ -38,11 +44,7 @@ python -m http.server 8000
 - 中文界面文案，标识符使用英文
 - **版本管理**：版本号以 GitHub Release 为准（当前 v1.0.0）；页面不显示版本号，修改 Release 时无需改页面
 - 保持零依赖原则，未经明确批准不得引入外部库或构建工具
-- **已清理的外部引用**：拆分时移除了原单文件中的 `/Static/`、`/Web/` 外部 CSS/JS 引用（Cloudflare Pages 上不存在、会 404，且代码不依赖它们）；Cloudflare beacon 脚本保留
-
-## 自动验收
-
-无需第三方依赖，运行 `node --test tests/static-smoke.test.mjs` 可检查课程导航、固定章节入口、本地资源、脚本语法、响应式样式与重复 ID。课程进度保存与完整学习流程仍需在浏览器中手动验证。
+- **外部引用**：代码不依赖外部 CSS/JS 资源（Cloudflare Pages 上不存在、会 404），不要新增外部引用；Cloudflare beacon 脚本保留
 
 ## 部署
 
@@ -66,6 +68,10 @@ npx wrangler pages deploy . --project-name crc-learn
 - 无后端、无身份验证、无多用户支持
 - 不包含用户数据采集逻辑
 
+## 标志维护约定
+
+项目标志采用统一的深灰方章、米白线条与赤陶色识别点，页面标志与 favicon 共用同一 `project-mark.svg`。后续替换必须保持原标志容器宽高，不得借机改变页眉、网格或页面布局。
+
 ---
 
 ## AI 维护提醒
@@ -75,8 +81,3 @@ npx wrangler pages deploy . --project-name crc-learn
 > - **修改代码后必须同步更新本 AGENTS.md 与 README.md** — 功能增删、版本变更、部署方式变更都需要在两份文档中体现
 > - README.md 面向**人类用户**，AGENTS.md 面向 **AI 代理**，两份文件**不可互相替代**
 > - 项目为多文件结构（`index.html` + `styles.css` + `app.js`），新增/拆分文件时务必同步更新文件清单
-
-
-## 标志维护约定
-
-项目标志采用统一的深灰方章、米白线条与赤陶色识别点，页面标志与 favicon 共用同一 `project-mark.svg`。后续替换必须保持原标志容器宽高，不得借机改变页眉、网格或页面布局。
