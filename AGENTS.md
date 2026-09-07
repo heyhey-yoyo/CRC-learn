@@ -17,9 +17,12 @@ CRC Evidence Lab 是一个面向准博士生和青年研究者的**双案例临�
 | 文件 | 作用 |
 | --- | --- |
 | `index.html` | 页面结构（HTML），引用 `styles.css` 与 `app.js` |
-| `styles.css` | 全部样式（约 52 KB） |
-| `app.js` | 全部交互逻辑与课程内容数据（约 485 KB） |
+| `styles.css` | 全部样式（约 60 KB） |
+| `app.js` | 全部交互逻辑与课程内容数据（约 500 KB） |
 | `tests/static-smoke.test.mjs` | 零依赖静态验收（导航、资源、脚本语法、响应式样式、重复 ID） |
+| `assets/project-mark.svg` | 页面标志与 favicon 共用图形 |
+| `LICENSE` | MIT 许可证 |
+| `.gitignore` | Git 忽略规则 |
 
 ## 运行与构建
 
@@ -42,7 +45,7 @@ python -m http.server 8000
 - 当前页面主体沿用 `ydchen-portfolio` 的米白 / 赤陶色视觉系统，标题使用衬线字体；修改样式时保持课程阅读层级和交互状态清晰
 - 视觉验收以课程正文 15–16px、导航与步骤标签不小于 12px 为基线，并在 1440px 桌面与 390px 手机视口检查整体横向溢出
 - 中文界面文案，标识符使用英文
-- **版本管理**：版本号以 GitHub Release 为准（当前 v1.0.0）；页面不显示版本号，修改 Release 时无需改页面
+- **版本管理**：版本号以 GitHub Release 为准；页面不显示版本号，修改 Release 时无需改页面
 - 保持零依赖原则，未经明确批准不得引入外部库或构建工具
 - **外部引用**：代码不依赖外部 CSS/JS 资源（Cloudflare Pages 上不存在、会 404），不要新增外部引用；Cloudflare beacon 脚本保留
 
@@ -70,7 +73,7 @@ npx wrangler pages deploy . --project-name crc-learn
 
 ## 标志维护约定
 
-项目标志采用统一的深灰方章、米白线条与赤陶色识别点，页面标志与 favicon 共用同一 `project-mark.svg`。后续替换必须保持原标志容器宽高，不得借机改变页眉、网格或页面布局。
+项目标志采用统一的深灰方章、米白线条与赤陶色识别点，页面标志与 favicon 共用同一 `assets/project-mark.svg`。后续替换必须保持原标志容器宽高，不得借机改变页眉、网格或页面布局。
 
 ---
 

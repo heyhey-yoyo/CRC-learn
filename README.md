@@ -58,9 +58,13 @@ Build output directory: /
 npx wrangler pages deploy . --project-name crc-learn
 ```
 
+## License
+
+MIT
+
 ---
 
-> AI 编程代理请阅读 [AGENTS.md](./AGENTS.md) 了解项目结构。
+> AI 编程代理请阅读 [AGENTS.md](./AGENTS.md) 了解代码架构、测试与开发约定。
 
 ---
 
