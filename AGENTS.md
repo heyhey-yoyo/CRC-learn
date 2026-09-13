@@ -17,9 +17,10 @@ CRC Evidence Lab 是一个面向准博士生和青年研究者的**双案例临�
 | 文件 | 作用 |
 | --- | --- |
 | `index.html` | 页面结构（HTML），引用 `styles.css` 与 `app.js` |
-| `styles.css` | 全部样式（约 42 KB） |
-| `app.js` | 全部交互逻辑与课程内容数据（约 500 KB） |
+| `styles.css` | 全部样式 |
+| `app.js` | 全部交互逻辑与同源内嵌下载资源 |
 | `tests/static-smoke.test.mjs` | 零依赖静态验收（导航、资源、脚本语法、响应式样式、重复 ID） |
+| `tests/teaching-chain.test.mjs` | 资源包逐字一致性、完整 R 链、源数据逐行和异常分支回归 |
 | `assets/project-mark.svg` | 页面标志与 favicon 共用图形 |
 | `LICENSE` | MIT 许可证 |
 | `.gitignore` | Git 忽略规则 |
@@ -36,15 +37,18 @@ python -m http.server 8000
 
 ## 测试
 
-无需第三方依赖，运行 `node --test tests/static-smoke.test.mjs` 可检查课程导航、固定章节入口、本地资源、脚本语法、响应式样式与重复 ID。课程进度保存与完整学习流程仍需在浏览器中手动验证。
+无需第三方依赖，运行 `node --test tests/static-smoke.test.mjs` 可检查课程导航、固定章节入口、本地资源、脚本语法、响应式样式与重复 ID。课程进度保存与完整学习流程仍需在浏览器中手动验证。下载分析使用 R 4.4+ 与 survival；完整教学链测试需要 Rscript 在 PATH（或 RSCRIPT 环境变量指定），在系统临时目录解包与运行全部脚本，结束后清理。未安装 R 时该测试明确失败，不以跳过冒充通过。
 
 发布检查：
 
 ```bash
 node --test tests/static-smoke.test.mjs
+node --test tests/teaching-chain.test.mjs
 ```
 
 ## 代码组织与风格约定
+
+应用交付版本仅取 GitHub Release，本仓库无独立应用版本常量；教学包内部标识、资源文件名及进度键保持兼容，不跟随 Release 补丁替换。
 
 - **结构**：HTML 在 `index.html`，样式在 `styles.css`，逻辑与数据在 `app.js`，三者职责分离
 - CSS 变量定义在 `:root`，统一视觉令牌（颜色、圆角、阴影）
@@ -53,7 +57,7 @@ node --test tests/static-smoke.test.mjs
 - 中文界面文案，标识符使用英文
 - **版本管理**：版本号以 GitHub Release 为准；页面不显示版本号，修改 Release 时无需改页面
 - 保持零依赖原则，未经明确批准不得引入外部库或构建工具
-- **外部引用**：代码不依赖外部 CSS/JS 资源（Cloudflare Pages 上不存在、会 404），不要新增外部引用；Cloudflare beacon 脚本保留
+- **外部引用**：课程功能只依赖本地 CSS/JS；Cloudflare beacon 为独立的外部访问统计脚本，需在隐私说明中披露。不要无理由新增外部资源
 
 ### 品牌与排版
 
@@ -66,6 +70,8 @@ node --test tests/static-smoke.test.mjs
 主样式保留一个顶层 `:root`，条件规则和深色画布局部令牌独立维护，避免叠加重复主题或末尾覆盖层。修改视觉后核对实际渲染字体、字号、间距、对比度和操作可达性；至少检查 1440、820、390px，涉及断点时补查两侧宽度，涉及画布或存储时补查交互。构建、单测、本地浏览器和线上部署分别记录；发布后禁用缓存/硬刷新，并核对实际资源版本。
 
 ### 交互与数据约束
+
+资源对象是单一内容来源；单项与完整 Markdown 项目包必须逐字同步。响应确认/DoR、OS/PFS、同材料配对、ctDNA 窗口、day56 风险集与两周期先导定义见包内 README 和 R/00；网页可执行示例复用这些入口（包括 simon_decision）；周期 3 边界为首剂后 0–42 天，RLT 治疗分母不因未完成窗而剔除。字典按 file+variable 维护，不能把案例 B 人为日期规则套给案例 A。更改派生时同步全部模板、数据字典和 evidence chapter_anchor，保留源异常的查询定位，不把 QC 通过表述成源数据已清洁。
 
 home-details 标题与内容保留 18px 水平内边距，并为展开图标留空间。case 与状态颜色保留语义；删选择器前核对 HTML 和动态模板，不改课程资源或进度数据。
 
@@ -87,9 +93,9 @@ npx wrangler pages deploy . --project-name crc-learn
 
 ## 安全与数据注意事项
 
-- 所有数据保存在浏览器 `localStorage`，不上传服务器
+- 学习输入与进度保存在浏览器 `localStorage`，不上传服务器；访问统计的外部请求见下方说明
 - 无后端、无身份验证、无多用户支持
-- 不包含用户数据采集逻辑
+- 课程代码不上传学习输入或进度；页面保留 Cloudflare Web Analytics beacon，用于访问统计。修改分析脚本时须同步 README 隐私说明，不得把“学习数据本地保存”表述为“无访问分析”。
 
 ## 标志维护约定
 
