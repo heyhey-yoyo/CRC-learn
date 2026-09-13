@@ -17,7 +17,7 @@ CRC Evidence Lab 是一个面向准博士生和青年研究者的**双案例临�
 | 文件 | 作用 |
 | --- | --- |
 | `index.html` | 页面结构（HTML），引用 `styles.css` 与 `app.js` |
-| `styles.css` | 全部样式（约 60 KB） |
+| `styles.css` | 全部样式（约 42 KB） |
 | `app.js` | 全部交互逻辑与课程内容数据（约 500 KB） |
 | `tests/static-smoke.test.mjs` | 零依赖静态验收（导航、资源、脚本语法、响应式样式、重复 ID） |
 | `assets/project-mark.svg` | 页面标志与 favicon 共用图形 |
@@ -95,10 +95,12 @@ npx wrangler pages deploy . --project-name crc-learn
 
 项目标志采用统一的深灰方章、米白线条与赤陶色识别点，页面标志与 favicon 共用同一 `assets/project-mark.svg`。后续替换必须保持原标志容器宽高，不得借机改变页眉、网格或页面布局。
 
+---
+
 ## AI 维护提醒
 
 > **⚠️ 任何修改此项目的 AI 代理（包括未来的你自己）都必须遵守：**
 >
-> - **修改代码后必须同步更新本 AGENTS.md 与 README.md** — 功能增删、版本变更、部署方式变更都需要在两份文档中体现
-> - README.md 面向**人类用户**，AGENTS.md 面向 **AI 代理**，两份文件**不可互相替代**
+> - **修改代码后必须同步更新本 AGENTS.md 与 [README.md](./README.md)** — 功能增删、版本变更、部署方式变更都需要在两份文档中体现
+> - [README.md](./README.md) 面向**人类用户**，AGENTS.md 面向 **AI 代理**，两份文件**不可互相替代**
 > - 项目为多文件结构（`index.html` + `styles.css` + `app.js`），新增/拆分文件时务必同步更新文件清单
