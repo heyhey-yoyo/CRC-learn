@@ -24,6 +24,7 @@ CRC Evidence Lab 是一个面向准博士生和青年研究者的**双案例临�
 | `assets/project-mark.svg` | 页面标志与 favicon 共用图形 |
 | `LICENSE` | MIT 许可证 |
 | `.gitignore` | Git 忽略规则 |
+| `README.md` / `AGENTS.md` | 用户向项目说明与 AI 代理维护说明 |
 
 ## 运行与构建
 
