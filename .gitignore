@@ -7,6 +7,10 @@ Thumbs.db
 *.tmp
 *.bak
 
+# Cloudflare 本地状态与变量（不提交 Git）
+.wrangler/
+.dev.vars
+
 # AI 工具本地数据（不提交 Git）
 .claude/
 .workbuddy/
